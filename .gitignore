@@ -16,5 +16,3 @@ latex/**/*.blg
 latex/**/*.bib
 latex/**/*.pytxcode
 latex/**/*.synctex.gz
-latex/'resultats (legacy)'
-latex/'images (temp)'
