@@ -1,0 +1,18 @@
+\fbox{\begin{minipage}{15em}
+\vspace{0.3cm}
+\begin{algorithmic}[0]
+    \State $\theta_0$ : initialisation
+    \State $x$ : image à reconstruire
+    \State $\tau$ : pas de descente
+    \State $N$ : nombre d'itération
+    \State $\hat{x}\ \longleftarrow\ f(x)$
+    \State
+    \For{$n\in \llbracket1,N-1\rrbracket$}
+        \State $\theta_{n+1}\ \longleftarrow\ \theta_n\ - \tau \nabla g(\theta_un)$
+        \State $x_{n+1}\ \longleftarrow\ f_D(\theta_{n+1})$
+        \EndFor
+    \State
+    \Return $(x_n)_{0\leq n\leq N}$
+\end{algorithmic}
+\vspace{0.2cm}
+\end{minipage}}
