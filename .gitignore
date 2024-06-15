@@ -2,7 +2,7 @@
 **/__pycache__
 
 dataset
-Peng_etal
+'Peng et al'
 
 **.pdf
 
@@ -18,3 +18,5 @@ latex/**/*.pytxcode
 latex/**/*.synctex.gz
 latex/'resultats (legacy)'
 latex/'images (temp)'
+latex/'resultats (legacy)'
+latex/'images (temp)' 
