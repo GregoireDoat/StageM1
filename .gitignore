@@ -1,7 +1,14 @@
-**/.venv/*
-**/__pycache__/*
+**/.venv
+**/__pycache__
 
-dataset/*
+dataset
+Peng_etal
+
+*.pdf
+
+resultats (legacy)
+tiked (legacy)
+tikzed
 
 latex/**/*.log
 latex/**/*.bbl
@@ -9,3 +16,8 @@ latex/**/*.blg
 latex/**/*.bib
 latex/**/*.pytxcode
 latex/**/*.synctex.gz
+latex/resultats (legacy)
+latex/images (temp)
+
+
+
