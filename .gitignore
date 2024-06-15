@@ -6,8 +6,8 @@ Peng_etal
 
 **.pdf
 
-resultats (legacy)
-tiked (legacy)
+'resultats (legacy)'
+'tiked (legacy)'
 tikzed
 
 latex/**/*.log
@@ -16,8 +16,5 @@ latex/**/*.blg
 latex/**/*.bib
 latex/**/*.pytxcode
 latex/**/*.synctex.gz
-latex/resultats (legacy)
-latex/images (temp)
-
-
-
+latex/'resultats (legacy)'
+latex/'images (temp)'
