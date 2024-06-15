@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {II.}Descente de gradient depuis l'espace latent}{9}{section.2}%
 \contentsline {subsection}{\numberline {2.1.}Premier résultats, différentes initialisations}{9}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2.}Variation de la qualité de mesure (e.i. $\boldsymbol {p}\times \boldsymbol {q}$)}{12}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3.}Variation de la taille de l'espace latent}{13}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3.}Variation de la taille de l'espace latent}{14}{subsection.2.3}%
 \contentsline {section}{\numberline {III.}Comparaison avec la descente de gradient projetée}{18}{section.3}%
 \contentsline {subsection}{\numberline {3.1.}Le principe et les résultats}{18}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2.}Comparaison avec la LGD}{18}{subsection.3.2}%
@@ -20,5 +20,4 @@
 \contentsline {section}{\numberline {V.}Annexes}{21}{section.5}%
 \contentsline {subsection}{\numberline {A}Auto-encodeur}{21}{subsection.5.1}%
 \contentsline {subsection}{\numberline {B}Calcul pratique de $\boldsymbol {F}$ et de son gradient}{22}{subsection.5.2}%
-\contentsline {subsection}{\numberline {C}Ancien résultats}{24}{subsection.5.3}%
 \contentsfinish 

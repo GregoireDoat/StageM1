@@ -114,7 +114,7 @@ class Save2Tikz():
         tpl.save(f'{save_name}-PSNR-{data}.tex', axis_width=r'\figwidth', axis_height=r'\figheight')
         plt.close()
 
-    def save_multplot(self, methode, globname, names, saveas, ten_first=False) -> None:
+    def save_multplot(self, methode, globname, names, saveas, multitarget=False) -> None:
         ''' Sauvegarde en format Tikz les infos de la figure produite par la fonction 'multiplot_descente' '''
         # nom pour sauvegarde
         save_name = self.make_path(methode, saveas)
@@ -139,23 +139,20 @@ class Save2Tikz():
 
 
             # sauvegardes des images target, A(target), initialisation et résultat
-
-            if ten_first == True:
-                for j in range(10):
-                    plt.imsave(f"{save_name}_{name}-{j}-{data}.png",   histo['img'][j],  cmap=self.color_map)
-            else:
-                plt.imsave(f"{save_name}_{name}-init-{data}.png",   histo['img'][0],  cmap=self.color_map)
-
+            plt.imsave(f"{save_name}_{name}-init-{data}.png",   histo['img'][0],  cmap=self.color_map)
             plt.imsave(f"{save_name}_{name}-guess-{data}.png",  histo['img'][-1], cmap=self.color_map)
 
-            data = info['filtre_type'][0]
 
-            plt.imsave(f"{save_name}_{name}-compatarget-{data}.png", info['y_0'], cmap=self.color_map)
+            if multitarget == True:
+                plt.imsave(f"{save_name}_{name}-target-{data}.png", info['x_0'], cmap=self.color_map)
+            
+        data = info['filtre_type'][0]
+        plt.imsave(f"{save_name}_{name}-compatarget-{data}.png", info['y_0'], cmap=self.color_map)
         plt.imsave(f"{save_name}-target-{data}.png", info['x_0'], cmap=self.color_map)
 
         # sauvegardes des courbes F
         for i, val in enumerate(values):
-            plt.plot(val, label=f'{i+1}')
+            plt.plot(val, label=f'{i+1}kz')
         #plt.legend()
         
         tpl.clean_figure()
@@ -267,10 +264,10 @@ if __name__=='__main__':
 
 # Sauvegarde d'animation
 
-    Savings.animation(methode='PGD', name=f'test', Nframe=50, saveas='../resultats/PGD etrange')
+    #Savings.animation(methode='PGD', name=f'test', Nframe=50, saveas='../resultats/PGD etrange')
     #Savings.animation(methode='LGD', name=f'premiere-g', Nrame=50, saveas='../resultats/LGD animation')
 
 
 #   Sand box
 
-    Savings.save_result('PGD', 'test', 'etrange-g')
+    #Savings.save_result('PGD', 'test', 'etrange-g')

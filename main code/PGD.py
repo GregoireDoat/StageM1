@@ -63,11 +63,12 @@ if __name__=='__main__':
 
         # Set up
 
-    # changement d'une nouvelle image
-    nbs = np.random.randint(0, len(TrainSet), 8)
-    print(f"\n Indexes associés aux images : {nbs}\n")
+    # chargement de nouvelles images
+    nb = 8
+    indexes = np.random.randint(0, len(TrainSet), nb)
+    print(f"\n Indexes associés aux images : {indexes}\n")
 
-    imgs = [TrainSet[nb][0].squeeze() for nb in nbs]
+    imgs = [TrainSet[i][0].squeeze() for i in indexes]
 
     #  changement d'auto-encodeur
     dim_latent = 100   
@@ -78,10 +79,10 @@ if __name__=='__main__':
         # On fait tourner
 
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*8, pas=[1.75]*8, Niter=20, saveas='backproj')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[1.75]*nb, Niter=20, saveas='backproj')
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*8, pas=[4.25]*8, Niter=20, saveas='backproj')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[4.25]*nb, Niter=20, saveas='backproj')
 
     plt.show()
 
@@ -92,25 +93,21 @@ if __name__=='__main__':
 
         # Set up
 
-    # changement d'une nouvelle image
-    nbs = np.random.randint(0, len(TrainSet), 8)
-    print(f"\n Indexes associés aux images : {nbs}\n")
+    # chargement de nouvelles images
+    nb = 8
+    indexes = np.random.randint(0, len(TrainSet), nb)
+    print(f"\n Indexes associés aux images : {indexes}\n")
 
-    imgs = [TrainSet[nb][0].squeeze() for nb in nbs]
-
-    #  changement d'auto-encodeur
-    dim_latent = 100   
-    SupRes.AE = tc.load(f'../resultats/autoencoder/Autoencoder {dim_latent}')
-    SupRes.set_sizes(u_lenth=dim_latent)
+    imgs = [TrainSet[i][0].squeeze() for i in indexes]
 
 
         # On fait tourner
 
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4+['rand+AE']*4, pas=[1.75]*8, Niter=20, saveas='backproj')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4+['rand+AE']*4, pas=[1.75]*nb, Niter=20, saveas='backproj')
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4+['rand+AE']*4, pas=[4.25]*8, Niter=20, saveas='backproj')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4+['rand+AE']*4, pas=[4.25]*nb, Niter=20, saveas='backproj')
 
     plt.show()
     ''' 
@@ -121,21 +118,22 @@ if __name__=='__main__':
 
         # Set up
 
-    # changement d'une nouvelle image
-    nbs = np.random.randint(0, len(TrainSet), 4)
-    print(f"\n Indexes associés aux images : {nbs}\n")
+    # chargement de nouvelles images
+    nb = 8
+    indexes = np.random.randint(0, len(TrainSet), nb)
+    print(f"\n Indexes associés aux images : {indexes}\n")
 
-    imgs = [TrainSet[nb][0].squeeze() for nb in nbs]
+    imgs = [TrainSet[i][0].squeeze() for i in indexes]
 
 
         # Descentes  
 
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4, pas=[0.05]*4, Niter=300, saveas=f'multarg-n-s')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[0.05]*nb, Niter=300, saveas=f'multarg-n-s')
 
 
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4, pas=[0.25]*4, Niter=300, saveas=f'multarg-n-g')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[0.25]*nb, Niter=300, saveas=f'multarg-n-g')
     '''
 
 
@@ -145,8 +143,8 @@ if __name__=='__main__':
         # Préparatifs
 
     # chargement d'une nouvelle image
-    nb = np.random.randint(0, len(TrainSet))
-    print(f"\n Index associé à l'image : {nb}\n")
+    index = np.random.randint(0, len(TrainSet))
+    print(f"\n Index associé à l'image : {index}\n")
 
     img = TrainSet[4618][0].squeeze()
     plt.imshow(img, cmap='magma')
@@ -164,7 +162,7 @@ if __name__=='__main__':
     
     for i, (size, p,q, p_s, p_g) in enumerate(zip(sizes, Ps, Qs, pas_s, pas_g)):
 
-        # changement de niveau de compression
+        # chargement de niveau de compression
         SupRes.set_sizes(y_shape=(p,q))
 
         # descente sans passe-bas
@@ -192,8 +190,8 @@ if __name__=='__main__':
         # Préparatifs
 
     # chargement d'une nouvelle image
-    nb = np.random.randint(0, len(TrainSet))
-    print(f"\n Indexe associé à l'image : {nb}\n")
+    index = np.random.randint(0, len(TrainSet))
+    print(f"\n Indexe associé à l'image : {index}\n")
 
     img = TrainSet[33186][0].squeeze()
     #plt.imshow(img, cmap='magma')
@@ -213,7 +211,7 @@ if __name__=='__main__':
 
     for d, p_s, p_g in zip(dims, pas_s, pas_g):
     
-        # changement de la taille de l'espace latent
+        # chargement de la taille de l'espace latent
         dim_latent = d
         SupRes.set_autoencoder(f'../resultats/autoencoder/Autoencoder {d}')
         SupRes.set_sizes(u_lenth=d)

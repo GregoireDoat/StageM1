@@ -756,13 +756,12 @@ Pour le voir, dans la figure \textit{\ref{fig:LGDmultarg-g}} ci-dessous, les deu
 Il apparaît clairement que l'auto-encodeur se comporte mal avec des initialisations trop loin de $[0,1]$. \emph{blablabla il te faut les résultats pour avancer là}
 
 \begin{figure}[H]\centering
-    %\input{figures/LGD/compar_inits-g}
-    %\includegraphics[width=1.\textwidth]{resultats/LGD/inits/inits-s_multiplot.png}
+	\input{resultats/LGD/inits/figure-g}
     \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 150 itérations --- sans passe-bas}
     \label{fig:LGDmultarg-s}
 \end{figure}
 \begin{figure}[H]\centering
-    %\includegraphics[width=1.\textwidth]{resultats/LGD/inits/inits-g_multiplot.png}
+	\input{resultats/LGD/inits/figure-g}
     \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 10 itérations ---  avec passe-bas gaussien ($\sigma=0.5$)}
     \label{fig:LGDmultarg-g}
 \end{figure}
@@ -776,15 +775,26 @@ Il apparaît clairement que l'auto-encodeur se comporte mal avec des initialisat
 
 \subsection{Variation de la qualité de mesure (e.i. $\bf{p}\times\bf{q}$)}
 
+Pour tester les limites de la méthode par rapport au rapports $n/p$ et $m/q$, la LGD à été effectuée avec les valeurs suivantes (les pas ont été ajusté en fonction des cas) :
+\begin{enumerate}[label=(\arabic*)]
+	\item $(p,q)$ = (14, 14)
+	\item $(p,q)$ = (14, 7)
+	\item $(p,q)$ = (7, 14)
+	\item $(p,q)$ = (7, 7)
+	\item $(p,q)$ = (5, 5)
+\end{enumerate}
+
+Les résultats, \textit{fig. \ref{fig:}}
+
 \begin{figure}[H]\centering
 	\input{resultats/LGD/sizes/figure-s}
-	\caption{En première ligne l'initialisation, ensuite la mesure $\bf{y_0}$ de la Target et en desosus le résultat de la LGD après 200 itérations --- sans passe-bas}
+	\caption{Resultats de la LGD avec différents niveau de compression --- sans passe-bas}
 	\label{fig:LGD comp_inits g}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/sizes/figure-g}
-    \caption{En première ligne l'initialisation, ensuite la mesure $\bf{y_0}$ de la Target et en desosus le résultat de la LGD après 200 itérations ---  avec passe-bas gaussien ($\sigma=0.5$)}
+	\caption{Idem, cette fois avec un passe-bas gaussien ($\sigma=0.5$)}
 	\label{fig:LGD comp_inits g}
 \end{figure}
 %\\ \\
@@ -792,6 +802,7 @@ Il apparaît clairement que l'auto-encodeur se comporte mal avec des initialisat
 
 
 \subsection{Variation de la taille de l'espace latent}
+
 
 \begin{figure}[H]\centering
     \includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-s_100_fig.png}
@@ -878,7 +889,7 @@ Comme expliqué plus haut, le problème est convexe ce qui assure la convergence
 	\item Très sensible au pas image-wise
 	\item Robuste à l'initialisation
 \end{itemize}
-\\ \\
+%\\ \\
 
 
 
@@ -918,6 +929,9 @@ Il a été fait le choix de de supposer $f_D$ inversible pour exprimer le fait q
 \\
 
 A voir sur des images plus complexes mais \apriori, les modèles très résistant à l'aliasing
+\\
+
+Il faudrait faire marcher le pas adaptatif voir ajouter de l'inertie pour éviter les cas les plateaux qui arrive de temps à autre.
 
 
 
@@ -955,52 +969,48 @@ Leur entraînement s'est fait sur le jeu de données MNIST sur 60 epochs avec de
 \subsection{Calcul pratique de $\bf{F}$ et de son gradient}\label{anx:gradF}
 \quad
 
-\begin{enonce}[Notation ({\normalfont pas sur qu'il y en ait besoin}]
-Comme $A$ est linéaire, dans toute la suite elle sera assimilé à matrice la représentant. Là où l'opérateur $A$ prend pour entrée un image $\bf{x}\in\R^{n\times m}$, sa représentation matricielle elle prendre un vecteur $x\in\R^{nm}$. Par souci de lisibilité on notera dans toute la suite les images sous forme d'image en gras, leur version vectoriel en fin avec l'abus de notation :
-\[A(\bf{x})=Ax\]
-
-\emph{Ces notations seront également valable pour toute autre opérateur linéaire.}
+\begin{enonce}[Notation]
+Comme $A$ est linéaire, dans toute la suite elle sera assimilé à matrice la représentant. Là où l'opérateur $A$ prend pour entrée un image $\bf{x}\in\R^{n\times m}$, sa représentation matricielle elle prendre un vecteur $x\in\R^{nm}$. Par souci de lisibilité on notera dans toute la suite les images sous forme de matrice en gras, leur version vectorielle en fin.
 \end{enonce}
 
 Le fait de supposer $A$ linéaire permet de calcul explicitement le gradient de $F$ à moindre coût :
 \begin{equation}\label{eq:gradient}
 \forall x\in\R^{nm},\qquad \nabla F(x)=\,^tA\big(Ax-y\big)
 \end{equation}{\color{white}l}
-Si la formule (\ref{eq:gradient}) est mathématiquement très simple, dès que $n$ et $m$ seront un peu trop grand, la taille de $A$ va très vite ralentir tout algorithme de descente, voir rendre impossible son stockage en mémoire.
+Si la formule (\ref{eq:gradient}) est mathématiquement très simple, dès que $n$ et $m$ seront un peu trop grand, la taille de $A$ va très vite ralentir tout algorithme de descente et prendre énormément de place en mémoire.
 
-Pour y remédier, notons $\F$ (resp. $\F^{-1}$) la matrice associée à la transformée (resp. inverse) de Fourier discrète. En notant de plus $\hat{\bf{x}}=\F \bf{x}$ et $\odot$ le produit terme à terme de vecteur/matrice, $A$ s'écrit alors :
+Pour éviter d'avoir à construire à explicitement on passe par la transformée de Fourier. On note $\F$ (resp. $\F^{-1}$) la matrice associée à la transformée (resp. inverse) de Fourier discrète. En notant de plus $\hat{\bf{x}}=\F \bf{x}$ et $\odot$ le produit terme à terme de vecteur/matrice, $A$ s'écrit alors :
 \begin{align*}\forall \bf{x}\in\R^{n\times m},\qquad A(\bf{x})=S\circ C_h(\bf{x})=S(\bf{h}*\bf{x})&=S\circ\F^{-1}\F(\bf{h}*\bf{x})\\
     &=S\circ\F^{-1}\big(\hat{\bf{h}}\odot\hat{\bf{x}}\big)\end{align*}
 \\
-La transformé de Fourier discrète étant symétrique\footnote{comme $x$ a été aplatie, $\F$ n'est pas diagonale à proprement parler, nous y revenons plus loin} et $D_h$ aussi (car diagonale), le gradient de $F$ se réécrire comme :
+Notons $D_h$ l'application/matrice associée au produit $\hat{h}\odot\cdot$. Comme la transformée de Fourier discrète et $D_h$ sont symétriques\footnote{comme $x$ a été aplatie, $\F$ n'est pas diagonale à proprement parler, nous y revenons plus loin}, le gradient de $F$ se réécrire comme :
 \begin{align*}\forall x\in\R^{nm},\qquad \nabla F(x)=\,^tA\big(Ax-y\big)&=\,^t\Big(S\F^{-1}D_h\F\Big)\big(S\F^{-1}D_h\F x-y\big)\\
     &=\,^t\F\,^tD_h\,^t\F^{-1}\,^tS\big(S\F^{-1}D_h\F x-y\big)\\
     &=\F D_h\F^{-1}\,^tS\big(S\F^{-1}D_h\F x-y\big)\end{align*}
 \\
 Sous cette forme et même s'il n'en n'a pas l'air, le gradient est bien plus simple à calculer et rapide à calculer.
 
-D'abord, la projection $S$ est très peu coûteuse en temps de calcul puisqu'elle consiste à ne garder qu'un certain nombre de pixel de l'image. Par exemple, la  \figref{fig:Simg} ci-dessous représente une image $4\times 3$ sous-échantillonnée en une image $2\times2$  et du point de vu matricielle, $S$ prend la forme de la \figref{fig:Smat}.
-
-Du point de vu python, cela revient simplement à ne conserver qu'une valeur sur deux dans le tableau que représente l'image. De façon plus générale, la projection $S$ se traduit par la commande : 
+D'abord, la projection $S$ est très peu coûteuse en temps de calcul puisqu'elle consiste à ne garder qu'un certain nombre de pixel de l'image. Du point de vu python, il n'y a pas besoin de construire $S$, simplement de faire l'opération :
 \[\forall x\in\R^{n\times m},\qquad S(x):=\texttt{Sx = x[::n//p, ::m//q]}\]
-\begin{figure}[H]\centering
-    %\input{figures/matrice S}
-\end{figure}
-\noindent
-Avec ces représentation, on se convainc sans trop de difficulté qu'appliquer la transposé $^tS$ à une image $y\in\R^{p\times q}$ revient reprendre un antécédent de $y$ par $S$ et à remplacer les valeurs des pixels qui ne sont pas conserver par $S$ par des 0. Cette manipulation ne demande pas non plus de construire $^tS$, il suffit de produit une image $^tSy=$\pyt{tSy} de taille $(n,m)$ remplie de 0 et d'ensuite faire la modification :
-\[\forall (i,j)\in\llbracket1,p\rrbracket\times\llbracket1,q\rrbracket,\qquad \texttt{tSy[i*n//p, j*p//q] = y[i,j]}\]
+
+\noindent Inversement, la transposé $^tS$ à une image $y\in\R^{p\times q}$ revient à construire une image $^tSy=$\pyt{tSy} de taille $(n,m)$ remplie de 0 puis de faire la modification :
+\[\forall (i,j)\in\llbracket1,p\rrbracket\times\llbracket1,q\rrbracket,\qquad \texttt{tSy[i*n//p, j*p//q] = y[i,j]}\]{\color{white}l}
+
+Il n'y a pas besoin non plus de construire $D_h$, le produit $\hat{\bf{h}}\odot\hat{\bf{x}}$ suffit et le passage dans/hors de l'espace des fréquences est fait pas \texttt{fft}. Ainsi, il n'y a jamais besoin d'aplatir les images et dans ce cas, on a bien la symétrie de $\F$ dans le sens où, avec les conventions ne notations d'Einstein, elle vérifie :
+\[\forall(i,j)\in\llbracket1,n\rrbracket\times\llbracket1,m\rrbracket,\qquad \hat{\bf{x}}^{kl}=\F_{ ij}^{kl}\bf{x}^{ij}=\F_{ ij}^{lk}\bf{x}^{ij}=\hat{\bf{x}}^{lk}\]{\color{white}l}
+
+Enfin, comme sont nom l'indique, il est plus naturel de construire la filtre \emph{passe-bas} directement dans l'esapce de Fourier, et ce qui est dans le code. Le figure \textit{\ref{fig:passebas-g}} et \textit{\ref{fig:passebas-p}} montre l'application de $A$ et $^tA$ à une image. La figure \textit{\ref{fig:passebas-p}} en particulier mais bien en évidence l'effet de Gibbs qui apparaît parce que les fréquences sont trop brutalement coupées.
 \\
-Dans notre cas, $n=m=28$ et pour le moment $p=q=14$. Le code reste néanmoins relativement flexible de ce point de vue la puisqu'il devrait marcher tant que $p$ (resp. $q$) divise $n$ (resp. $m$), \emph{plus de détail dans le code}. La \figref{fig:sousechanti} ci-dessous montre les applications successives de $S$ et $^tS$ une image $x$.
 \begin{figure}[H]\centering
-    %\input{figures/x, S, tS}
-    \caption{SENSING MATRIX --- Application du sous-échantillonnage à une image, puis application sa transposé}
+    \input{figures/x, S, tS}
+    \caption{Application successive de $S$ et $^tS$ à une image}
     \label{fig:sousechanti}
 \end{figure}
 
 \begin{figure}[H]\centering
-    %\input{figures/Compar_filters/gaussien}
+    \input{figures/Compar_filters/gaussien}
     
-    \caption{En première ligne la transformé du filtres  $\hat{\bf{h}}$ gaussien d'écart type $\sigma$, en deuxième l'image $\bf{x}$ ($28\times28$), en troisième le résultat $A(\bf{x})$ ($14\times14$) et en dernière ligne le produit $tA(A\bf{x})$ ($28\times28$).}
+    \caption{En première ligne la transformée du filtres  $\hat{\bf{h}}$ gaussien d'écart type $\sigma$, en deuxième l'image $\bf{x}$ avec en dessous le produits $A(\bf{x})$ puis $tA(A\bf{x})$.}
     \label{fig:passebas-g}
 \end{figure}
 
@@ -1009,30 +1019,6 @@ Dans notre cas, $n=m=28$ et pour le moment $p=q=14$. Le code reste néanmoins re
     \caption{Idem qu'à la figure \ref{fig:passebas-g} avec cette fois $\hat{\bf{h}}$ qui est l'indicatrice de $[-a,a]\times[-a,a]$}
     \label{fig:passebas-p}
 \end{figure}
-%\\ \\
-
-
-
-
-\subsection{Ancien résultats}
-
-\begin{figure}[H]\centering
-    %\input{figures/PGD/PGD 1}
-    \caption{Résultat de la PGD avec un pas de descente $\rho=10^{-20}$, sans filtre passe-bas}
-\end{figure}
-
-\begin{figure}[H]\centering
-    %\input{figures/PGD/compar_inits 1-s}
-    \caption{ PGD --- En première lignes différentes initialisation avec en dessous le résultats de la PGD après 100 itérations --- $\rho=10^{-20}$ sans passe-bas}
-    \label{fig:1}
-\end{figure}
-
-\begin{figure}[H]\centering
-    %\input{figures/PGD/compar_inits 1-g}
-    \caption{ PGD --- En première lignes différentes initialisation avec en dessous le résultats de la PGD après 100 itérations --- $\rho=10^{-20}$ avec passe-bas gaussien ($\sigma=0.6$)}
-    \label{fig:2}
-\end{figure}
-
 \end{annexe}
 
 \newpage

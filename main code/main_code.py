@@ -850,9 +850,22 @@ class SuperResolution(Affichage):
         else:
             return pas, x_next, F_next, diff_next
 
-    def LGD(self, target, init, pas, Niter=100, back_tracking=False) -> np.array:
+    def LGD(self, target, init, pas, Niter, back_tracking=False) -> np.array:
         '''
-            target, init expected shape : SHAPE
+            :param tc.Tensor target:       image cible de la descente
+            :param str|tc.Tensor init:     'f_E(tA(y_0))', 'random', 'rand+f_E', tc.Tensor : initialisation de la descente
+            :param float pas:           pas de descente
+            :param int Niter:           nombre d'itérations
+            :param bool back_tracking:  si oui ou non il faut faire du back_tracking
+
+            :rtn np.Array self.histo['img'][-1]: resultats de la descente
+
+            Effectue la descente de gradient depuis l'espace latent. L'historique de la descente est ajouté au dictionnaire self.histo
+                et les informations au dictionnaire self.info.
+            Plusieurs initialisation sont possibles : par backprojection avec 'f_E(tA(y_0))', par une image aléatoire, ou aléatoire puis passé dans l'auto-encoder
+                pour effectuer une premier projection. 
+            A chaque itérations le PSNR entre l'image actuelle et la target est comparer à celui la target avec sa version auto-encoder.
+            Il y a deux boucles pour la descente : avec et sans backtracking.            
         '''
 
             # Calculs préliminaires
@@ -1021,10 +1034,10 @@ if __name__=='__main__':
 
 ###     Plot de quelque auto-encodage
     '''
-    nbs = np.random.randint(0, len(TrainSet), 8)
-    print(f'\n {nbs=}\n')
+    indexes = np.random.randint(0, len(TrainSet), 8)
+    print(f'\n {indexes=}\n')
 
-    imgs = [TrainSet[nb][0].squeeze() for nb in nbs]
+    imgs = [iTrainSet[i][0].squeeze() for i in indexes]
     for d in [800, 400, 200, 100]:
 
         # changement de la taille de l'espace latent
@@ -1054,10 +1067,10 @@ if __name__=='__main__':
     
         # Changement d'image
 
-    nb = np.random.randint(0, len(TrainSet))
-    print(f"\n Index associé à l'image : {nb}\n")
+    index = np.random.randint(0, len(TrainSet))
+    print(f"\n Index associé à l'image : {index}\n")
 
-    img = TrainSet[nb][0].squeeze()
+    img = TrainSet[index][0].squeeze()
 
 
         # Gaussien
@@ -1089,10 +1102,10 @@ if __name__=='__main__':
         # Set up
 
     # changement d'une nouvelle image
-    nb = np.random.randint(0, len(TrainSet))
-    print(f"\n Indexe associé à l'image : {nb}\n")
+    index = np.random.randint(0, len(TrainSet))
+    print(f"\n Indexe associé à l'image : {index}\n")
 
-    img = TrainSet[nb][0].squeeze()
+    img = TrainSet[index][0].squeeze()
     plt.imshow(img, cmap='magma')
     plt.show()
 
@@ -1128,10 +1141,10 @@ if __name__=='__main__':
 
 
     # changement d'une nouvelle image
-    nb = np.random.randint(0, len(TrainSet))
-    print(f"\n Indexe associé à l'image : {nb}\n")
+    index = np.random.randint(0, len(TrainSet))
+    print(f"\n Indexe associé à l'image : {index}\n")
 
-    img = TrainSet[nb][0].squeeze()
+    img = TrainSet[index][0].squeeze()
     #plt.imshow(img, cmap='magma')
     #plt.show()
 
@@ -1162,10 +1175,10 @@ if __name__=='__main__':
         # Descente en masse pour valider
 
     # selection
-    nbs = np.random.randint(0, len(TrainSet), 8)
-    print(f"\n Indexes associés aux images : {nbs}\n")
+    indexes = np.random.randint(0, len(TrainSet), 8)
+    print(f"\n Indexes associés aux images : {indexes}\n")
 
-    imgs = [TrainSet[nb][0].squeeze() for nb in nbs]
+    imgs = [iTrainSet[i][0].squeeze() for i in indexes]
 
     # backproj
     SupRes.set_passebas(filtre='sans')
