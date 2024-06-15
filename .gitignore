@@ -1,15 +1,13 @@
-.gitignore
-
 **/.venv
 **/__pycache__
 
 dataset
-'Peng et al'
+Peng*et*al
 
-**.pdf
+*.pdf
 
-'resultats (legacy)'
-'tiked (legacy)'
+**/*(legacy)
+
 tikzed
 
 latex/**/*.log
