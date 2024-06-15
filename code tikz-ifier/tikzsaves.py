@@ -148,7 +148,8 @@ class Save2Tikz():
             
         data = info['filtre_type'][0]
         plt.imsave(f"{save_name}_{name}-compatarget-{data}.png", info['y_0'], cmap=self.color_map)
-        plt.imsave(f"{save_name}-target-{data}.png", info['x_0'], cmap=self.color_map)
+        if multitarget == False:
+            plt.imsave(f"{save_name}-target-{data}.png", info['x_0'], cmap=self.color_map)
 
         # sauvegardes des courbes F
         for i, val in enumerate(values):
