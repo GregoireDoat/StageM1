@@ -502,15 +502,17 @@ Le filtre gaussien à pour paramètre l'écart-type $\sigma$ de $\hat{\bf{h}}$. 
 \begin{figure}[b]
 \begin{floatrow}
 \ffigbox{\caption{Opérateur $S$, point de vue matriciel} \label{fig:Smat}}
-{\input{tikz/Smat}}
+{%\input{tikz/Smat}
+}
 
 \ffigbox{\caption{Opérateur $S$, point de vue image} \label{fig:Simg}}
-{\input{tikz/Simg}}
+{%\input{tikz/Simg}
+}
 \end{floatrow}
 \end{figure}
 
 \begin{figure}[h]\centering
-    \input{figures/Compar_filters/both}
+    %\input{figures/Compar_filters/both}
     \caption{Quelques exemples d'application de $A$ à un même image en fonction des filtres. }
 \end{figure}
 
@@ -525,7 +527,7 @@ Aussi, la linéarité de $A$ assure la convexité de $F$ mais, bien évidemment,
 \\
 
 \begin{wrapfigure}{r}{0.4\textwidth}% vire le [16]
-    \input{tikz/dessinAE}
+    %\input{tikz/dessinAE}
     \caption{Schéma des auto-encodeurs  $f$ avec $d=100,\ 200,\ 400,\ 800$}
     \label{fig:AEschem}
 \end{wrapfigure}
@@ -555,7 +557,7 @@ La paramétrisation $\phi$, doit vérifier certaines hypothèses de régularité
 \\
 
 \begin{wrapfigure}{r}{0.43\textwidth}
-    \input{figures/pcode LGD}
+    %\input{figures/pcode LGD}
     \caption{Algorithme de descente depuis l'espace des paramètres}
     \label{fig:pcode LGD}
 \end{wrapfigure}
@@ -587,6 +589,8 @@ Contrairement aux exemples traités dans l'article, la paramétrisation par l'es
 \end{align*}
 \\
 En particulier, cela permet d'avoir l'injectivité de $f_D$ sur $\Theta$. Ce dont il découle que $d(\theta,\theta^*)=\|\theta-\theta^*\|_2$ est une distance (ce qui n'est pas le cas en générale), que $\Lambda_\beta(\theta^*)$ une boule ouverte et que $\ p(\theta,\theta^*)=\theta^*$.
+
+\emph{Cette hypothèse est quand-même très forte, elle sera détaillé dans la section \ref{sec:PGD}}
 \\
 
 Enfin, dans toute la suite $\Sigma$ sera supposé être un cône, c'est-à-dire que pour tout $\lambda>0$, $\lambda\Sigma=\Sigma\ $ et sont introduites les deux ensembles suivants :
@@ -677,10 +681,12 @@ En calculant le rapport $\left|\frac{\|Av\|^2}{\|v\|^2}-1\right|$, on peut donc 
 \begin{figure}[h]
 \begin{floatrow}
 \ffigbox{\caption{Histogramme des valeurs de $\big|{\|Av\|_2}^2/{\|v\|_2}^2-1\big|$ sans filtre passe-bas sur le set de test}\label{fig:RIP-s}}
-{\input{resultats/RIPestimation/gamma-s}}
+{%\input{resultats/RIPestimation/gamma-s}
+}
 
 \ffigbox{\caption{Histogramme des valeurs de $\big|{\|Av\|_2}^2/{\|v\|_2}^2-1\big|$ avec filtre gaussien ($\sigma=0,6$) sur le set de test}\label{fig:RIP-g}}
-{\input{resultats/RIPestimation/gamma-g}}
+{%\input{resultats/RIPestimation/gamma-g}
+}
 \end{floatrow}\end{figure}
 
 \noindent On y voit que dans les deux cas, on peut espérer que $\gamma$ soit au mieux au alentour des $0.9$. Ce serait suffisant pour vérifier la RIP mais sachant qu'on veut le restreindre le moins possible $\beta$ dans l'inégalité (\ref{eq:majo3}), cela reste contraignant. D'autant plus qu'avoir $C=1$ n'aide pas beaucoup.
@@ -738,26 +744,25 @@ Les différentes initialisations sont les suivantes :
     \item $\bf{u_0}=\bf{u}_{\text{rand}}$,  vecteur aléatoire de l'espace latent
 \end{enumerate}
 
-\noindent La première initialisation est la plus naturelle puisqu'elle utilise $^tA$, ce qui se rapproche le plus d'un inverse pour $A$ (voir figure \textit{\ref{fig:passebas-g}} et \textit{\ref{fig:passebas-g}} en annexe \ref{anx:gradF} pour les visuels) et de même pour $f_E$ par rapport à $f_D$. 
+\noindent La première initialisation est la plus naturelle puisqu'elle utilise $^tA$, ce qui se rapproche le plus d'un inverse pour $A$ (voir \textit{fig. \ref{fig:Sapplication}, \ref{fig:passebas-g} \& \ref{fig:passebas-p}} en annexe \ref{anx:gradF} pour les visuels) et de même pour $f_E$ par rapport à $f_D$. 
 \\
 Les initialisations $(2)$ et $(3)$ sont au voisinage de de la cible  pour voir à quel point il possible de s'éloigner de $\bf{x_0}$ tout en conservant la convergence de l'algorithme.
 \\
 
-Cela étant dit, le premier constat est que la méthode fonctionne et ceux même en partant d'une vecteur aléatoire.  Aussi, même s'il sont meilleurs avec un passe-bas, les résultats restent satisfaisant sans filtre. La structure très simple du jeu de données aide probablement sur ce point et il serait intéressant de voir si les différences avec/sans filtre sont plus marqués sur un jeu de données plus complexe comme Fashion-MNIST.
+Le premier constat est que la méthode fonctionne et ceux même en partant d'une vecteur aléatoire.  Aussi, même s'il sont meilleurs avec un passe-bas, les résultats restent satisfaisant sans filtre. La structure très simple du jeu de données aide probablement sur ce point et il serait intéressant de voir si les différences avec/sans filtre sont plus marqués sur un jeu de données plus complexe comme Fashion-MNIST.
 \\
-De plus, les courbes de loss de la figure \textit{\ref{fig:LGDinitg}} suggèrent que le résultats pourrait être améliorer avec plus d'itérations. Celles de la figure \textit{\ref{fig:LGDinits}} suggèrent une convergence mais comme  les courbes fond des saut, il possible que la loss puisse encore diminuer en échappant à ces plateaux. On pourrait par exemple ajouter de l'inertie à la descente.
+De plus, les courbes de loss de la figure \textit{\ref{fig:LGDinitg}} n'ont pas toutes finies de descendre (\ei ne sont pas plates à $x=300$) et c'est une remarque que l'on pourra faire sur beaucoup des graphes à suivre dès qu'il y a un filtre passe-bas. Il aurait fallu pousser le nombre d'itérations mais l'algorithme étant lent, on s'est arrêté en bout de 300 par manque de moyen. Cela dit, dans plus part des cas ce n'est pas un problème au vu de la qualité des reconstructions.
+\\
+Pour les cas sans passe-bas, les courbes ont tendances à passer par des plateaux, suggérant que la loss puisse encore diminuer en ajoutant de l’inertie à la descente.
 \\
  
-Autre chose remarquable, le résultats $(4)$ est meilleur que le $(3)$ alors que l'initialisation du premier est plus éloigné de la cible que le second. Cela est dû à la façon dont est tiré $\bf{u}_{\text{rand}}$. Pour rester cohérent avec la structure des images, et le réseau $f$ (composé de sigmoïde), les coefficients de $\bf{u}_{\text{rand}}$ sont tirés suivant une loi uniforme sur $[0,1]$. et l'auto encodeur gère très mal les vecteurs à valeurs trop loin de l'intervalle $[0,1]$. 
+Autre chose remarquable, le résultats $(4)$ est meilleur que le $(3)$ alors que l'initialisation du premier est plus éloigné de la cible que le second. Cela est dû à la façon dont est tiré $\bf{u}_{\text{rand}}$. Pour rester cohérent avec la structure des images, et le réseau $f$ (composé de sigmoïde), les coefficients de $\bf{u}_{\text{rand}}$ sont tirés suivant une loi uniforme sur $[0,1]$ et l'auto encodeur gère très mal les vecteurs à valeurs trop loin de l'intervalle $[0,1]$. 
 \\
-
-Pour le voir, dans les figures \textit{\ref{fig:LGDgauss-s}} et \textit{\ref{fig:LGDgauss-g}} page suivante, chaque lignes correspond à un LGD avec en première ligne l'initialisation (décodée), en deuxième la reconstructions dont la cible est en troisième ligne. Les coefficients des initialisations sont tirés suivant une loi normal d'écart-type 2. En comparaison, les initialisations de la figure \textit{\ref{fig:LGDunif-g}} ci-dessous ont été tiré suivant une loi uniforme sur $[0,1]$. \textbf{\color{red}IL FAUT LES R2SULTATS...}
-
-\textbf{\color{red}PENSES AU DIRE QUE CE A PAS CV MAIS QUE J4AI MIEUX A FOUTRE}
+Les figures \textit{\ref{fig:LGDgauss-s}} et \textit{\ref{fig:LGDgauss-g}} page suivante, mettent cela en évidence. Chaque lignes correspond à une descente avec en première ligne l'initialisation (décodée), en deuxième la reconstructions dont la cible est en troisième ligne. Les coefficients des initialisations sont tirés suivant une loi normal d'écart-type 2. En comparaison, les initialisations de la figure \textit{\ref{fig:LGDunif-g}} ci-dessous ont été tiré suivant une loi uniforme sur $[0,1]$. 
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/multitarget/figure_unif-g}
-	\caption{Plein de descentes ---  avec passe-bas gaussien ($\sigma=0.6$)}
+	\caption{Résultats de LGD toutes initialiser par un vecteur tiré suivant une lui uniforme sur $[0,1]$ ---  avec passe-bas gaussien ($\sigma=0.6$)}
 	\label{fig:LGDunif-g}
 \end{figure}
 \begin{figure}[H]\centering
@@ -771,18 +776,8 @@ Pour le voir, dans les figures \textit{\ref{fig:LGDgauss-s}} et \textit{\ref{fig
     \label{fig:LGDgauss-g}
 \end{figure}
 
-%\begin{figure}[H]\centering
-	%\input{resultats/LGD/multitarget/figure_unif-s}
-	%\caption{Plein de descentes --- sans passe-bas}
-	%\label{fig:LGDunif-s}
-%\end{figure}
-%\begin{figure}[H]\centering
-	%\input{resultats/LGD/multitarget/figure_unif-g}
-	%\caption{Plein de descentes ---  avec passe-bas gaussien ($\sigma=0.6$)}
-	%\label{fig:LGDunif-g}
-%\end{figure}
-%\\ \\
-
+\noindent Clairement, les courbes sont beaucoup plus chaotique et on pourrait supposer que cela vient de l'apprentissage de $f$ qui aurait ``écarté'' les parties de l'espace latent où $f_D$ n'est pas injective en dehors de $[0,1]^d$. 
+\\
 
 
 \subsection{Variation de la qualité de mesure (e.i. $\bf{p}\times\bf{q}$)}\label{sec:LGDsize}
@@ -796,7 +791,7 @@ Pour tester les limites de la méthode par rapport au rapports $n/p$ et $m/q$, l
 	\item $(p,q)$ = (5, 5)
 \end{enumerate}
 
-Les résultats, \textit{fig. \ref{fig:LGDsizes-s} \& \ref{fig:LGDsizes-g}}, restent concluant malgré le haut niveau de compression. La première ligne correspond aux initialisations (par backprojection), la seconde au sous-échantillonnage $A\bf{x_0}$ de la cible $\bf{x_0}$ et la troisième à la reconstruction par LGD. Notons également que l'impact du filtre se fait sentir, sans passe-bas l'algorithme à beaucoup plus de mal à reconstruire l'information perdue. Du point de vue des courbes, on voit aussi que la filtre passe-bas à tendance à bien plus les lisser, ce qui sous-entend une potentielle meilleure convexité de $g$.
+Les résultats, \textit{fig. \ref{fig:LGDsizes-s} \& \ref{fig:LGDsizes-g}}, restent concluant malgré le haut niveau de compression. La première ligne correspond aux initialisations (par backprojection), la seconde au sous-échantillonnage $A\bf{x_0}$ de la cible $\bf{x_0}$ et la troisième à la reconstruction par LGD. Avec la diminution de $p$ et $q$, l'impact du filtre se fait sentir, sans passe-bas l'algorithme à beaucoup plus de mal à reconstruire l'information perdue. Du point de vue des courbes, on voit aussi que la filtre passe-bas à tendance à bien plus les lisser, ce qui sous-entend une potentielle meilleure convexité de $g$.
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/sizes/figure-s}
@@ -809,7 +804,8 @@ Les résultats, \textit{fig. \ref{fig:LGDsizes-s} \& \ref{fig:LGDsizes-g}}, rest
 	\caption{Idem, cette fois avec un passe-bas gaussien ($\sigma=0.5$)}
 	\label{fig:LGDsizes-g}
 \end{figure}
-%\\ \\
+{\color{white}l}
+\\ \\
 
 
 
@@ -867,7 +863,6 @@ Toujours dans l'optique de voir les limites de la méthodes, trois autres auto-e
 	\caption{$d=800$, sans passe-base}
 	\label{fig:LGDlat800-g}
 \end{figure}
-\`A noter que sur la loss de la figure \figref{fig:LGD comp_size g} lees algorithmes stagnent ce qui sous entend que l'on se trouve dans des vallées (ou des crêtes). Problème qui peut être évité en ajoutant de l'inertie à la descente avec des méthodes type heavy-ball ou Nesterof. 
 
 
 
@@ -969,16 +964,16 @@ Comme expliqué en début de rapport, section \ref{sec:forma2pb}, les auto-encod
 Leur entraînement s'est fait sur le jeu de données MNIST sur 60 epochs avec des batchs de tailles 100.  Il est effectué par le code \texttt{training autoencoder.py} disponible sur le  \href{https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D}{GitHub} et dont voici un résumé des performances :
 \\
 \begin{figure}[H]\centering
-    \input{figures/AE/img}
+    %\input{figures/AE/img}
     \caption{Reconstruction par auto-encodeur des images Input en fonction de la taille de l'espace latent du dit auto-encodeur et avec les PSNR associés}
     \label{fig:AEapp}
 \end{figure}
 \begin{figure}[H]\centering
-    \input{figures/AE/plot}
+    %\input{figures/AE/plot}
     \caption{Évolution de la MSE et du PSNR par batch des auto-encodeurs au cours des epochs. En bleu sur le set d'entraînement et en violet sur celui de test}
     \label{fig:AEperf}
 \end{figure}
-%\\ \\
+{\color{white}l}
 
 
 
@@ -1018,20 +1013,20 @@ Il n'y a pas besoin non plus de construire $D_h$, le produit $\hat{\bf{h}}\odot\
 Enfin, comme sont nom l'indique, il est plus naturel de construire la filtre \emph{passe-bas} directement dans l'esapce de Fourier, et ce qui est dans le code. Le figure \textit{\ref{fig:passebas-g}} et \textit{\ref{fig:passebas-p}} montre l'application de $A$ et $^tA$ à une image. La figure \textit{\ref{fig:passebas-p}} en particulier mais bien en évidence l'effet de Gibbs qui apparaît parce que les fréquences sont trop brutalement coupées.
 \\
 \begin{figure}[H]\centering
-    \input{figures/x, S, tS}
+    %\input{figures/x, S, tS}
     \caption{Application successive de $S$ et $^tS$ à une image}
-    \label{fig:sousechanti}
+    \label{fig:Sapplication}
 \end{figure}
 
 \begin{figure}[H]\centering
-    \input{figures/Compar_filters/gaussien}
+    %\input{figures/Compar_filters/gaussien}
     
     \caption{En première ligne la transformée du filtres  $\hat{\bf{h}}$ gaussien d'écart type $\sigma$, en deuxième l'image $\bf{x}$ avec en dessous le produits $A(\bf{x})$ puis $tA(A\bf{x})$.}
     \label{fig:passebas-g}
 \end{figure}
 
 \begin{figure}[H]\centering
-    \input{figures/Compar_filters/porte}
+    %\input{figures/Compar_filters/porte}
     \caption{Idem qu'à la figure \ref{fig:passebas-g} avec cette fois $\hat{\bf{h}}$ qui est l'indicatrice de $[-a,a]\times[-a,a]$}
     \label{fig:passebas-p}
 \end{figure}
