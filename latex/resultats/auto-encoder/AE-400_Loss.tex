@@ -5,8 +5,19 @@
 \definecolor{darkorange25512714}{RGB}{255,127,14}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
 
-\begin{axis}[speAE,
+\begin{axis}[
+height=\figheight,
+log basis y={10},
+tick align=outside,
+tick pos=left,
+width=\figwidth,
+x grid style={darkgray176},
+xmin=-2.95, xmax=61.95,
+xtick style={color=black},
+y grid style={darkgray176},
+ymin=0.00109258297811388, ymax=0.0589842748829588,
 ymode=log,
+ytick style={color=black},
 ytick={0.0001,0.001,0.01,0.1,1},
 yticklabels={
   \(\displaystyle {10^{-4}}\),
@@ -16,7 +27,7 @@ yticklabels={
   \(\displaystyle {10^{0}}\)
 }
 ]
-\addplot [thick, blue]
+\addplot [semithick, steelblue31119180]
 table {%
 0 0.0492035262286663
 1 0.0207414887845516
@@ -61,7 +72,7 @@ table {%
 58 0.00132755958475173
 59 0.00130976806394756
 };
-\addplot [semithick, violet]
+\addplot [semithick, darkorange25512714]
 table {%
 0 0.0276999436318874
 1 0.0152005106210709

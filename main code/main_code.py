@@ -111,7 +111,7 @@ class Affichage:
         for i, img in tqdm(enumerate(imgs)):
             
             # passage dans l'auto-encodeur
-            output = Net(img.view(1,-1)).detach().view(self.x_height, self.x_width)
+            output = self.AE(img.view(1,-1)).detach().view(self.x_height, self.x_width)
 
             # plot des images
             ax[0,i].set_title(f'input {i+1}')
@@ -136,7 +136,7 @@ class Affichage:
             for i, img in tqdm(enumerate(imgs)):
                 
                 # passage dans l'auto-encodeur
-                output = Net(img.view(1,-1)).detach().view(self.x_height, self.x_width)
+                output = self.AE(img.view(1,-1)).detach().view(self.x_height, self.x_width)
 
                 # calcul du PSNR
                 PSNR = peak_signal_noise_ratio(img, output, data_range=1.).detach().numpy()
@@ -1033,20 +1033,20 @@ if __name__=='__main__':
 
 
 ###     Plot de quelque auto-encodage
-    '''
-    indexes = np.random.randint(0, len(TrainSet), 8)
+    
+    indexes = np.random.randint(0, len(TrainSet), 8) # [51542, 36854, 57730, 29600, 10330, 16438, 22758, 29681] : indexes du rapport
     print(f'\n {indexes=}\n')
 
-    imgs = [iTrainSet[i][0].squeeze() for i in indexes]
-    for d in [800, 400, 200, 100]:
+    imgs = [TrainSet[i][0].squeeze() for i in indexes]
+    for d in [100, 200, 400, 800]:
 
         # changement de la taille de l'espace latent
         dim_latent = d
         SupRes.set_autoencoder(f'../resultats/autoencoder/Autoencoder {d}')
         SupRes.set_sizes(u_lenth=d)
 
-        Savings.plot_perfAE(imgs, saveas=f'autoencoder/guess-{d}')
-    '''
+        SupRes.plot_perfAE(imgs, saveas=f'autoencoder/guess-{d}')
+    
 
 
 ###     Estimation de la RIP constant gamma
@@ -1138,7 +1138,7 @@ if __name__=='__main__':
     '''
 
 ###     Sand box
-
+    '''
     index = np.random.randint(0, len(TrainSet))
     print(f"\n Index associé à l'image : {index}\n")
 
@@ -1189,7 +1189,7 @@ if __name__=='__main__':
     SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[3.5]*nb, Niter=20)#, saveas='')
 
     plt.show()
-
+    '''
 
 '''  TODO
 

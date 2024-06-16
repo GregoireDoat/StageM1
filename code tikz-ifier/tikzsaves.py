@@ -250,8 +250,8 @@ if __name__=='__main__':
 
     
 # Sauvegarde des historique de perf des auto-encodeurs
-    #for dim in [100, 200, 400, 800]:
-    #    Savings.save_AElearning(f'Autoencoder {dim}', saveas=f'AE-{dim}')
+    for dim in [100, 200, 400, 800]:
+        Savings.save_AElearning(f'Autoencoder {dim}', saveas=f'AE-{dim}')
 
 
 
