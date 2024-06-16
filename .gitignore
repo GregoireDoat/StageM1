@@ -2,13 +2,9 @@
 **/__pycache__
 
 dataset
-'Peng et al'
+Peng*et*al
 
-**.pdf
-
-'resultats (legacy)'
-'tiked (legacy)'
-tikzed
+*.pdf
 
 latex/**/*.log
 latex/**/*.bbl
@@ -16,5 +12,3 @@ latex/**/*.blg
 latex/**/*.bib
 latex/**/*.pytxcode
 latex/**/*.synctex.gz
-latex/'resultats (legacy)'
-latex/'images (temp)'
