@@ -751,19 +751,19 @@ De plus, les courbes de loss de la figure \textit{\ref{fig:LGDinitg}} suggèrent
 Autre chose remarquable, le résultats $(4)$ est meilleur que le $(3)$ alors que l'initialisation du premier est plus éloigné de la cible que le second. Cela est dû à la façon dont est tiré $\bf{u}_{\text{rand}}$. Pour rester cohérent avec la structure des images, et le réseau $f$ (qui est se termine par des sigmoïdes), les coefficients de $\bf{u}_{\text{rand}}$ sont tirés suivant une loi uniforme sur $[0,1]$. et l'auto encodeur gère très mal les vecteurs à valeurs trop loin de l'intervalle $[0,1]$. 
 \\
 
-Pour le voir, dans la figure \textit{\ref{fig:LGDmultarg-g}} ci-dessous, les deux premières initialisations, $(1)$ et $(2)$, sont faites avec un vecteur aléatoires tirés suivant une loi uniforme. Les deux suivantes, $(3)$ et $(4)$, le sont suivant des lois normales d'écart-type respectif 1 et 5. 
+Pour le voir, dans la figure \textit{\ref{fig:LGDgauss-g}} ci-dessous, les deux premières initialisations, $(1)$ et $(2)$, sont faites avec un vecteur aléatoires tirés suivant une loi uniforme. Les deux suivantes, $(3)$ et $(4)$, le sont suivant des lois normales d'écart-type respectif 1 et 5. 
 \\
 Il apparaît clairement que l'auto-encodeur se comporte mal avec des initialisations trop loin de $[0,1]$. \emph{blablabla il te faut les résultats pour avancer là}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/inits/figure-g}
-    \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 150 itérations --- sans passe-bas}
-    \label{fig:LGDmultarg-s}
+	\input{resultats/LGD/multitarget/figure_gauss-s}
+    \caption{Plein de descentes --- sans passe-bas}
+    \label{fig:LGDgauss-s}
 \end{figure}
 \begin{figure}[H]\centering
-	\input{resultats/LGD/inits/figure-g}
-    \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 10 itérations ---  avec passe-bas gaussien ($\sigma=0.5$)}
-    \label{fig:LGDmultarg-g}
+	\input{resultats/LGD/multitarget/figure_gauss-g}
+    \caption{Plein de descentes ---  avec passe-bas gaussien ($\sigma=0.6$)}
+    \label{fig:LGDgauss-g}
 \end{figure}
 
 
@@ -805,51 +805,51 @@ Les résultats, \textit{fig. \ref{fig:}}
 
 
 \begin{figure}[H]\centering
-    \includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-s_100_fig.png}
+    \input{resultats/LGD/lats/figure 100-s}
     \caption{$d=100$, sans passe-base}
     \label{fig:LGD comp_size g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-g_100_fig.png}
+	\input{resultats/LGD/lats/figure 100-g}
 	\caption{$d=100$, avec passe-base}
 	\label{fig:LGD comp_size g}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-s_200_fig.png}
-\caption{$d=200$, sans passe-base}
-\label{fig:LGD comp_size g}
+	\input{resultats/LGD/lats/figure 200-s}
+	\caption{$d=200$, sans passe-base}
+	\label{fig:LGD comp_size g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-g_200_fig.png}
+	\input{resultats/LGD/lats/figure 200-g}
 	\caption{$d=200$, avec passe-base}
 	\label{fig:LGD comp_size g}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-s_400_fig.png}
-\caption{$d=400$, sans passe-base}
-\label{fig:LGD comp_size g}
+	\input{resultats/LGD/lats/figure 400-s}
+	\caption{$d=400$, sans passe-base}
+	\label{fig:LGD comp_size g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-g_400_fig.png}
+	\input{resultats/LGD/lats/figure 400-g}
 	\caption{$d=400$, avec passe-base}
 	\label{fig:LGD comp_size g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-g_800_fig.png}
+	\input{resultats/LGD/lats/figure 800-s}
 	\caption{$d=800$, avec passe-base}
 	\label{fig:LGD comp_size g}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=1\textwidth]{../resultats/LGD/differents latents/lat-s_800_fig.png}
-\caption{$d=800$, sans passe-base}
-\label{fig:LGD comp_size g}
+	\input{resultats/LGD/lats/figure 800-g}
+	\caption{$d=800$, sans passe-base}
+	\label{fig:LGD comp_size g}
 \end{figure}
 \`A noter que sur la loss de la figure \figref{fig:LGD comp_size g} lees algorithmes stagnent ce qui sous entend que l'on se trouve dans des vallées (ou des crêtes). Problème qui peut être évité en ajoutant de l'inertie à la descente avec des méthodes type heavy-ball ou Nesterof. 
 

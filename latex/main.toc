@@ -7,17 +7,17 @@
 \contentsline {subsection}{\numberline {2.1.}Premier résultats, différentes initialisations}{9}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2.}Variation de la qualité de mesure (e.i. $\boldsymbol {p}\times \boldsymbol {q}$)}{12}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3.}Variation de la taille de l'espace latent}{14}{subsection.2.3}%
-\contentsline {section}{\numberline {III.}Comparaison avec la descente de gradient projetée}{18}{section.3}%
-\contentsline {subsection}{\numberline {3.1.}Le principe et les résultats}{18}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2.}Comparaison avec la LGD}{18}{subsection.3.2}%
-\contentsline {section}{\numberline {IV.}Conclusion}{20}{section.4}%
+\contentsline {section}{\numberline {III.}Comparaison avec la descente de gradient projetée}{19}{section.3}%
+\contentsline {subsection}{\numberline {3.1.}Le principe et les résultats}{19}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2.}Comparaison avec la LGD}{19}{subsection.3.2}%
+\contentsline {section}{\numberline {IV.}Conclusion}{21}{section.4}%
 \ttl@change@i {\@ne }{section}{0.25em}{\addvspace {0.5em}\bfseries }{}{\hspace *{-1.5em}}{\titlerule *[0.75pc]{.}\contentspage }\relax 
 \ttl@change@v {section}{}{}{}\relax 
 \ttl@change@i {\@ne }{subsection}{1.5em}{\normalfont Annexe\hspace *{2.5em}}{\contentslabel {2em}}{\hspace *{-2em}}{\titlerule *[0.75pc]{.}\contentspage }\relax 
 \ttl@change@v {subsection}{}{}{}\relax 
 \ttl@change@i {\@ne }{subsubsection}{5.75em}{\normalfont }{\contentslabel {2.25em}}{\hspace *{-2em}}{\titlerule *[0.75pc]{.}\contentspage }\relax 
 \ttl@change@v {subsubsection}{}{}{}\relax 
-\contentsline {section}{\numberline {V.}Annexes}{21}{section.5}%
-\contentsline {subsection}{\numberline {A}Auto-encodeur}{21}{subsection.5.1}%
-\contentsline {subsection}{\numberline {B}Calcul pratique de $\boldsymbol {F}$ et de son gradient}{22}{subsection.5.2}%
+\contentsline {section}{\numberline {V.}Annexes}{22}{section.5}%
+\contentsline {subsection}{\numberline {A}Auto-encodeur}{22}{subsection.5.1}%
+\contentsline {subsection}{\numberline {B}Calcul pratique de $\boldsymbol {F}$ et de son gradient}{23}{subsection.5.2}%
 \contentsfinish 

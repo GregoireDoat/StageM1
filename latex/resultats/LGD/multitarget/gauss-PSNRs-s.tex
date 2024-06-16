@@ -11,18 +11,7 @@
 \definecolor{sienna1408675}{RGB}{140,86,75}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
 
-\begin{axis}[
-height=\figheight,
-tick align=outside,
-tick pos=left,
-width=\figwidth,
-x grid style={darkgray176},
-xmin=-14.95, xmax=313.95,
-xtick style={color=black},
-y grid style={darkgray176},
-ymin=6.74514079093933, ymax=33.2520391941071,
-ytick style={color=black}
-]
+\begin{axis}[compar, legend pos=outer north east]
 \addplot [semithick, steelblue31119180]
 table {%
 0 8.0600004196167
@@ -164,6 +153,7 @@ table {%
 284 12.7200002670288
 299 12.7200002670288
 };
+\addlegendentry{\scriptsize{$(1)$}}
 \addplot [semithick, darkorange25512714]
 table {%
 0 9.27999973297119
@@ -440,6 +430,7 @@ table {%
 298 14.1400003433228
 299 14.1700000762939
 };
+\addlegendentry{\scriptsize{$(2)$}}
 \addplot [semithick, forestgreen4416044]
 table {%
 0 9.02999973297119
@@ -731,6 +722,7 @@ table {%
 298 13.0799999237061
 299 12.9499998092651
 };
+\addlegendentry{\scriptsize{$(3)$}}
 \addplot [semithick, crimson2143940]
 table {%
 0 9.15999984741211
@@ -765,6 +757,7 @@ table {%
 194 10.1499996185303
 299 10.1499996185303
 };
+\addlegendentry{\scriptsize{$(4)$}}
 \addplot [semithick, mediumpurple148103189]
 table {%
 0 7.94999980926514
@@ -785,6 +778,7 @@ table {%
 248 8.35999965667725
 299 8.35999965667725
 };
+\addlegendentry{\scriptsize{$(5)$}}
 \addplot [semithick, sienna1408675]
 table {%
 0 10.0200004577637
@@ -1008,6 +1002,7 @@ table {%
 298 12.5699996948242
 299 12.5100002288818
 };
+\addlegendentry{\scriptsize{$(6)$}}
 \addplot [semithick, orchid227119194]
 table {%
 0 10.5900001525879
@@ -1287,6 +1282,7 @@ table {%
 297 14.5299997329712
 299 14.5500001907349
 };
+\addlegendentry{\scriptsize{$(7)$}}
 \addplot [semithick, gray127]
 table {%
 0 11.0799999237061
@@ -1479,11 +1475,7 @@ table {%
 297 18.3700008392334
 299 18.4099998474121
 };
-\addplot [semithick, gray]
-table {%
--14.95 32.0471801757813
-313.95 32.0471801757813
-};
+\addlegendentry{\scriptsize{$(8)$}}
 \end{axis}
 
 \end{tikzpicture}

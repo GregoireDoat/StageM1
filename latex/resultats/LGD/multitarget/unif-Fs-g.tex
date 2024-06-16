@@ -11,19 +11,9 @@
 \definecolor{sienna1408675}{RGB}{140,86,75}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
 
-\begin{axis}[
-height=\figheight,
-tick align=outside,
-tick pos=left,
-width=\figwidth,
-x grid style={darkgray176},
-xmin=-14.95, xmax=313.95,
-xtick style={color=black},
-y grid style={darkgray176},
-ymin=-0.137931874766946, ymax=4.29107548184693,
-ytick style={color=black}
-]
-\addplot [semithick, steelblue31119180]
+\begin{axis}[compar,
+	ymode=log]
+\addplot [thick, steelblue31119180]
 table {%
 0 4.08975696563721
 1 3.33637833595276
@@ -60,7 +50,7 @@ table {%
 291 0.0978024005889893
 299 0.0958188772201538
 };
-\addplot [semithick, darkorange25512714]
+\addplot [thick, darkorange25512714]
 table {%
 0 3.26711583137512
 1 2.14453959465027
@@ -100,7 +90,7 @@ table {%
 291 0.0679656267166138
 299 0.0668560266494751
 };
-\addplot [semithick, forestgreen4416044]
+\addplot [thick, forestgreen4416044]
 table {%
 0 3.58641195297241
 1 2.6538405418396
@@ -140,7 +130,7 @@ table {%
 279 0.0875242948532104
 299 0.0850281715393066
 };
-\addplot [semithick, crimson2143940]
+\addplot [thick, crimson2143940]
 table {%
 0 3.59980320930481
 1 2.85580730438232
@@ -182,7 +172,7 @@ table {%
 275 0.0864048004150391
 299 0.0833859443664551
 };
-\addplot [semithick, mediumpurple148103189]
+\addplot [thick, mediumpurple148103189]
 table {%
 0 3.77583575248718
 1 2.80040860176086
@@ -221,7 +211,7 @@ table {%
 266 0.100237846374512
 299 0.0966178178787231
 };
-\addplot [semithick, sienna1408675]
+\addplot [thick, sienna1408675]
 table {%
 0 3.66736721992493
 1 3.04063200950623
@@ -265,7 +255,7 @@ table {%
 242 0.0697096586227417
 299 0.0633866786956787
 };
-\addplot [semithick, orchid227119194]
+\addplot [thick, orchid227119194]
 table {%
 0 3.10344982147217
 1 2.18883633613586
@@ -309,7 +299,7 @@ table {%
 281 0.0782246589660645
 299 0.0755660533905029
 };
-\addplot [semithick, gray127]
+\addplot [thick, gray127]
 table {%
 0 3.63611721992493
 1 2.41480541229248

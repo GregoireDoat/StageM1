@@ -11,19 +11,8 @@
 \definecolor{sienna1408675}{RGB}{140,86,75}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
 
-\begin{axis}[
-height=\figheight,
-tick align=outside,
-tick pos=left,
-width=\figwidth,
-x grid style={darkgray176},
-xmin=-14.95, xmax=313.95,
-xtick style={color=black},
-y grid style={darkgray176},
-ymin=7.08114147186279, ymax=33.2360391616821,
-ytick style={color=black}
-]
-\addplot [semithick, steelblue31119180]
+\begin{axis}[compar, legend pos=outer north east]
+\addplot [thick, steelblue31119180]
 table {%
 0 8.68000030517578
 1 9.89999961853027
@@ -208,7 +197,8 @@ table {%
 298 22.7099990844727
 299 22.7099990844727
 };
-\addplot [semithick, darkorange25512714]
+\addlegendentry{$(1)$}
+\addplot [thick, darkorange25512714]
 table {%
 0 9.68000030517578
 1 10.539999961853
@@ -389,7 +379,8 @@ table {%
 298 21.8600006103516
 299 21.8600006103516
 };
-\addplot [semithick, forestgreen4416044]
+\addlegendentry{$(2)$}
+\addplot [thick, forestgreen4416044]
 table {%
 0 9.94999980926514
 1 10.8699998855591
@@ -615,7 +606,8 @@ table {%
 297 20.3899993896484
 299 20.3899993896484
 };
-\addplot [semithick, crimson2143940]
+\addlegendentry{$(3)$}
+\addplot [thick, crimson2143940]
 table {%
 0 8.27000045776367
 1 9.25
@@ -758,7 +750,8 @@ table {%
 295 20.8099994659424
 299 20.8099994659424
 };
-\addplot [semithick, mediumpurple148103189]
+\addlegendentry{$(4)$}
+\addplot [thick, mediumpurple148103189]
 table {%
 0 8.46000003814697
 1 9.48999977111816
@@ -963,7 +956,8 @@ table {%
 298 20.6599998474121
 299 20.6700000762939
 };
-\addplot [semithick, sienna1408675]
+\addlegendentry{$(5)$}
+\addplot [thick, sienna1408675]
 table {%
 0 9.52999973297119
 1 10.4399995803833
@@ -1144,7 +1138,8 @@ table {%
 296 22.2099990844727
 299 22.2099990844727
 };
-\addplot [semithick, orchid227119194]
+\addlegendentry{$(6)$}
+\addplot [thick, orchid227119194]
 table {%
 0 11.5100002288818
 1 12.1800003051758
@@ -1323,7 +1318,8 @@ table {%
 295 16.0300006866455
 299 16.0300006866455
 };
-\addplot [semithick, gray127]
+\addlegendentry{$(7)$}
+\addplot [thick, gray127]
 table {%
 0 10.0299997329712
 1 11.4300003051758
@@ -1477,11 +1473,13 @@ table {%
 298 25.3500003814697
 299 25.3600006103516
 };
-\addplot [semithick, gray]
+\addlegendentry{$(8)$}
+\addplot [thick, gray]
 table {%
 -14.95 32.0471801757813
 313.95 32.0471801757813
 };
+\addlegendentry{$(1)$}
 \end{axis}
 
 \end{tikzpicture}

@@ -12,3 +12,4 @@ latex/**/*.blg
 latex/**/*.bib
 latex/**/*.pytxcode
 latex/**/*.synctex.gz
+latex/tableau.tex

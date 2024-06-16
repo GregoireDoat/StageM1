@@ -7,19 +7,9 @@
 \definecolor{forestgreen4416044}{RGB}{44,160,44}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
 
-\begin{axis}[
-height=\figheight,
-tick align=outside,
-tick pos=left,
-width=\figwidth,
-x grid style={darkgray176},
-xmin=-14.95, xmax=313.95,
-xtick style={color=black},
-y grid style={darkgray176},
-ymin=-0.101296673342586, ymax=4.40773429237306,
-ytick style={color=black}
-]
-\addplot [semithick, steelblue31119180]
+\begin{axis}[compar,
+	ymode=log]
+\addplot [thick, steelblue31119180]
 table {%
 0 3.75274658203125
 1 1.80543029308319
@@ -322,7 +312,7 @@ table {%
 298 0.106017589569092
 299 0.103659272193909
 };
-\addplot [semithick, darkorange25512714]
+\addplot [thick, darkorange25512714]
 table {%
 0 2.2857232093811
 1 1.11819672584534
@@ -353,7 +343,7 @@ table {%
 266 0.136187672615051
 299 0.13144326210022
 };
-\addplot [semithick, forestgreen4416044]
+\addplot [thick, forestgreen4416044]
 table {%
 0 3.24246454238892
 1 2.6126663684845
@@ -407,7 +397,7 @@ table {%
 296 0.279672265052795
 299 0.278299331665039
 };
-\addplot [semithick, crimson2143940]
+\addplot [thick, crimson2143940]
 table {%
 0 4.20277833938599
 1 3.36980032920837

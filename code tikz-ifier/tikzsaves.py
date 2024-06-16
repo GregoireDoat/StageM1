@@ -153,8 +153,7 @@ class Save2Tikz():
 
         # sauvegardes des courbes F
         for i, val in enumerate(values):
-            plt.plot(val, label=f'{i+1}kz')
-        #plt.legend()
+            plt.plot(val, label=f'{i+1}')
         
         tpl.clean_figure()
         tpl.save(f'{save_name}-Fs-{data}.tex', axis_width=r'\figwidth', axis_height=r'\figheight')

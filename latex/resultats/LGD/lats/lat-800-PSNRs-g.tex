@@ -7,19 +7,8 @@
 \definecolor{forestgreen4416044}{RGB}{44,160,44}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
 
-\begin{axis}[
-height=\figheight,
-tick align=outside,
-tick pos=left,
-width=\figwidth,
-x grid style={darkgray176},
-xmin=-14.95, xmax=313.95,
-xtick style={color=black},
-y grid style={darkgray176},
-ymin=8.5134304523468, ymax=29.557966375351,
-ytick style={color=black}
-]
-\addplot [semithick, steelblue31119180]
+\begin{axis}[compar, legend pos=outer north east]
+\addplot [thick, steelblue31119180]
 table {%
 0 9.47000026702881
 1 14.3800001144409
@@ -125,7 +114,8 @@ table {%
 298 25.6700000762939
 299 25.6700000762939
 };
-\addplot [semithick, darkorange25512714]
+\addlegendentry{$(1)$}
+\addplot [thick, darkorange25512714]
 table {%
 0 20.8999996185303
 1 18.8600006103516
@@ -428,7 +418,8 @@ table {%
 298 25.9799995422363
 299 25.9699993133545
 };
-\addplot [semithick, forestgreen4416044]
+\addlegendentry{$(2)$}
+\addplot [thick, forestgreen4416044]
 table {%
 0 12.0299997329712
 1 13.710000038147
@@ -632,7 +623,8 @@ table {%
 298 25.75
 299 25.75
 };
-\addplot [semithick, crimson2143940]
+\addlegendentry{$(3)$}
+\addplot [thick, crimson2143940]
 table {%
 0 10.2799997329712
 1 11.2799997329712
@@ -804,7 +796,8 @@ table {%
 296 23.9099998474121
 299 23.9099998474121
 };
-\addplot [semithick, gray]
+\addlegendentry{$(4)$}
+\addplot [thick, gray, dashed]
 table {%
 -14.95 28.6013965606689
 313.95 28.6013965606689
