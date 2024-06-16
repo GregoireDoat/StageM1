@@ -12,8 +12,8 @@ Savings = Save2Tikz(path2data='../resultats', path2save='../latex/resultats', co
 
 
     # Plus de descente random
-Savings.save_multplot(methode='LGD', globname='mult descente/multarg_unif-s', names=range(1,9), saveas='unif', multitarget=True)
-Savings.save_multplot(methode='LGD', globname='mult descente/multarg_unif-g', names=range(1,9), saveas='unif', multitarget=True)
+#Savings.save_multplot(methode='LGD', globname='mult descente/multarg_unif-s', names=range(1,9), saveas='unif', multitarget=True)
+#Savings.save_multplot(methode='LGD', globname='mult descente/multarg_unif-g', names=range(1,9), saveas='unif', multitarget=True)
 
 Savings.save_multplot(methode='LGD', globname='mult descente/multarg_gauss-s', names=range(1,9), saveas='gauss', multitarget=True)
 Savings.save_multplot(methode='LGD', globname='mult descente/multarg_gauss-g', names=range(1,9), saveas='gauss', multitarget=True)

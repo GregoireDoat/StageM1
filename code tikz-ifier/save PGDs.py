@@ -6,25 +6,25 @@ from tikzsaves import *
 Savings = Save2Tikz(path2data='../resultats', path2save='../latex/resultats', color_map='magma')
 
 
-    # Différentes initialisation
-#Savings.save_multplot(methode='PGD', globname='differentes initialisations/inits-s', names=range(1,5), saveas='inits')
-#Savings.save_multplot(methode='PGD', globname='differentes initialisations/inits-g', names=range(1,5), saveas='inits')
+    # Initialisation par backprojection
+Savings.save_multplot(methode='PGD', globname='backproj-s', names=range(1,9), saveas='backproj')
+Savings.save_multplot(methode='PGD', globname='backproj-g', names=range(1,9), saveas='backproj')
 
 
-    # Plus de descente random
-#Savings.save_multplot(methode='PGD', globname='differentes initialisations/inits-s', names=range(1,5), saveas='inits')
-#Savings.save_multplot(methode='PGD', globname='differentes initialisations/inits-g', names=range(1,5), saveas='inits')
+    # Initialisation random uniforme
+Savings.save_multplot(methode='PGD', globname='rand_unif-s', names=range(1,9), saveas='rand_unif')
+Savings.save_multplot(methode='PGD', globname='rand_unif-g', names=range(1,9), saveas='rand_unif')
 
 
-    # En fonction de p et q
-tailles = ['mini', 'small', 'mid1', 'mid2', 'big']
-#Savings.save_multplot(methode='PGD', globname='differentes tailles/size-s', names=tailles, saveas='size', )
-#Savings.save_multplot(methode='PGD', globname='differentes tailles/size-g', names=tailles, saveas='size', )
+    # Initialisation random gaussienne
+Savings.save_multplot(methode='PGD', globname='rand_gauss-s', names=range(1,9), saveas='rand_gauss')
+Savings.save_multplot(methode='PGD', globname='rand_gauss-g', names=range(1,9), saveas='rand_gauss')
+
 
 
     # En fonction de d
 lenths = [100, 200, 400, 800]
 
-#for d in lenths:
-#    Savings.save_multplot(methode='PGD', globname=f'differents latents/lat-s_{d}', names=range(1,5), saveas=f'lat-{d}')
-#    Savings.save_multplot(methode='PGD', globname=f'differents latents/lat-g_{d}', names=range(1,5), saveas=f'lat-{d}')
+for d in lenths:
+    Savings.save_multplot(methode='PGD', globname=f'lat-s_{d}', names=range(1,5), saveas=f'lat-{d}')
+    Savings.save_multplot(methode='PGD', globname=f'lat-g_{d}', names=range(1,5), saveas=f'lat-{d}')
