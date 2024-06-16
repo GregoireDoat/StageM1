@@ -686,12 +686,12 @@ En calculant le rapport $\left|\frac{\|Av\|^2}{\|v\|^2}-1\right|$, on peut donc 
 \noindent On y voit que dans les deux cas, on peut espérer que $\gamma$ soit au mieux au alentour des $0.9$. Ce serait suffisant pour vérifier la RIP mais sachant qu'on veut le restreindre le moins possible $\beta$ dans l'inégalité (\ref{eq:majo3}), cela reste contraignant. D'autant plus qu'avoir $C=1$ n'aide pas beaucoup.
 \\
 
-Enfin, l'hypothèse d'inclusion $\ \phi\big(\Lambda_{2\beta}(\theta^*)\big)\subset\Sigma$, et plus généralement à chaque occurrence de $\Lambda_{2\beta}$, le facteur $2$ est là pour s'assurer une marge de manoeuvre dans les démonstrations. Ils peuvent sans trop de difficulté être remplacé par des bassins de la forme $\Lambda_{\beta+\epsilon}$ et pour cette raison, l’hypothèse (\ref{eq:LambinTheta}) sera supposer vraie pour $\epsilon$ suffisamment petit.
+Enfin, l'hypothèse d'inclusion $\ \phi\big(\Lambda_{2\beta}(\theta^*)\big)\subset\Sigma$, et plus généralement à chaque occurrence de $\Lambda_{2\beta}$, le facteur $2$ est là pour s'assurer une marge de manoeuvre dans les démonstrations. Ils peuvent sans trop de difficulté être remplacé par des bassins de la forme $\Lambda_{\beta+\epsilon}(\theta^*)$ et pour cette raison, l’hypothèse (\ref{eq:LambinTheta}) sera supposer vraie pour $\epsilon$ suffisamment petit.
 \\
 
 Il reste une dernière grosse inconnue, à savoir l'infimum :\quad ${\displaystyle\inf_{\theta\in\Lambda_{\beta_1}(\theta^*)}\inf_{z\in[\theta,\Tilde{\theta}]}\frac{{\big\|\partial_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}^2}{\big\|A\partial^2_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}}$
-
-Comme l'auto-encodeur utilisé est composé de sigmoïde, je sais pas quoi dire
+\\
+Le seul chose vraiment important à en dire est que si le numérateur s'annule, alors la descente de gradient ne pourra pas converger à coût sûr. Si cela arrive, c'est l'injectivité de $\phi$ qui est perdue et on peut lier cela avec la taille $d$ de l'espace latent : Plus la différence $np-d$ est grande, plus on risque de perdre l'injectivité de $f_D$ sur $\Theta$. C'est quelque chose qui sera étudié dans la section \ref{sec:LGDlat}
 
 
 
@@ -699,13 +699,13 @@ Comme l'auto-encodeur utilisé est composé de sigmoïde, je sais pas quoi dire
 
 
 
-\section{Descente de gradient depuis l'espace latent}
+\section{Descente de gradient depuis l'espace latent}\label{sec:LBD}
 
 \`A partir de maintenant, les vecteurs de l'espace latent seront noté $\bf{u}$ et en particulier $(\bf{u_n})$ sera la suite obtenue par descente gradient d'initialisation $\bf{u_0}$. On pose aussi $(n,m)=(28,28)$, $(p,q)=(14,14)$ et $d=100$. Tout les résultats présentés sont disponibles sur le  \href{https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D}{GitHub} et reproductibles via les codes \texttt{main\_code.py} et \texttt{LGD.py}. 
 
 
 
-\subsection{Premier résultats, différentes initialisations}\label{sec:res LDG}
+\subsection{Premier résultats, différentes initialisations}\label{sec:LDGinit}
 
 Si la partie théorique n'est pas très prometteuse, en pratique la descente depuis l'espace latent (LGD) est pourtant très efficace et surtout robuste. Pour estimer les tailles des bassins d'attractions, la LGD est faites sur la même image cible avec différentes initialisations. 
 
@@ -745,16 +745,21 @@ Les initialisations $(2)$ et $(3)$ sont au voisinage de de la cible  pour voir �
 
 Cela étant dit, le premier constat est que la méthode fonctionne et ceux même en partant d'une vecteur aléatoire.  Aussi, même s'il sont meilleurs avec un passe-bas, les résultats restent satisfaisant sans filtre. La structure très simple du jeu de données aide probablement sur ce point et il serait intéressant de voir si les différences avec/sans filtre sont plus marqués sur un jeu de données plus complexe comme Fashion-MNIST.
 \\
-De plus, les courbes de loss de la figure \textit{\ref{fig:LGDinitg}} suggèrent que le résultats pourrait être améliorer avec plus d'itération. Celles de la figure \textit{\ref{fig:LGDinits}} suggère une convergence mais comme  les courbes fond des saut, il possible que $g$ puisse encore diminuer en échappant à ces plateaux. On pourrait par exemple ajouter de l'inertie à la descente.
+De plus, les courbes de loss de la figure \textit{\ref{fig:LGDinitg}} suggèrent que le résultats pourrait être améliorer avec plus d'itérations. Celles de la figure \textit{\ref{fig:LGDinits}} suggèrent une convergence mais comme  les courbes fond des saut, il possible que la loss puisse encore diminuer en échappant à ces plateaux. On pourrait par exemple ajouter de l'inertie à la descente.
+\\
+ 
+Autre chose remarquable, le résultats $(4)$ est meilleur que le $(3)$ alors que l'initialisation du premier est plus éloigné de la cible que le second. Cela est dû à la façon dont est tiré $\bf{u}_{\text{rand}}$. Pour rester cohérent avec la structure des images, et le réseau $f$ (composé de sigmoïde), les coefficients de $\bf{u}_{\text{rand}}$ sont tirés suivant une loi uniforme sur $[0,1]$. et l'auto encodeur gère très mal les vecteurs à valeurs trop loin de l'intervalle $[0,1]$. 
 \\
 
-Autre chose remarquable, le résultats $(4)$ est meilleur que le $(3)$ alors que l'initialisation du premier est plus éloigné de la cible que le second. Cela est dû à la façon dont est tiré $\bf{u}_{\text{rand}}$. Pour rester cohérent avec la structure des images, et le réseau $f$ (qui est se termine par des sigmoïdes), les coefficients de $\bf{u}_{\text{rand}}$ sont tirés suivant une loi uniforme sur $[0,1]$. et l'auto encodeur gère très mal les vecteurs à valeurs trop loin de l'intervalle $[0,1]$. 
-\\
+Pour le voir, dans les figures \textit{\ref{fig:LGDgauss-s}} et \textit{\ref{fig:LGDgauss-g}} page suivante, chaque lignes correspond à un LGD avec en première ligne l'initialisation (décodée), en deuxième la reconstructions dont la cible est en troisième ligne. Les coefficients des initialisations sont tirés suivant une loi normal d'écart-type 2. En comparaison, les initialisations de la figure \textit{\ref{fig:LGDunif-g}} ci-dessous ont été tiré suivant une loi uniforme sur $[0,1]$. \textbf{\color{red}IL FAUT LES R2SULTATS...}
 
-Pour le voir, dans la figure \textit{\ref{fig:LGDgauss-g}} ci-dessous, les deux premières initialisations, $(1)$ et $(2)$, sont faites avec un vecteur aléatoires tirés suivant une loi uniforme. Les deux suivantes, $(3)$ et $(4)$, le sont suivant des lois normales d'écart-type respectif 1 et 5. 
-\\
-Il apparaît clairement que l'auto-encodeur se comporte mal avec des initialisations trop loin de $[0,1]$. \emph{blablabla il te faut les résultats pour avancer là}
+\textbf{\color{red}PENSES AU DIRE QUE CE A PAS CV MAIS QUE J4AI MIEUX A FOUTRE}
 
+\begin{figure}[H]\centering
+	\input{resultats/LGD/multitarget/figure_unif-g}
+	\caption{Plein de descentes ---  avec passe-bas gaussien ($\sigma=0.6$)}
+	\label{fig:LGDunif-g}
+\end{figure}
 \begin{figure}[H]\centering
 	\input{resultats/LGD/multitarget/figure_gauss-s}
     \caption{Plein de descentes --- sans passe-bas}
@@ -766,16 +771,23 @@ Il apparaît clairement que l'auto-encodeur se comporte mal avec des initialisat
     \label{fig:LGDgauss-g}
 \end{figure}
 
-
-
-
+%\begin{figure}[H]\centering
+	%\input{resultats/LGD/multitarget/figure_unif-s}
+	%\caption{Plein de descentes --- sans passe-bas}
+	%\label{fig:LGDunif-s}
+%\end{figure}
+%\begin{figure}[H]\centering
+	%\input{resultats/LGD/multitarget/figure_unif-g}
+	%\caption{Plein de descentes ---  avec passe-bas gaussien ($\sigma=0.6$)}
+	%\label{fig:LGDunif-g}
+%\end{figure}
 %\\ \\
 
 
 
-\subsection{Variation de la qualité de mesure (e.i. $\bf{p}\times\bf{q}$)}
+\subsection{Variation de la qualité de mesure (e.i. $\bf{p}\times\bf{q}$)}\label{sec:LGDsize}
 
-Pour tester les limites de la méthode par rapport au rapports $n/p$ et $m/q$, la LGD à été effectuée avec les valeurs suivantes (les pas ont été ajusté en fonction des cas) :
+Pour tester les limites de la méthode par rapport au rapports $n/p$ et $m/q$, la LGD à été effectuée avec les valeurs suivantes (les pas ont été ajustés en fonction des cas) :
 \begin{enumerate}[label=(\arabic*)]
 	\item $(p,q)$ = (14, 14)
 	\item $(p,q)$ = (14, 7)
@@ -784,72 +796,76 @@ Pour tester les limites de la méthode par rapport au rapports $n/p$ et $m/q$, l
 	\item $(p,q)$ = (5, 5)
 \end{enumerate}
 
-Les résultats, \textit{fig. \ref{fig:}}
+Les résultats, \textit{fig. \ref{fig:LGDsizes-s} \& \ref{fig:LGDsizes-g}}, restent concluant malgré le haut niveau de compression. La première ligne correspond aux initialisations (par backprojection), la seconde au sous-échantillonnage $A\bf{x_0}$ de la cible $\bf{x_0}$ et la troisième à la reconstruction par LGD. Notons également que l'impact du filtre se fait sentir, sans passe-bas l'algorithme à beaucoup plus de mal à reconstruire l'information perdue. Du point de vue des courbes, on voit aussi que la filtre passe-bas à tendance à bien plus les lisser, ce qui sous-entend une potentielle meilleure convexité de $g$.
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/sizes/figure-s}
 	\caption{Resultats de la LGD avec différents niveau de compression --- sans passe-bas}
-	\label{fig:LGD comp_inits g}
+	\label{fig:LGDsizes-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/sizes/figure-g}
 	\caption{Idem, cette fois avec un passe-bas gaussien ($\sigma=0.5$)}
-	\label{fig:LGD comp_inits g}
+	\label{fig:LGDsizes-g}
 \end{figure}
 %\\ \\
 
 
 
-\subsection{Variation de la taille de l'espace latent}
+\subsection{Variation de la taille de l'espace latent}\label{sec:LGDlat}
 
+Toujours dans l'optique de voir les limites de la méthodes, trois autres auto-encodeurs ont été entraînés avec différentes taille d'espace latent. Pour chaque --- \textit{fig. \ref{fig:LGDlat100-s}} à \textit{ \ref{fig:LGDlat800-g}} --- la LGD est effectuée avec différentes initialisations (toujours en première ligne). En fonction des cas, la loss fait parfois des zig-zags, ce qui indique que le pas est parfois trop grand. Mais même sachant cela, les résultats sont étonnamment bons. En particulier pour le deux dernières figures, où $d=800$ ce qui est plus que la taille des images, à savoir $28\times28=784$. \`A noter tout de même qu'à mesure que $d$ augmente les PSNR reste de plus en plus loin du PSNR de référence (PSNR$(\bf{x_0}, f(\bf{x_0}))$), qui lui reste globalement stable.
+\\
+
+\newpage
 
 \begin{figure}[H]\centering
     \input{resultats/LGD/lats/figure 100-s}
     \caption{$d=100$, sans passe-base}
-    \label{fig:LGD comp_size g}
+    \label{fig:LGDlat100-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/lats/figure 100-g}
 	\caption{$d=100$, avec passe-base}
-	\label{fig:LGD comp_size g}
+	\label{fig:LGDlat100-g}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/lats/figure 200-s}
 	\caption{$d=200$, sans passe-base}
-	\label{fig:LGD comp_size g}
+	\label{fig:LGDlat200-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/lats/figure 200-g}
 	\caption{$d=200$, avec passe-base}
-	\label{fig:LGD comp_size g}
+	\label{fig:LGDlat200-g}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/lats/figure 400-s}
 	\caption{$d=400$, sans passe-base}
-	\label{fig:LGD comp_size g}
+	\label{fig:LGDlat400-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/lats/figure 400-g}
 	\caption{$d=400$, avec passe-base}
-	\label{fig:LGD comp_size g}
+	\label{fig:LGDlat400-g}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/lats/figure 800-s}
 	\caption{$d=800$, avec passe-base}
-	\label{fig:LGD comp_size g}
+	\label{fig:LGDlat800-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/LGD/lats/figure 800-g}
 	\caption{$d=800$, sans passe-base}
-	\label{fig:LGD comp_size g}
+	\label{fig:LGDlat800-g}
 \end{figure}
 \`A noter que sur la loss de la figure \figref{fig:LGD comp_size g} lees algorithmes stagnent ce qui sous entend que l'on se trouve dans des vallées (ou des crêtes). Problème qui peut être évité en ajoutant de l'inertie à la descente avec des méthodes type heavy-ball ou Nesterof. 
 

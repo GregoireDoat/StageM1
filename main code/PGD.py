@@ -58,144 +58,57 @@ if __name__=='__main__':
     SupRes = SuperResolution(path2autoencoder='../resultats/autoencoder/Autoencoder 100', path2save='../resultats')
 
 
-###     Initialisation par backprojection
+###     Différentes initialisations [DONE]
     
-
+    '''
         # Set up
 
     # chargement de nouvelles images
     nb = 8
-    indexes = np.random.randint(0, len(TrainSet), nb)
+    indexes = [51213, 19566, 39819, 755, 12677, 35878, 35991, 11036]#np.random.randint(0, len(TrainSet), nb)   #  : indexes du rapport
     print(f"\n Indexes associés aux images : {indexes}\n")
 
     imgs = [TrainSet[i][0].squeeze() for i in indexes]
 
-    #  changement d'auto-encodeur
-    dim_latent = 100   
-    SupRes.AE = tc.load(f'../resultats/autoencoder/Autoencoder {dim_latent}')
-    SupRes.set_sizes(u_lenth=dim_latent)
-
-
         # On fait tourner
 
+    # initalisation par backprojection
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[1.75]*nb, Niter=20, saveas='backproj')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[1.25]*nb, Niter=20, saveas='backproj-s')
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[4.25]*nb, Niter=20, saveas='backproj')
-
-    plt.show()
-
-
-###     Initialisations aléatoires
-    '''
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[4.25]*nb, Niter=20, saveas='backproj-g')
     
-
-        # Set up
-
-    # chargement de nouvelles images
-    nb = 8
-    indexes = np.random.randint(0, len(TrainSet), nb)
-    print(f"\n Indexes associés aux images : {indexes}\n")
-
-    imgs = [TrainSet[i][0].squeeze() for i in indexes]
-
-
-        # On fait tourner
-
+    # initialisation aléatoire uniforme
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4+['rand+AE']*4, pas=[1.75]*nb, Niter=20, saveas='backproj')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[1.25]*nb, Niter=25, saveas='rand_unif-s')
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*4+['rand+AE']*4, pas=[4.25]*nb, Niter=20, saveas='backproj')
-
-    plt.show()
-    ''' 
-
-   
-###     Plein de descente partie de vecteur aléatoire
-    '''
-
-        # Set up
-
-    # chargement de nouvelles images
-    nb = 8
-    indexes = np.random.randint(0, len(TrainSet), nb)
-    print(f"\n Indexes associés aux images : {indexes}\n")
-
-    imgs = [TrainSet[i][0].squeeze() for i in indexes]
-
-
-        # Descentes  
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[4.25]*nb, Niter=25, saveas='rand_unif-g')
+    
+    # initialisation aléatoire gaussien
+    inits = [tc.normal(mean=0.0, std=2., size=(28, 28)) for _ in range(nb)]
 
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[0.05]*nb, Niter=300, saveas=f'multarg-n-s')
-
-
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=inits, pas=[1.25]*nb, Niter=25, saveas='rand_gauss-s')
+    
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[0.25]*nb, Niter=300, saveas=f'multarg-n-g')
-    '''
-
-
-###     Différents niveau de compression
-    '''
-
-        # Préparatifs
-
-    # chargement d'une nouvelle image
-    index = np.random.randint(0, len(TrainSet))
-    print(f"\n Index associé à l'image : {index}\n")
-
-    img = TrainSet[4618][0].squeeze()
-    plt.imshow(img, cmap='magma')
-    plt.show()
-
-    # plusieurs valeurs pour p et q
-    pas_s = [0.01, 0.05, 0.1, 0.1, 0.1]
-    pas_g = [0.01, 0.5, 0.1, 0.1, 0.2]
-    sizes = ['mini', 'small', 'mid1', 'mid2', 'big']
-    Ps = [5, 7, 14, 7, 14]
-    Qs = [5, 7, 7, 14, 14]
-
-
-        # On fait tourner
-    
-    for i, (size, p,q, p_s, p_g) in enumerate(zip(sizes, Ps, Qs, pas_s, pas_g)):
-
-        # chargement de niveau de compression
-        SupRes.set_sizes(y_shape=(p,q))
-
-        # descente sans passe-bas
-        SupRes.set_passebas(filtre='sans')
-
-        SupRes.PGD(target=img, init='tA(y_0)', pas=p_s, Niter=300) 
-        SupRes.plot_descente(methode='PGD', img3=SupRes.info['y_0'], saveas=f'size-s_{size}')
-        
-        # descente avec passe-bas
-        SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-
-        SupRes.PGD(target=img, init='tA(y_0)', pas=p_g, Niter=300) 
-        SupRes.plot_descente(methode='PGD', img3=SupRes.info['y_0'], saveas=f'size-g_{size}')
-
-    
-        # Remise à la valeur par défaut des tailles d'image 
-
-    SupRes.set_sizes()
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=inits, pas=[4.25]*nb, Niter=25, saveas='rand_gauss-g')
     '''
 
 
 ###     Différentes taille d'espace latent
 
-    '''
+
         # Préparatifs
 
     # chargement d'une nouvelle image
     index = np.random.randint(0, len(TrainSet))
     print(f"\n Indexe associé à l'image : {index}\n")
 
-    img = TrainSet[33186][0].squeeze()
-    #plt.imshow(img, cmap='magma')
-    #plt.show()
+    img = TrainSet[index][0].squeeze()
+    plt.imshow(img, cmap='magma')
+    plt.show()
 
 
     #  trois tailles d'esapce latent 
@@ -204,7 +117,7 @@ if __name__=='__main__':
 
     # adaptation du pas en fonction de l'AE / du passe-bas
     pas_s = [1.25, 2.75, 2.75, 2.3]
-    pas_g = [4.25, 4.75, 6.5, 6.15]        # c'est pas forcément les meilleurs choix mais il sont pas trop mal
+    pas_g = [4.25, 4.75, 6.5, 6.15]        # c'est pas forcément les meilleurs choix mais ils sont pas trop mal
     
 
         # On fait tourner
@@ -221,14 +134,13 @@ if __name__=='__main__':
 
         # descente sans passe-bas
         SupRes.set_passebas(filtre='sans')
-
-        SupRes.multiplot_descente(methode='PGD', target=img, inits=inits, pas=[p_s]*4, Niter=300, saveas=f'lat-s_{d}')
+        SupRes.multiplot_descente(methode='PGD', target=img, inits=inits, pas=[p_s]*4, Niter=20, saveas=f'lat-s_{d}')
         
         # descente avec passe-bas
-        #SupRes.set_passebas(filtre='gaussien', parametre=0.6)
+        SupRes.set_passebas(filtre='gaussien', parametre=0.6)
+        SupRes.multiplot_descente(methode='PGD', target=img, inits=inits, pas=[p_g]*4, Niter=20, saveas=f'lat-g_{d}')
+        plt.show()
 
-        #SupRes.multiplot_descente(methode='PGD', target=img, inits=inits, pas=[p_g]*4, Niter=300, saveas=f'lat-g_{d}')
-    '''
 
 
     

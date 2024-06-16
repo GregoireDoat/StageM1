@@ -1139,62 +1139,54 @@ if __name__=='__main__':
 
 ###     Sand box
 
-
-    # changement d'une nouvelle image
     index = np.random.randint(0, len(TrainSet))
-    print(f"\n Indexe associé à l'image : {index}\n")
+    print(f"\n Index associé à l'image : {index}\n")
 
     img = TrainSet[index][0].squeeze()
-    #plt.imshow(img, cmap='magma')
-    #plt.show()
-
-    #  changement d'auto-encodeur
-    dim_latent = 800   
-    SupRes.set_autoencoder(f'../resultats/autoencoder/Autoencoder {dim_latent}')
-    SupRes.set_sizes(u_lenth=dim_latent)
-    
-    
-
-        # PDG
-    #inits = ['tA(y_0)', make_noisy(img, bruit='uniforme', param=0.5), make_noisy(img, bruit='gaussien', param=0.5), 'rand+AE', 'random']
-    pas_s = [2.25, 2.5, 2.75, 3., 3.25]
-    pas_g = [4, 4.25, 4.5, 4.75]
-    pas_s = [2., 2.15, 2.3, 2.45, 2.6]
-    pas_g = [5.6, 5.85, 6., 6.15, 6.3]
 
 
-    # blblblbbl
+    pas_o = [0.1, 1, 2.5, 5, 10, 20 , 50]
+    pas_s = [4, 4.25, 4.5, 4.75]
+    pas_g = [2.5, 3, 3.5, 4, 4.5, 5]
+
+    SupRes.set_sizes(y_shape=(14,7))
+
+
     SupRes.set_passebas(filtre='sans')
-    #SupRes.multiplot_descente(methode='PGD', target=img, inits=['tA(y_0)']*8, pas=pas_s, Niter=50)#, saveas='')
+    SupRes.multiplot_descente(methode='PGD', target=img, inits=['tA(y_0)']*10, pas=pas_s, Niter=20)#, saveas='')
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    #SupRes.multiplot_descente(methode='PGD', target=img, inits=['tA(y_0)']*8, pas=pas_g, Niter=50)#, saveas='')
-
+    SupRes.multiplot_descente(methode='PGD', target=img, inits=['tA(y_0)']*10, pas=pas_g, Niter=20)#, saveas='')
     plt.show()
+
+
+
+
 
         # Descente en masse pour valider
 
     # selection
-    indexes = np.random.randint(0, len(TrainSet), 8)
+    nb = 8
+    indexes = np.random.randint(0, len(TrainSet), nb)
     print(f"\n Indexes associés aux images : {indexes}\n")
 
-    imgs = [iTrainSet[i][0].squeeze() for i in indexes]
+    imgs = [TrainSet[i][0].squeeze() for i in indexes]
 
     # backproj
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*8, pas=[2.3]*8, Niter=20)#, saveas='')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[3.75]*nb, Niter=20)#, saveas='')
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*8, pas=[6.15]*8, Niter=20)#, saveas='')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[3.5]*nb, Niter=20)#, saveas='')
 
     plt.show()
 
     # random
     SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*8, pas=[2.3]*8, Niter=20)#, saveas='')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[3.75]*nb, Niter=20)#, saveas='')
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*8, pas=[6.15]*8, Niter=20)#, saveas='')
+    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[3.5]*nb, Niter=20)#, saveas='')
 
     plt.show()
 
