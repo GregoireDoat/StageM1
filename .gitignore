@@ -6,9 +6,4 @@ Peng*et*al
 
 ./*.pdf
 
-latex/**/*.log
-latex/**/*.bbl
-latex/**/*.blg
-latex/**/*.bib
-latex/**/*.pytxcode
-latex/**/*.synctex.gz
+**/latex
