@@ -1,25 +1,37 @@
-\setlength{\tabcolsep}{0pt}
-\begin{tabular}{r r r r r}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{c c c}
 
-& &  Autoencoder 100{\color{white}bbbb}  &  Autoencoder 200{\color{white}bbbb}  &  Autoencoder 400{\color{white}bbbb}  
+&  MSE  & PSNR
 
 \\ \\
 
-\rotatebox[origin=lt]{90}{{\color{white}bbbb}MSE}
-& &
+\rotatebox[origin=lt]{90}{Autoencoder 100}
+&
 \input{resultats/auto-encoder/AE-100_Loss}
 &
-\input{resultats/auto-encoder/AE-200_Loss}
-&
-\input{resultats/auto-encoder/AE-400_Loss}
+\input{resultats/auto-encoder/AE-100_PSNR}
 
 \\
 
-\rotatebox[origin=lt]{90}{{\color{white}bbbb}PSNR}
-& &
-\input{resultats/auto-encoder/AE-100_PSNR}
+\rotatebox[origin=lt]{90}{Autoencoder 200}
+&
+\input{resultats/auto-encoder/AE-200_Loss}
 &
 \input{resultats/auto-encoder/AE-200_PSNR}
+
+\\
+
+\rotatebox[origin=lt]{90}{Autoencoder 400}
+&
+\input{resultats/auto-encoder/AE-400_Loss}
 &
 \input{resultats/auto-encoder/AE-400_PSNR}
+
+\\
+
+\rotatebox[origin=lt]{90}{Autoencoder 800}
+&
+\input{resultats/auto-encoder/AE-800_Loss}
+&
+\input{resultats/auto-encoder/AE-800_PSNR}
 \end{tabular}

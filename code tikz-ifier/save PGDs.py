@@ -7,18 +7,18 @@ Savings = Save2Tikz(path2data='../resultats', path2save='../latex/resultats', co
 
 
     # Initialisation par backprojection
-Savings.save_multplot(methode='PGD', globname='backproj-s', names=range(1,9), saveas='backproj')
-Savings.save_multplot(methode='PGD', globname='backproj-g', names=range(1,9), saveas='backproj')
+Savings.save_multplot(methode='PGD', globname='backproj-s', names=range(1,9), saveas='backproj', multitarget=True)
+Savings.save_multplot(methode='PGD', globname='backproj-g', names=range(1,9), saveas='backproj', multitarget=True)
 
 
     # Initialisation random uniforme
-Savings.save_multplot(methode='PGD', globname='rand_unif-s', names=range(1,9), saveas='rand_unif')
-Savings.save_multplot(methode='PGD', globname='rand_unif-g', names=range(1,9), saveas='rand_unif')
+Savings.save_multplot(methode='PGD', globname='rand_unif-s', names=range(1,9), saveas='rand_unif', multitarget=True)
+Savings.save_multplot(methode='PGD', globname='rand_unif-g', names=range(1,9), saveas='rand_unif', multitarget=True)
 
 
     # Initialisation random gaussienne
-Savings.save_multplot(methode='PGD', globname='rand_gauss-s', names=range(1,9), saveas='rand_gauss')
-Savings.save_multplot(methode='PGD', globname='rand_gauss-g', names=range(1,9), saveas='rand_gauss')
+Savings.save_multplot(methode='PGD', globname='rand_gauss-s', names=range(1,9), saveas='rand_gauss', multitarget=True)
+Savings.save_multplot(methode='PGD', globname='rand_gauss-g', names=range(1,9), saveas='rand_gauss', multitarget=True)
 
 
 

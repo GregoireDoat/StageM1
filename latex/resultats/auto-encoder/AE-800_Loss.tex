@@ -5,29 +5,8 @@
 \definecolor{darkorange25512714}{RGB}{255,127,14}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
 
-\begin{axis}[
-height=\figheight,
-log basis y={10},
-tick align=outside,
-tick pos=left,
-width=\figwidth,
-x grid style={darkgray176},
-xmin=-2.95, xmax=61.95,
-xtick style={color=black},
-y grid style={darkgray176},
-ymin=0.000919209783803151, ymax=0.0588128528405449,
-ymode=log,
-ytick style={color=black},
-ytick={1e-05,0.0001,0.001,0.01,0.1,1},
-yticklabels={
-  \(\displaystyle {10^{-5}}\),
-  \(\displaystyle {10^{-4}}\),
-  \(\displaystyle {10^{-3}}\),
-  \(\displaystyle {10^{-2}}\),
-  \(\displaystyle {10^{-1}}\),
-  \(\displaystyle {10^{0}}\)
-}
-]
+\begin{axis}[compar,
+	ymode=log]
 \addplot [semithick, steelblue31119180]
 table {%
 0 0.0486831590533257

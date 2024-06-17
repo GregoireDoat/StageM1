@@ -720,15 +720,13 @@ La descente ce fait à pas fixe\footnote{\emph{Il y a aussi un pas adaptatif par
 Sur chaque figure, à gauche se trouve l'image que l'on veut reconstruire (Target) et à côté différentes initialisations décodé $f_D(\bf{u_0})$, avec en dessous le résultat de la LGD.
 Le graphique de droite donne l'évolution du ``Loss'', \ei la fonctionnelle $g$ et à droite l'évolution du PSNR entre l'image $f_E(\bf{u_n})$ à l'itération et l'image cible.
 \begin{figure}[H]\centering
-	\input{resultats/LGD/inits/figure-s}
-    %\includegraphics[width=1.\textwidth]{../resultats/LGD/differentes initialisation/inits-s_multiplot.png}
+	%\input{resultats/LGD/inits/figure-s}
     \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 300 itérations -- sans filtre passe-bas}
     \label{fig:LGDinits}
 \end{figure}
 
 \begin{figure}[H]\centering
-    \input{resultats/LGD/inits/figure-g}
-    %\includegraphics[width=1.\textwidth]{../resultats/LGD/differentes initialisation/inits-g_multiplot.png}
+    %\input{resultats/LGD/inits/figure-g}
     \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 300 itérations --  avec passe-bas gaussien ($\sigma=0.5$)}
     \label{fig:LGDinitg}
 \end{figure}
@@ -761,23 +759,22 @@ Autre chose remarquable, le résultats $(4)$ est meilleur que le $(3)$ alors que
 Les figures \textit{\ref{fig:LGDgauss-s}} et \textit{\ref{fig:LGDgauss-g}} page suivante, mettent cela en évidence. Chaque lignes correspond à une descente avec en première ligne l'initialisation (décodée), en deuxième la reconstructions dont la cible est en troisième ligne. Les coefficients des initialisations sont tirés suivant une loi normal d'écart-type 2. En comparaison, les initialisations de la figure \textit{\ref{fig:LGDunif-g}} ci-dessous ont été tiré suivant une loi uniforme sur $[0,1]$. 
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/multitarget/figure_unif-g}
+	%\input{resultats/LGD/multitarget/figure_unif-g}
 	\caption{Résultats de LGD toutes initialiser par un vecteur tiré suivant une lui uniforme sur $[0,1]$ ---  avec passe-bas gaussien ($\sigma=0.6$)}
 	\label{fig:LGDunif-g}
 \end{figure}
 \begin{figure}[H]\centering
-	\input{resultats/LGD/multitarget/figure_gauss-s}
+	%\input{resultats/LGD/multitarget/figure_gauss-s}
     \caption{Plein de descentes --- sans passe-bas}
     \label{fig:LGDgauss-s}
 \end{figure}
 \begin{figure}[H]\centering
-	\input{resultats/LGD/multitarget/figure_gauss-g}
+	%\input{resultats/LGD/multitarget/figure_gauss-g}
     \caption{Plein de descentes ---  avec passe-bas gaussien ($\sigma=0.6$)}
     \label{fig:LGDgauss-g}
 \end{figure}
 
 \noindent Clairement, les courbes sont beaucoup plus chaotique et on pourrait supposer que cela vient de l'apprentissage de $f$ qui aurait ``écarté'' les parties de l'espace latent où $f_D$ n'est pas injective en dehors de $[0,1]^d$. 
-\\
 
 
 \subsection{Variation de la qualité de mesure (e.i. $\bf{p}\times\bf{q}$)}\label{sec:LGDsize}
@@ -794,13 +791,13 @@ Pour tester les limites de la méthode par rapport au rapports $n/p$ et $m/q$, l
 Les résultats, \textit{fig. \ref{fig:LGDsizes-s} \& \ref{fig:LGDsizes-g}}, restent concluant malgré le haut niveau de compression. La première ligne correspond aux initialisations (par backprojection), la seconde au sous-échantillonnage $A\bf{x_0}$ de la cible $\bf{x_0}$ et la troisième à la reconstruction par LGD. Avec la diminution de $p$ et $q$, l'impact du filtre se fait sentir, sans passe-bas l'algorithme à beaucoup plus de mal à reconstruire l'information perdue. Du point de vue des courbes, on voit aussi que la filtre passe-bas à tendance à bien plus les lisser, ce qui sous-entend une potentielle meilleure convexité de $g$.
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/sizes/figure-s}
+	%\input{resultats/LGD/sizes/figure-s}
 	\caption{Resultats de la LGD avec différents niveau de compression --- sans passe-bas}
 	\label{fig:LGDsizes-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/sizes/figure-g}
+	%\input{resultats/LGD/sizes/figure-g}
 	\caption{Idem, cette fois avec un passe-bas gaussien ($\sigma=0.5$)}
 	\label{fig:LGDsizes-g}
 \end{figure}
@@ -811,55 +808,60 @@ Les résultats, \textit{fig. \ref{fig:LGDsizes-s} \& \ref{fig:LGDsizes-g}}, rest
 
 \subsection{Variation de la taille de l'espace latent}\label{sec:LGDlat}
 
-Toujours dans l'optique de voir les limites de la méthodes, trois autres auto-encodeurs ont été entraînés avec différentes taille d'espace latent. Pour chaque --- \textit{fig. \ref{fig:LGDlat100-s}} à \textit{ \ref{fig:LGDlat800-g}} --- la LGD est effectuée avec différentes initialisations (toujours en première ligne). En fonction des cas, la loss fait parfois des zig-zags, ce qui indique que le pas est parfois trop grand. Mais même sachant cela, les résultats sont étonnamment bons. En particulier pour le deux dernières figures, où $d=800$ ce qui est plus que la taille des images, à savoir $28\times28=784$. \`A noter tout de même qu'à mesure que $d$ augmente les PSNR reste de plus en plus loin du PSNR de référence (PSNR$(\bf{x_0}, f(\bf{x_0}))$), qui lui reste globalement stable.
+Toujours dans l'optique de voir les limites de la méthodes, trois autres auto-encodeurs ont été entraînés avec différentes taille d'espace latent. Pour chacun --- \textit{fig. \ref{fig:LGDlat100-s}} à \textit{ \ref{fig:LGDlat800-g}} --- la LGD est effectuée avec différentes initialisations (toujours en première ligne avec le prédiction en dessous). En fonction des cas, la loss fait parfois des zig-zags, ce qui indique que le pas est trop grand. Mais même sachant cela, les résultats sont étonnamment bons. En particulier pour le deux dernières figures, où $d=800$ ce qui est plus que la taille des images, à savoir $28\times28=784$. \`A noter tout de même qu'à mesure que $d$ augmente les PSNR reste de plus en plus loin du PSNR de référence (PSNR$(\bf{x_0}, f(\bf{x_0}))$), qui lui reste globalement stable d'un auto-encoder à l'autre.
+\\
+On y voit aussi qu'à mesure que $d$ augmente, les cas sans passe-bas présentent de moins en moins de plateaux, là où avec, on commence à voir apparaître des sauts, peut-être également du au pas trop grand.
+\\ \\
+
+En résumé, la méthode est étonnamment robuste, alors que la théorie n'était pas encourageante. \`A voir si elle le reste sur des données plus complexes et si c'est le cas c'est vraisemblablement qu'il doit être possible d'améliorer ces résultats théorique, au moins en prenant comme paramétrisations des décodeurs appris.
 \\
 
 \newpage
 
 \begin{figure}[H]\centering
-    \input{resultats/LGD/lats/figure 100-s}
+    %\input{resultats/LGD/lats/figure 100-s}
     \caption{$d=100$, sans passe-base}
     \label{fig:LGDlat100-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/lats/figure 100-g}
-	\caption{$d=100$, avec passe-base}
+	%\input{resultats/LGD/lats/figure 100-g}
+	\caption{$d=100$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat100-g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/lats/figure 200-s}
+	%\input{resultats/LGD/lats/figure 200-s}
 	\caption{$d=200$, sans passe-base}
 	\label{fig:LGDlat200-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/lats/figure 200-g}
-	\caption{$d=200$, avec passe-base}
+	%\input{resultats/LGD/lats/figure 200-g}
+	\caption{$d=200$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat200-g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/lats/figure 400-s}
+	%\input{resultats/LGD/lats/figure 400-s}
 	\caption{$d=400$, sans passe-base}
 	\label{fig:LGDlat400-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/lats/figure 400-g}
-	\caption{$d=400$, avec passe-base}
+	%\input{resultats/LGD/lats/figure 400-g}
+	\caption{$d=400$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat400-g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/lats/figure 800-s}
-	\caption{$d=800$, avec passe-base}
+	%\input{resultats/LGD/lats/figure 800-s}
+	\caption{$d=800$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat800-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	\input{resultats/LGD/lats/figure 800-g}
+	%\input{resultats/LGD/lats/figure 800-g}
 	\caption{$d=800$, sans passe-base}
 	\label{fig:LGDlat800-g}
 \end{figure}
@@ -872,27 +874,57 @@ Toujours dans l'optique de voir les limites de la méthodes, trois autres auto-e
 
 
 
-\section{Comparaison avec la descente de gradient projetée}\label{sec:comparPGD}
-
-\subsection{Le principe et les résultats}\label{sec:PGD}
+\subsection{Comparaison avec la descente de gradient projetée}\label{sec:PGD}
 \quad 
 
-La descente de gradient projeté par auto-encodeur était sensé faire office d'algorithme de contrôle. Comme son nom l'indique, la descente de gradient projeté (PGD) consiste en une descente de gradient classique à cela près qu'à itération, le vecteur obtenu est projeté par une fonction$f$ (voir \figref{fig:pcode PGD} ci-contre). 
+La descente de gradient projeté (PGD) par auto-encodeur, comme son nom l'indique, consiste en une descente de gradient classique à cela près qu'à chaque itération, le vecteur obtenu est projeté par une fonction$p$ (voir \figref{fig:pcode PGD} ci-contre). 
 
-\begin{wrapfigure}[17]{r}{0.38\textwidth}
+\begin{wrapfigure}[17]{r}{0.44\textwidth}
     \input{figures/pcode PGD}
     \caption{Algorithme de PGD}
     \label{fig:pcode PGD}
 \end{wrapfigure}
-\noindent Dans notre cas, $f$ est un auto-encoder dont on notera $f_E$ et $f_D$ les parties encodage et décodage respectivement, de sorte que :
-\[f = f_D\circ f_E\]{\color{white}l}
-\\
-Cette méthode est tirée de l'article \cite{peng_solving_2019} de P. Peng, S. Jalali and X. Yuan, et leurs résultats étaient satisfaisant. Pourtant comme on va le voir dans la section \ref{sec:res PGD} plus bas, nous n'avons pas réussi à les reproduire.
-Cela étant dit, nous allons malgré tout détailler l'algorithme et essayer de comprendre les résultats obtenus.
-\\
-Ce rapport étant surtout porté sur la descente de gradient depuis l'espace lattent de $f$, on ne détaillera pas les arguments mathématiques qui supportent cette méthode mais on peut tout de même essayer de se convaincre de l'intérêt de la PGD.\\
-Comme expliqué plus haut, le problème est convexe ce qui assure la convergence de la descente de gradient. La difficulté étant de tomber sur le bon argmin. C'est là que composer par $f$ peut aider à diriger la descente vers le ``bon'' minimum.
+\noindent Ce rapport étant surtout porté sur la descente de gradient depuis l'espace lattent de $p$, on ne détaillera pas les arguments mathématiques qui supportent cette méthode mais on peut tout de même essayer de se convaincre de l'intérêt de la PGD.\\
+Comme expliqué plus haut, le problème est convexe ce qui assure la convergence de la descente de gradient. La difficulté étant de tomber sur un bon argmin. C'est là que composer par $p$ peut aider à diriger la descente vers le ``bon'' minimum. Si on parle de descente \emph{projeté} c'est aussi parce que, en appliquant $p$, on s'assure qu'à chaque itérations l'image en reconstruction $\bf{x}_n$ au modèle de basse dimension $\Sigma$.
 
+Dans notre cas, $p$ sera l'auto-encoder $f$ et cette méthode est tirée de l'article \cite{peng_solving_2019} de P. Peng, S. Jalali and X. Yuan, et leurs résultats étaient satisfaisant. Comme pour la LGD, c'est parce qu'il est difficile de construire une projection sur un ensemble aussi mal définie que $\Sigma$ qu'on utilise le machin learning pour tenté d'apprendre la structure de $\Sigma$.
+\\
+
+\begin{figure}[H]\centering
+	\input{resultats/PGD/figure_backproj-s}
+	\caption{blblbl, sans passe-bas}
+	\label{fig:PGD}
+\end{figure}
+
+\begin{figure}[H]\centering
+	\input{resultats/PGD/figure_backproj-g}
+	\caption{blblbl, sans passe-bas}
+	\label{fig:PGD}
+\end{figure}
+
+\begin{figure}[H]\centering
+	\input{resultats/PGD/figure_unif-s}
+	\caption{blblbl, sans passe-bas}
+	\label{fig:PGD}
+\end{figure}
+
+\begin{figure}[H]\centering
+	\input{resultats/PGD/figure_unif-g}
+	\caption{blblbl, sans passe-bas}
+	\label{fig:PGD}
+\end{figure}
+
+\begin{figure}[H]\centering
+	\input{resultats/PGD/figure_gauss-s}
+	\caption{blblbl, sans passe-bas}
+	\label{fig:PGD}
+\end{figure}
+
+\begin{figure}[H]\centering
+	\input{resultats/PGD/figure_gauss-g}
+	\caption{blblbl, sans passe-bas}
+	\label{fig:PGD}
+\end{figure}
 
 \begin{itemize}
 	\item Converge beaucoup plus vite
@@ -902,28 +934,6 @@ Comme expliqué plus haut, le problème est convexe ce qui assure la convergence
 \end{itemize}
 %\\ \\
 
-
-
-\subsection{Comparaison avec la LGD}\label{sec:res PGD}
-\begin{figure}[H]\centering
-    %\input{figures/PGD/PGD 2-s}
-    \caption{Résultat de la PGD avec un pas de descente $\rho=10^{-10}$, sans passe-bas}
-\end{figure}
-
-\begin{figure}[H]\centering
-    %\input{figures/PGD/PGD 2-g}
-    \caption{Résultat de la PGD avec un pas de descente $\rho=10^{-10}$, passe-bas gaussien ($\sigma=0.6$)}
-\end{figure}
-
-\begin{figure}[H]\centering
-    %\input{figures/PGD/compar_pas 1-s}
-    \caption{Comparaison de la PGD avec le résultat attendu (Target) après 100 itérations et avec différent pas --- initialisation $^tA(Ax)$, sans passe-bas}
-\end{figure}
-
-\begin{figure}[H]\centering
-    %\input{figures/PGD/compar_pas 1-g}
-    \caption{Comparaison de la PGD avec le résultat attendu (Target) après 100 itérations et avec différent pas --- initialisation $^tA(Ax)$, passe-bas gaussien ($\sigma=0.6$)}
-\end{figure}
 
 
 
@@ -970,14 +980,14 @@ Leur entraînement s'est fait sur le jeu de données MNIST sur 60 epochs avec de
 \end{figure}
 \begin{figure}[H]\centering
     %\input{figures/AE/plot}
-    \caption{Évolution de la MSE et du PSNR par batch des auto-encodeurs au cours des epochs. En bleu sur le set d'entraînement et en violet sur celui de test}
+    \caption{Évolution de la MSE et du PSNR par batch des auto-encodeurs au cours des epochs. En bleu sur le set d'entraînement et en orange sur celui de test}
     \label{fig:AEperf}
 \end{figure}
 {\color{white}l}
 
 
 
-\subsection{Calcul pratique de $\bf{F}$ et de son gradient}\label{anx:gradF}
+\subsection{Calcul pratique de \textit{F} et de son gradient}\label{anx:gradF}
 \quad
 
 \begin{enonce}[Notation]
@@ -1007,33 +1017,49 @@ D'abord, la projection $S$ est très peu coûteuse en temps de calcul puisqu'ell
 \noindent Inversement, la transposé $^tS$ à une image $y\in\R^{p\times q}$ revient à construire une image $^tSy=$\pyt{tSy} de taille $(n,m)$ remplie de 0 puis de faire la modification :
 \[\forall (i,j)\in\llbracket1,p\rrbracket\times\llbracket1,q\rrbracket,\qquad \texttt{tSy[i*n//p, j*p//q] = y[i,j]}\]{\color{white}l}
 
-Il n'y a pas besoin non plus de construire $D_h$, le produit $\hat{\bf{h}}\odot\hat{\bf{x}}$ suffit et le passage dans/hors de l'espace des fréquences est fait pas \texttt{fft}. Ainsi, il n'y a jamais besoin d'aplatir les images et dans ce cas, on a bien la symétrie de $\F$ dans le sens où, avec les conventions ne notations d'Einstein, elle vérifie :
+Il n'y a pas besoin non plus de construire $D_h$, le produit $\hat{\bf{h}}\odot\hat{\bf{x}}$ suffit et le passage dans/hors de l'espace des fréquences est fait par \texttt{fft}. Ainsi, il n'y a jamais besoin d'aplatir les images et dans ce cas, on a bien la symétrie de $\F$ dans le sens où, avec les conventions ne notations d'Einstein, elle vérifie :
 \[\forall(i,j)\in\llbracket1,n\rrbracket\times\llbracket1,m\rrbracket,\qquad \hat{\bf{x}}^{kl}=\F_{ ij}^{kl}\bf{x}^{ij}=\F_{ ij}^{lk}\bf{x}^{ij}=\hat{\bf{x}}^{lk}\]{\color{white}l}
 
-Enfin, comme sont nom l'indique, il est plus naturel de construire la filtre \emph{passe-bas} directement dans l'esapce de Fourier, et ce qui est dans le code. Le figure \textit{\ref{fig:passebas-g}} et \textit{\ref{fig:passebas-p}} montre l'application de $A$ et $^tA$ à une image. La figure \textit{\ref{fig:passebas-p}} en particulier mais bien en évidence l'effet de Gibbs qui apparaît parce que les fréquences sont trop brutalement coupées.
+Enfin, comme son nom l'indique, il est plus naturel de construire le filtre \emph{passe-bas} directement dans l'espace de Fourier, et ce qui est fait dans le code. Les figures \textit{\ref{fig:passebas-g}} et \textit{\ref{fig:passebas-p}} montre les applications successive de $A$ et $^tA$ à une image. La figure \textit{\ref{fig:passebas-p}} en particulier mais bien en évidence l'effet de Gibbs qui apparaît parce que les fréquences sont trop brutalement coupées.
 \\
 \begin{figure}[H]\centering
     %\input{figures/x, S, tS}
     \caption{Application successive de $S$ et $^tS$ à une image}
     \label{fig:Sapplication}
 \end{figure}
-
+\vfill
 \begin{figure}[H]\centering
     %\input{figures/Compar_filters/gaussien}
-    
     \caption{En première ligne la transformée du filtres  $\hat{\bf{h}}$ gaussien d'écart type $\sigma$, en deuxième l'image $\bf{x}$ avec en dessous le produits $A(\bf{x})$ puis $tA(A\bf{x})$.}
     \label{fig:passebas-g}
 \end{figure}
-
+\vfill
 \begin{figure}[H]\centering
     %\input{figures/Compar_filters/porte}
     \caption{Idem qu'à la figure \ref{fig:passebas-g} avec cette fois $\hat{\bf{h}}$ qui est l'indicatrice de $[-a,a]\times[-a,a]$}
     \label{fig:passebas-p}
 \end{figure}
+
 \end{annexe}
+
+
 
 \newpage
 
+
+\phantomsection
+\addcontentsline{toc}{subsection}{Table des figures}
+\listoffigures
+
+
+
+\newpage
+
+
+\phantomsection
+\addcontentsline{toc}{subsection}{Références}
 \bibliography{zrefs}{}
 \bibliographystyle{siam}
+
+
 \end{document}

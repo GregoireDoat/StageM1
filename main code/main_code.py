@@ -1034,7 +1034,7 @@ if __name__=='__main__':
 
 ###     Plot de quelque auto-encodage
     
-    indexes = np.random.randint(0, len(TrainSet), 8) # [51542, 36854, 57730, 29600, 10330, 16438, 22758, 29681] : indexes du rapport
+    indexes = np.random.randint(0, len(TrainSet), 8) # [12379, 20222, 53829, 19272, 32047, 23432, 33908, 36345] : indexes du rapport
     print(f'\n {indexes=}\n')
 
     imgs = [TrainSet[i][0].squeeze() for i in indexes]
@@ -1045,7 +1045,7 @@ if __name__=='__main__':
         SupRes.set_autoencoder(f'../resultats/autoencoder/Autoencoder {d}')
         SupRes.set_sizes(u_lenth=d)
 
-        SupRes.plot_perfAE(imgs, saveas=f'autoencoder/guess-{d}')
+        SupRes.plot_perfAE(imgs, saveas=f'autoencoder/AE-{d}')
     
 
 

@@ -145,7 +145,7 @@ class Save2Tikz():
 
             if multitarget == True:
                 plt.imsave(f"{save_name}_{name}-target-{data}.png", info['x_0'], cmap=self.color_map)
-            
+
         data = info['filtre_type'][0]
         plt.imsave(f"{save_name}_{name}-compatarget-{data}.png", info['y_0'], cmap=self.color_map)
         if multitarget == False:
@@ -163,7 +163,6 @@ class Save2Tikz():
         for i, PSNR in enumerate(PSNRs[1:]):
             plt.plot(PSNR, label=f'{i+1}')
         plt.axhline(PSNRs[0], color=(0.5, 0.5, 0.5))
-        #plt.legend()
 
         tpl.clean_figure()
         tpl.save(f'{save_name}-PSNRs-{data}.tex', axis_width=r'\figwidth', axis_height=r'\figheight')
