@@ -61,7 +61,7 @@ if __name__=='__main__':
 
 ###     Différentes initialisations
     
-    '''
+
         # Set up
 
     # chargement d'une nouvelle image
@@ -85,7 +85,7 @@ if __name__=='__main__':
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
     SupRes.multiplot_descente(methode='LGD', target=img, inits=inits, pas=[0.25]*6 , Niter=300, saveas='inits-g')
-    '''
+
 
 
 ###     Initialisations aléatoires 
@@ -131,7 +131,7 @@ if __name__=='__main__':
 ###     Différents niveau de compression
 
     '''
-        # Préparatifs
+        # Set up
 
     # chargement d'une nouvelle image
     index = np.random.randint(0, len(TrainSet)) # 4618 : indexe du rapport
@@ -178,7 +178,7 @@ if __name__=='__main__':
 ###     Différentes taille d'espace latent
 
     '''
-        # Préparatifs
+        # Set up
 
     # chargement d'une nouvelle image
     index = np.random.randint(0, len(TrainSet)) # 33186 : indexe du rapport

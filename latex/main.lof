@@ -5,21 +5,21 @@
 \contentsline {figure}{\numberline {5}{\ignorespaces Algorithme de descente depuis l'espace des paramètres\relax }}{4}{figure.caption.5}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Histogramme des valeurs de $\big |{\|Av\|_2}^2/{\|v\|_2}^2-1\big |$ sans filtre passe-bas sur le set de test\relax }}{8}{figure.caption.6}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Histogramme des valeurs de $\big |{\|Av\|_2}^2/{\|v\|_2}^2-1\big |$ avec filtre gaussien ($\sigma =0,6$) sur le set de test\relax }}{8}{figure.caption.6}%
-\contentsline {figure}{\numberline {8}{\ignorespaces En première lignes différentes initialisations avec en dessous le résultat de la LGD après 300 itérations -- sans filtre passe-bas\relax }}{9}{figure.caption.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces En premières lignes différentes initialisations avec en dessous le résultat de la LGD après 300 itérations -- sans filtre passe-bas\relax }}{9}{figure.caption.7}%
 \contentsline {figure}{\numberline {9}{\ignorespaces En premières lignes différentes initialisations avec en dessous le résultat de la LGD après 300 itérations -- avec passe-bas gaussien ($\sigma =0.5$)\relax }}{10}{figure.caption.8}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Résultats de LGD toutes initialiser par un vecteur tiré suivant une lui uniforme sur $[0,1]$ --- avec passe-bas gaussien ($\sigma =0.6$)\relax }}{11}{figure.caption.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Résultats de LGD toutes initialisées par un vecteur tiré suivant une loi uniforme sur $[0,1]$ --- avec passe-bas gaussien ($\sigma =0.6$)\relax }}{11}{figure.caption.9}%
 \contentsline {figure}{\numberline {11}{\ignorespaces Plusieurs résultats de LGD --- sans passe-bas\relax }}{12}{figure.caption.10}%
 \contentsline {figure}{\numberline {12}{\ignorespaces Plusieurs résultats de LGD --- avec passe-bas gaussien ($\sigma =0.6$)\relax }}{12}{figure.caption.11}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Résultats de la LGD avec différents niveau de compression --- sans passe-bas\relax }}{13}{figure.caption.12}%
+\contentsline {figure}{\numberline {13}{\ignorespaces LGD avec différents niveaux de compression --- sans passe-bas\relax }}{13}{figure.caption.12}%
 \contentsline {figure}{\numberline {14}{\ignorespaces Idem, cette fois avec un passe-bas gaussien ($\sigma =0.5$)\relax }}{14}{figure.caption.13}%
-\contentsline {figure}{\numberline {15}{\ignorespaces $d=100$, sans passe-base\relax }}{15}{figure.caption.14}%
-\contentsline {figure}{\numberline {16}{\ignorespaces $d=100$, avec passe-base gaussien ($\sigma =0.6$)\relax }}{15}{figure.caption.15}%
-\contentsline {figure}{\numberline {17}{\ignorespaces $d=200$, sans passe-base\relax }}{16}{figure.caption.16}%
-\contentsline {figure}{\numberline {18}{\ignorespaces $d=200$, avec passe-base gaussien ($\sigma =0.6$)\relax }}{16}{figure.caption.17}%
-\contentsline {figure}{\numberline {19}{\ignorespaces $d=400$, sans passe-base\relax }}{17}{figure.caption.18}%
-\contentsline {figure}{\numberline {20}{\ignorespaces $d=400$, avec passe-base gaussien ($\sigma =0.6$)\relax }}{17}{figure.caption.19}%
-\contentsline {figure}{\numberline {21}{\ignorespaces $d=800$, sans passe-base\relax }}{18}{figure.caption.20}%
-\contentsline {figure}{\numberline {22}{\ignorespaces $d=800$, avec passe-base gaussien ($\sigma =0.6$)\relax }}{18}{figure.caption.21}%
+\contentsline {figure}{\numberline {15}{\ignorespaces $d=100$, sans passe-bas\relax }}{15}{figure.caption.14}%
+\contentsline {figure}{\numberline {16}{\ignorespaces $d=100$, avec passe-bas gaussien ($\sigma =0.6$)\relax }}{15}{figure.caption.15}%
+\contentsline {figure}{\numberline {17}{\ignorespaces $d=200$, sans passe-bas\relax }}{16}{figure.caption.16}%
+\contentsline {figure}{\numberline {18}{\ignorespaces $d=200$, avec passe-bas gaussien ($\sigma =0.6$)\relax }}{16}{figure.caption.17}%
+\contentsline {figure}{\numberline {19}{\ignorespaces $d=400$, sans passe-bas\relax }}{17}{figure.caption.18}%
+\contentsline {figure}{\numberline {20}{\ignorespaces $d=400$, avec passe-bas gaussien ($\sigma =0.6$)\relax }}{17}{figure.caption.19}%
+\contentsline {figure}{\numberline {21}{\ignorespaces $d=800$, sans passe-bas\relax }}{18}{figure.caption.20}%
+\contentsline {figure}{\numberline {22}{\ignorespaces $d=800$, avec passe-bas gaussien ($\sigma =0.6$)\relax }}{18}{figure.caption.21}%
 \contentsline {figure}{\numberline {23}{\ignorespaces Algorithme de PGD\relax }}{19}{figure.caption.22}%
 \contentsline {figure}{\numberline {24}{\ignorespaces PGD initialisée par backprojection --- sans passe-bas\relax }}{20}{figure.caption.23}%
 \contentsline {figure}{\numberline {25}{\ignorespaces PGD initialisée par backprojection --- avec passe-bas gaussien ($\sigma =0.6$)\relax }}{20}{figure.caption.24}%
@@ -30,7 +30,7 @@
 \contentsline {figure}{\numberline {30}{\ignorespaces Reconstruction par auto-encodeur des images Input en fonction de la taille de l'espace latent dudit auto-encodeur et avec les PSNR associés\relax }}{24}{figure.caption.29}%
 \contentsline {figure}{\numberline {31}{\ignorespaces Évolution de la MSE et du PSNR par batch des auto-encodeurs au cours des epochs. En bleu sur le set d'entraînement et en orange sur celui de test\relax }}{25}{figure.caption.30}%
 \contentsline {figure}{\numberline {32}{\ignorespaces Application successive de $S$ et $^tS$ à une image\relax }}{27}{figure.caption.31}%
-\contentsline {figure}{\numberline {33}{\ignorespaces En première ligne la transformée de filtres $\hat {\boldsymbol {h}}$ gaussien d'écart type $\sigma $, en deuxième l'image $\boldsymbol {x}$ avec en dessous le produits $A(\boldsymbol {x})$ puis $tA(A\boldsymbol {x})$.\relax }}{27}{figure.caption.32}%
+\contentsline {figure}{\numberline {33}{\ignorespaces En première ligne la transformée de filtres $\hat {\boldsymbol {h}}$ gaussien d'écart type $\sigma $, en deuxième l'image $\boldsymbol {x}$ avec en dessous les produits $A(\boldsymbol {x})$ puis $tA(A\boldsymbol {x})$.\relax }}{27}{figure.caption.32}%
 \contentsline {figure}{\numberline {34}{\ignorespaces Idem avec cette fois $\hat {\boldsymbol {h}}$ qui est l'indicatrice de $[-a,a]\times [-a,a]$\relax }}{28}{figure.caption.33}%
 \contentsfinish 
 \contentsfinish 

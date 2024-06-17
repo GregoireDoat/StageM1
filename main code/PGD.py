@@ -60,15 +60,16 @@ if __name__=='__main__':
 
 ###     Différentes initialisations [DONE]
     
-    '''
+
         # Set up
 
     # chargement de nouvelles images
     nb = 8
-    indexes = [51213, 19566, 39819, 755, 12677, 35878, 35991, 11036]#np.random.randint(0, len(TrainSet), nb)   #  : indexes du rapport
+    indexes = np.random.randint(0, len(TrainSet), nb)   # [51213, 19566, 39819, 755, 12677, 35878, 35991, 11036] : indexes du rapport
     print(f"\n Indexes associés aux images : {indexes}\n")
 
     imgs = [TrainSet[i][0].squeeze() for i in indexes]
+
 
         # On fait tourner
 
@@ -94,53 +95,3 @@ if __name__=='__main__':
     
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
     SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=inits, pas=[4.25]*nb, Niter=25, saveas='rand_gauss-g')
-    '''
-
-
-###     Différentes taille d'espace latent
-
-
-        # Préparatifs
-
-    # chargement d'une nouvelle image
-    index = np.random.randint(0, len(TrainSet))
-    print(f"\n Indexe associé à l'image : {index}\n")
-
-    img = TrainSet[index][0].squeeze()
-    plt.imshow(img, cmap='magma')
-    plt.show()
-
-
-    #  trois tailles d'esapce latent 
-
-    dims = [100, 200, 400, 800]
-
-    # adaptation du pas en fonction de l'AE / du passe-bas
-    pas_s = [1.25, 2.75, 2.75, 2.3]
-    pas_g = [4.25, 4.75, 6.5, 6.15]        # c'est pas forcément les meilleurs choix mais ils sont pas trop mal
-    
-
-        # On fait tourner
-
-    for d, p_s, p_g in zip(dims, pas_s, pas_g):
-    
-        # chargement de la taille de l'espace latent
-        dim_latent = d
-        SupRes.set_autoencoder(f'../resultats/autoencoder/Autoencoder {d}')
-        SupRes.set_sizes(u_lenth=d)
-
-        # différentes initialisations
-        inits = ['tA(y_0)', make_noisy(img, bruit='uniforme', param=0.5), make_noisy(img, bruit='gaussien', param=0.5), 'random']
-
-        # descente sans passe-bas
-        SupRes.set_passebas(filtre='sans')
-        SupRes.multiplot_descente(methode='PGD', target=img, inits=inits, pas=[p_s]*4, Niter=20, saveas=f'lat-s_{d}')
-        
-        # descente avec passe-bas
-        SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-        SupRes.multiplot_descente(methode='PGD', target=img, inits=inits, pas=[p_g]*4, Niter=20, saveas=f'lat-g_{d}')
-        plt.show()
-
-
-
-    

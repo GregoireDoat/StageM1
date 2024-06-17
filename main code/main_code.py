@@ -17,12 +17,12 @@ from matplotlib import animation
 from tqdm import tqdm, trange
 
 '''
-    Le coeur du code de découpe en 3 classes:
+    Le coeur du code se découpe en 3 classes:
 
-    - La première classe est le réseau autoencodeur, la taille de son esapce latent est donnée pas dim_latent juste au dessus.
+    - La première classe est le réseau auto-encodeur, la taille de son esapce latent est donnée pas dim_latent juste au dessus.
 
 
-    - La deuxième classe 'Affichage' est dédié à l'affichage (si, si), elle est parente à la classe suivante qui effectue les calculs.
+    - La deuxième classe 'Affichage' est dédié à l'affichage (si, si), elle est parente à la classe 'SuperResolution' qui la suit.
         Pour cette raison, elle n'est jamais appelé qu'à travers 'SuperResolution'.
         A chaque affiche du rapport est associé une fonction.
 
@@ -35,21 +35,21 @@ from tqdm import tqdm, trange
 
         - set_sizes :       Met à jours les tailles d'images sous-résolues (p,q), super-résolues (n,m) et la taille de l'esapce latent d
 
-        - set_pass-bas :    Met à jour le filtre passe-bas de l'opérateur de mesure A (sans, gaussien, porte)
+        - set_passebas :    Met à jour le filtre passe-bas de l'opérateur de mesure A (sans, gaussien, porte)
 
         - A :               L'opérateur de mesure, réduit une image de taille (n,m) en une de taille (p,q) avec le passe-bas actuellement set
 
         - tA :              Application transposé de A
 
-        - PGD :             Effectue la déscente de gradient projeté. Si son paramètre back_tracking=True, 
+        - PGD :             Effectue la déscente de gradient projeté par l'auto-encodeur chargé. Si son paramètre back_tracking=True, 
                                 elle passe par l'application PGD_backtrack pour ajuster le pas pendant la descente
 
         - PGD_backtrack :   Ajuste le pas de descente par backtracking. Ne fonctionne pas pour des raisons obscures,
                                 elle boucle à l'infinie sans trouver de pas satisfaisant
 
-        - LGD :             Effectue la déscente de gradient depuis l'espace latent de l'autoencodeur chargé. 
+        - LGD :             Effectue la déscente de gradient depuis l'espace latent de l'auto-encodeur chargé. 
 
-        - LGD_backtrack :   zIdem que PGD_backtrack, ne marche pas non plus
+        - LGD_backtrack :   Idem que PGD_backtrack, ne marche pas non plus
 
     Il y a également une fonction make_noisy qui ajoute un bruit additif au paramètre ajustable.
         La présentation des filtres passe-bas, les calculs de gamma et deux exemples de PGD et LGD sont donnés après le if __name__=='__main__'.
@@ -100,7 +100,7 @@ class Affichage:
             :param list[tc.Tensor] types:   liste d'image (x_height, x_width)
             :param str saveas:              nom pour sauvegarde si précisé
 
-            Affiche les images 'imgs' avec en dessous leur version auto-encoder avec le PSNR entre les deux
+            Affiche les images 'imgs' avec en dessous leur version auto-encodée avec le PSNR entre les deux
             Si 'saveas' est précisé, sauvegarde les figures et chaque image individuellement
         '''
 
@@ -130,7 +130,7 @@ class Affichage:
 
         if saveas is not None:
 
-            # création du dossier de sauvegarde
+            # nom de sauvegarde
             save_name = f'{self.path2save}/{saveas}'
 
             for i, img in tqdm(enumerate(imgs)):
@@ -159,21 +159,26 @@ class Affichage:
             Si 'saveas' est précisé, sauvegarde les figures et chaque image individuellement
         '''
 
+            # Plot
+
         fig, ax = plt.subplots(4, min(len(types), len(params)), figsize=(16, 8))
         
         for i, (filtre, param) in enumerate(zip(types, params)):
 
+            # changement de filtre
             self.set_passebas(filtre=filtre, parametre=param)
 
+            # calcul de Ax et tA(Ax) en conséquant
             compressed = SupRes.A(img)
             transposed = SupRes.tA(compressed)
 
+            # pour fixer la dynamique des images
             #img[0,0], compressed[0,0], transposed[0,0] = 0, 0, 0
             #img[1,0], compressed[1,0],  transposed[1,0] = 1, 1, 1
 
-
             ax[0,i].set_title(f"{SupRes.info['filtre_param']}")
 
+            # plot du filtre
             if filtre == 'sans':
                 ax[0,i].imshow(np.ones_like(img))
             elif shift:
@@ -181,12 +186,12 @@ class Affichage:
             else:
                 ax[0,i].imshow(self.h)
 
-            ax[1,i].imshow(img, cmap=self.color_map)
+            # plot des images
+            ax[1,i].imshow(img, cmap=self.color_map)            # x
+            ax[2,i].imshow(compressed, cmap=self.color_map)     # Ax
+            ax[3,i].imshow(transposed, cmap=self.color_map)     # tA(Ax)
 
-            ax[2,i].imshow(compressed, cmap=self.color_map)
-
-            ax[3,i].imshow(transposed, cmap=self.color_map)
-
+        # titre
         ax[0,0].set_ylabel('filtre')
         ax[1,0].set_ylabel('x')
         ax[2,0].set_ylabel('Ax')
@@ -197,6 +202,8 @@ class Affichage:
             # Sauvegarde
 
         if saveas is not None:
+
+            # sauvegarde de l'image pour comparaison
             plt.imsave(save_name + '-x.png', img, cmap=self.color_map)
 
             # sauvegarde des filtres avec leur application à img
@@ -211,15 +218,19 @@ class Affichage:
 
                 
                 if filtre == 'sans':
+
                     # le filtre (dans Fourier)
                     plt.imsave(f'{save_name}-f-filtre={filtre[0]}.png', np.ones_like(img), cmap='viridis')
+
                     # A et tA(Ax)
                     plt.imsave(f'{save_name}-Ax-filtre={filtre[0]}.png', compressed, cmap=self.color_map)
                     plt.imsave(f'{save_name}-tA(Ax)-filtre={filtre[0]}.png', transposed, cmap=self.color_map)
 
                 else:
+
                     # le filtre (dans Fourier)
                     plt.imsave(f'{save_name}-f-filtre={filtre[0]}_param={param}.png', np.fft.fftshift(self.h), cmap='viridis')
+
                     # A et tA(Ax)
                     plt.imsave(f'{save_name}-Ax-filtre={filtre[0]}_param={param}.png', compressed, cmap=self.color_map)
                     plt.imsave(f'{save_name}-tA(Ax)-filtre={filtre[0]}_param={param}.png', transposed, cmap=self.color_map)
@@ -228,9 +239,9 @@ class Affichage:
 
     def plot_descente(self, methode, img3, saveas=None) -> None:
         '''
-            :param str methode:         méthode utilisée pour la descente (PGD ou LGD)
-            :param tc.Tensor/array img3:   image à affiche en plus de résultats, de la target et des graphs
-            :param str saveas:          nom auquel sauvegarder les résultats 
+            :param str methode:             méthode utilisée pour la descente (PGD ou LGD)
+            :param tc.Tensor/array img3:    image à afficher en plus du reste
+            :param str saveas:              nom auquel sauvegarder les résultats 
 
             Affiche les résultats de la 'methode' : target, initialisation, résultats de la descente, l'image img3 et le graphs du loss et du PSNR.
             Si saveas est donné, sauvegarde la figure et les données de la descente à ce nom
@@ -252,6 +263,7 @@ class Affichage:
 
         ax[0,1].set_title('guess')
         ax[0,1].imshow(Imgs[-1], cmap=self.color_map)
+
         # plot d'une image au choix
         ax[1,0].set_title(f'image 3')
         ax[1,0].imshow(img3, cmap=self.color_map)
@@ -275,26 +287,29 @@ class Affichage:
                 rick.dump([self.info, self.histo], f)
             plt.savefig(f'{self.path2save}/{methode}/{saveas}_fig.png')
         
-        #plt.show()
+        plt.show()
 
     def multiplot_descente(self, methode, target, inits, pas, Niter=100, ten_first=False, saveas=None) -> None:
         '''
-            :param str methode:         méthode utilisée pour la descente (PGD ou LGD)
-            :param tc.Tensor target:       cible pour les plusieurs descentes
-            :param list[tc.Tensor|str] inits:   liste des initialisations pour chaque descente
-            :param list[tc.Tensor|str] pas:     liste des pas pour chaque descente
-            :param int Niter:               nombre d'itérations à faire pour la descente
-            :param bool ten_first:          dicte s'il faut afficher les 10 premières itérations ou non
-            :param str saveas:          nom auquel sauvegarder les résultats 
+            :param str methode:                 méthode utilisée pour la descente (PGD ou LGD)
+            :param tc.Tensor target:            cible pour les plusieurs descentes
+            :param list[tc.Tensor|str] inits:   liste des initialisations pour chaque descentes
+            :param list[tc.Tensor|str] pas:     liste des pas pour chaque descentes
+            :param int Niter:                   nombre d'itérations à faire pour la descente
+            :param bool ten_first:              dicte s'il faut afficher les 10 premières itérations ou non
+            :param str saveas:                  nom auquel sauvegarder les résultats 
 
             Affiche un résumé des résultats des descentes de cible commune 'target', initialiser respectivement par les 'inits',
-                avec les pas de descente 'pas' et sur 'Niter' itération. Le nombre de descente effectué est donné par la longueur 
+                avec les pas de descente 'pas' et sur 'Niter' itérations. Le nombre de descente effectué est donné par la longueur 
                 de la plus petite des liste ('inits' et 'pas').
             Affiche éventuellement les 10 premières images de la descentes et éventuellement sauvegarde le tout (les 10 images, la figure et les données)
                 au nom 'saveas' si fourni.
         '''
+
         l = min(len(inits), len(pas))
         plot_tenfirst = []
+
+            # Plot
 
         fig = plt.figure(figsize=(16, 8))
         gs = mpl.gridspec.GridSpec(4,l+2)
@@ -316,42 +331,54 @@ class Affichage:
 
         for j, (init, p) in enumerate(zip(inits, pas)):
 
+                # Calculs
+
+            # descente
             if methode == 'PGD':
                 self.PGD(target, init, p, Niter=Niter)
             elif methode == 'LGD':
                 self.LGD(target, init, p, Niter=Niter)
-
+            
+            # eventuelle sauvegarde des 10 premières images
             if ten_first == True:
                 plot_tenfirst.append(self.histo['img'][:10])
 
+
+                # Affichage
+
+            # initialisation
             ax = fig.add_subplot(gs[0, j+2])
 
             ax.set_title(f'init image {j+1}')
             ax.imshow(self.histo['img'][0], cmap=self.color_map)
 
-
+            # reconstruction
             ax = fig.add_subplot(gs[1, j+2])
 
             ax.set_title(f'guess {j+1}')
             ax.imshow(self.histo['img'][-1], cmap=self.color_map)
 
-
+            # ajoue du loss et du PSNR aux plot
             losses.plot(self.histo['value'],label=f'{j+1}')
             PSNRs.plot(self.histo['PSNR'] , label=f'{j+1}')
             
+                # Sauvegarde des résultats
+
             if saveas is not None:
                 with open(f'{self.path2save}/{methode}/{saveas}_{j+1}.pkl', 'wb') as f:
                     rick.dump([self.info, self.histo],f)
        
-
+        # PSNR étalon et légendes
         PSNRs.axhline(self.info['PSNR_etalon'], label='PSNR étalon', color=(0.5, 0.5, 0.5), ls='--')
         losses.legend()
         PSNRs.legend()
 
         if saveas is not None:
             plt.savefig(f'{self.path2save}/{methode}/{saveas}_fig.png')
-        #plt.show()
+        plt.show()
 
+
+            # Second plot avec les 10 premières itérations sur 2 lignes
 
         if ten_first == True:
             fig, ax = plt.subplots(2*l, 5)
@@ -361,15 +388,28 @@ class Affichage:
                     ax[2* i ,j].imshow(plot_tenfirst[i][ j ], cmap=self.color_map)
                     ax[2*i+1,j].imshow(plot_tenfirst[i][j+5], cmap=self.color_map)
         
-
             if saveas is not None:
                 plt.savefig(f'{self.path2save}/{methode}/{saveas}_10first.png')
             plt.show()
 
-    def multiplot_multitarget(self, methode, targets, inits, pas, Niter=100, ten_first=False, saveas=None) -> None:
+    def multiplot_multitarget(self, methode, targets, inits, pas, Niter=100, saveas=None) -> None:
+        '''
+            :param str methode:                 méthode utilisée pour la descente (PGD ou LGD)
+            :param list[tc.Tensor] targets:     liste des cibles pour chaques descentes
+            :param list[tc.Tensor|str] inits:   liste des initialisations pour chaque descentes
+            :param list[tc.Tensor|str] pas:     liste des pas pour chaque descentes
+            :param int Niter:                   nombre d'itérations à faire pour la descente
+            :param bool ten_first:              dicte s'il faut afficher les 10 premières itérations ou non
+            :param str saveas:                  nom auquel sauvegarder les résultats 
+
+            Affiche un résumé des résultats des descentes sur chaque cible de 'targets', initialiser respectivement par les 'inits',
+                avec les pas de descente 'pas' et sur 'Niter' itérations. Le nombre de descente effectué est donné par la longueur 
+                de la plus petite des liste ('inits' et 'pas').
+            Affiche éventuellement les 10 premières images de la descentes et éventuellement sauvegarde le tout (les 10 images, la figure et les données)
+                au nom 'saveas' si fourni.
+        '''
         
-        l = min(len(inits), len(pas))
-        plot_tenfirst = []
+        l = min(len(targets), len(inits), len(pas))
 
         fig = plt.figure(figsize=(16, 8))
         gs = mpl.gridspec.GridSpec(5,l)
@@ -385,13 +425,11 @@ class Affichage:
 
         for j, (target, init, p) in enumerate(zip(targets, inits, pas)):
 
+            # calculs
             if methode == 'PGD':
                 self.PGD(target, init, pas=p, Niter=Niter)
             elif methode == 'LGD':
                 self.LGD(target, init, pas=p, Niter=Niter)
-
-            if ten_first == True:
-                plot_tenfirst.append(self.histo['img'][:10])
 
             # initialisation
             ax = fig.add_subplot(gs[0, j])
@@ -411,34 +449,22 @@ class Affichage:
             ax.set_title(f'target {j+1}')
             ax.imshow(self.info['x_0'], cmap=self.color_map)
 
-
+            # loss et PSNR
             losses.plot(self.histo['value'],label=f'{j+1}')
             PSNRs.plot(self.histo['PSNR'] , label=f'{j+1}')
             
+            # sauvegarde des résultats
             if saveas is not None:
                 with open(f'{self.path2save}/{methode}/{saveas}_{j+1}.pkl', 'wb') as f:
                     rick.dump([self.info, self.histo],f)
        
+        # légendes et affichage de la figure
         losses.legend()
         PSNRs.legend()
 
         if saveas is not None:
             plt.savefig(f'{self.path2save}/{methode}/{saveas}_fig.png')
-        #plt.show()
-
-
-        if ten_first == True:
-            fig, ax = plt.subplots(2*l, 5)
-
-            for i in range(l):
-                for j in range(5):
-                    ax[2* i ,j].imshow(plot_tenfirst[i][ j ], cmap=self.color_map)
-                    ax[2*i+1,j].imshow(plot_tenfirst[i][j+5], cmap=self.color_map)
-        
-
-            if saveas is not None:
-                plt.savefig(f'{self.path2save}/{methode}/{saveas}_10first.png')
-            plt.show()
+        plt.show()
 
     # animation
 
@@ -446,6 +472,7 @@ class Affichage:
         '''
         Produit une animation des N premières itérations de la descente (PGD ou LGD) à partir des données 
             qui se trouve dans la classe SuperResolution. Il faut donc qu'une descente ait déjà été effectué.
+            L'animation est initialisée par anim_init et mise à jour à chaque frame par anim_update.
         '''
         # set up figure
         self.fig = plt.figure(figsize=(16, 8))
@@ -494,7 +521,7 @@ class SuperResolution(Affichage):
             :param str path2autoencoder:    dossier où sont stockés les paramètres d'auto-encoder
             :param str pth2save:            dossier où sauvegarder les résultats
 
-            Cette classe est parente la classe affichage. Donc unitile d'appeler Affichage.
+            Cette classe est parente la classe affichage. Donc inutile d'appeler Affichage.
         '''
 
         # sockage des infos
@@ -518,7 +545,7 @@ class SuperResolution(Affichage):
             :param str path2autoencoder:    dossier où sont stockés les paramètres d'auto-encoder
 
             Charge l'auto-encodeur au chemin donnée.
-            Attention : il faut rappeler ensuite set_sizes si les dimension d'entrée et de l'espace latent changent
+            Attention : il faut rappeler ensuite set_sizes si les dimension d'entrée et/ou de l'espace latent changent
         '''
         self.AE = tc.load(path2autoencoder) 
         self.info['Autoencodeur'] = path2autoencoder
@@ -526,12 +553,12 @@ class SuperResolution(Affichage):
 
     def set_sizes(self, x_shape=[28,28], y_shape=[14,14], u_lenth=100) -> None:
         '''
-            :param list(int) x_shape:    tailles des images super-résolue, (n,m)
-            :param list(int) y_shape:    tailles des images sous-échantillon, (p,q)
+            :param list(int) x_shape:   tailles des images super-résolue, (n,m)
+            :param list(int) y_shape:   tailles des images sous-échantillon, (p,q)
             :param int u_lenth:         dimension de l'esapce latent, d
 
             Change les valeurs des tailles de tenseur.
-            Attention : il faut rappeler ensuite set_passebas si x_shape et y_shape sont modifiés.
+            Attention : il faut rappeler ensuite set_passebas si x_shape et/ou y_shape sont modifiés.
         '''
         # tailles des images avant et après mesure 
         self.x_height, self.x_width = x_shape   # = (n, m)
@@ -551,7 +578,6 @@ class SuperResolution(Affichage):
 
             Créé le filtre passe-bas directement dans l'esapce des fréquances, sauf dans le cas 'sans', où il n'y a pas de filtre.
         '''
-
 
             # Plusieurs choix de filtre (3)
 
@@ -617,11 +643,11 @@ class SuperResolution(Affichage):
             porte_y = tc.where(freqs_y >= a, 0, 1)
             porte_y = tc.where(freqs_y <=-a, 0, porte_y)
 
-            # mise en carré
+            # mise en forme de carré
             porte_x, porte_y = tc.meshgrid(porte_x, porte_y)
             porte = porte_x * porte_y
 
-            # produit dans l'esapce des fréquances avant le return
+            # shift dans l'esapce des fréquances
             #norm1 = tc.linalg.norm(tc.fft.ifft(porte).view(-1), ord=1)
             self.h = tc.fft.ifftshift(porte)#/norm1
 
@@ -642,27 +668,38 @@ class SuperResolution(Affichage):
 
             Estime la RIP constant sur le DataSet via la formule (6) du rapport et affiche l'histogramme
         '''
-        val = -tc.ones(len(DataSet))
+
+            # Calcul
+
+        # calcul de | |Ax|²/|x|²-1 | sur le DataSet
+        val = -tc.ones(len(DataSet))                # = -1
         
-        for i, (img,_) in tqdm(enumerate(DataSet)):
-            img = img.squeeze()
-            norm_x = tc.einsum('ij, ij -> ', img, img)
-            norm_Ax = tc.einsum('ij, ij -> ', self.A(img), self.A(img))
+        for i, (x,_) in tqdm(enumerate(DataSet)):
+            x = x.squeeze()
+            norm_x = tc.einsum('ij, ij -> ', x, x)
+            norm_Ax = tc.einsum('ij, ij -> ', self.A(x), self.A(x))
 
-            val[i] += norm_Ax/norm_x
+            val[i] += norm_Ax/norm_x                # = |Ax|²/|x|²-1
 
-        val = np.absolute(val.numpy())
+        val = np.absolute(val.numpy())              # = | |Ax|²/|x|²-1 |
+
+        # print du plus grand résultats
         gammax = max(val)
         print(f'\n Valeur minimal pour gamma :  {gammax}')
-        val, bornes = np.histogram(val, bins=500)
 
+
+            # Plot des histrogrammes
+
+        val, bornes = np.histogram(val, bins=500)
         fig = plt.figure(figsize=(16, 8))
 
         plt.suptitle("nombre d'image vérifiant le RIP pour chaque gamma")
-        plt.xlabel('gamma')
-        plt.ylabel("nombre d'image")
         plt.stairs(val, bornes, fill=True)
 
+        plt.xlabel('gamma')
+        plt.ylabel("nombre d'image")
+
+        # sauvegarde des résultats
         if saveas is not None:
             f = open(f'{self.path2save}/estim_gamma-{saveas}.pkl', 'wb')
             rick.dump([val, bornes, gammax], f)
@@ -681,8 +718,8 @@ class SuperResolution(Affichage):
             return x[::self.gap_x, ::self.gap_y]
 
         else:
-            Fx = tc.fft.fft2(x)
-            C_hx = tc.fft.ifft2(self.h*Fx).real
+            x_hat = tc.fft.fft2(x)
+            C_hx = tc.fft.ifft2(self.h * x_hat).real
             return C_hx[::self.gap_x, ::self.gap_y]
 
     def tA(self, y) -> tc.Tensor:
@@ -696,7 +733,7 @@ class SuperResolution(Affichage):
         # préremplissage de x=tS(y) par des 0
         x = tc.zeros((self.x_height,self.x_height))
 
-        # le-dit remplissage (voir rapport pour les détails)
+        # le-dit remplissage (voir annexe B du rapport pour les détails)
         for i in range(self.y_height):
             for j in range(self.y_width):
                 x[i*self.gap_x, j*self.gap_y] = y[i, j]
@@ -1033,7 +1070,8 @@ if __name__=='__main__':
 
 
 ###     Plot de quelque auto-encodage
-    
+
+    '''
     indexes = np.random.randint(0, len(TrainSet), 8) # [12379, 20222, 53829, 19272, 32047, 23432, 33908, 36345] : indexes du rapport
     print(f'\n {indexes=}\n')
 
@@ -1046,12 +1084,12 @@ if __name__=='__main__':
         SupRes.set_sizes(u_lenth=d)
 
         SupRes.plot_perfAE(imgs, saveas=f'autoencoder/AE-{d}')
-    
+    '''
 
 
 ###     Estimation de la RIP constant gamma
-    '''
-    
+
+ 
     # sans passe-bas
     SupRes.set_passebas(filtre='sans')
     SupRes.estimate_RIP(TrainSet, saveas='s')
@@ -1059,12 +1097,11 @@ if __name__=='__main__':
     # avec passe-bas gaussien
     SupRes.set_passebas(filtre='gaussien', parametre=0.6)
     SupRes.estimate_RIP(TrainSet, saveas='g')
-    '''
-
+  
 
 ###     Comparaison des passe-bas
-    '''
-    
+
+ 
         # Changement d'image
 
     index = np.random.randint(0, len(TrainSet))
@@ -1079,8 +1116,8 @@ if __name__=='__main__':
     filtres = ['sans'] + ['gaussien']*7
     params = [0] + [0.3, 0.4, 0.5, 0.6, 0.7, 0.8]   # sdv dans l'esapce des fréquances
 
-    # plot (+ sauvegarde)
-    SupRes.compare_filtre(img, filtres, params, shift=True, saveas=)
+    # plot
+    SupRes.compare_filtre(img, filtres, params, shift=True)
 
 
         # Porte
@@ -1089,16 +1126,13 @@ if __name__=='__main__':
     #filtres = ['sans'] + ['porte']*7
     #params = [0] + [0.9, 0.75,  0.6, 0.4, 0.25, 0.1]  # taille de la porte
 
-    # plot (+ sauvegarde)
-    SupRes.compare_filtre(img, filtres, params, shift=True, saveas=)
-
-    
-    '''
+    # plot
+    SupRes.compare_filtre(img, filtres, params, shift=True) 
 
 
 ###     Premiers résultats de descentes
-    '''
-        
+
+    
         # Set up
 
     # changement d'une nouvelle image
@@ -1135,78 +1169,3 @@ if __name__=='__main__':
 
     # petite animation pour voir ce qu'il se passe
     SupRes.animation(N=100)
-    '''
-
-###     Sand box
-    '''
-    index = np.random.randint(0, len(TrainSet))
-    print(f"\n Index associé à l'image : {index}\n")
-
-    img = TrainSet[index][0].squeeze()
-
-
-    pas_o = [0.1, 1, 2.5, 5, 10, 20 , 50]
-    pas_s = [4, 4.25, 4.5, 4.75]
-    pas_g = [2.5, 3, 3.5, 4, 4.5, 5]
-
-    SupRes.set_sizes(y_shape=(14,7))
-
-
-    SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_descente(methode='PGD', target=img, inits=['tA(y_0)']*10, pas=pas_s, Niter=20)#, saveas='')
-    
-    SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_descente(methode='PGD', target=img, inits=['tA(y_0)']*10, pas=pas_g, Niter=20)#, saveas='')
-    plt.show()
-
-
-
-
-
-        # Descente en masse pour valider
-
-    # selection
-    nb = 8
-    indexes = np.random.randint(0, len(TrainSet), nb)
-    print(f"\n Indexes associés aux images : {indexes}\n")
-
-    imgs = [TrainSet[i][0].squeeze() for i in indexes]
-
-    # backproj
-    SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[3.75]*nb, Niter=20)#, saveas='')
-    
-    SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['tA(y_0)']*nb, pas=[3.5]*nb, Niter=20)#, saveas='')
-
-    plt.show()
-
-    # random
-    SupRes.set_passebas(filtre='sans')
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[3.75]*nb, Niter=20)#, saveas='')
-    
-    SupRes.set_passebas(filtre='gaussien', parametre=0.6)
-    SupRes.multiplot_multitarget(methode='PGD', targets=imgs, inits=['random']*nb, pas=[3.5]*nb, Niter=20)#, saveas='')
-
-    plt.show()
-    '''
-
-'''  TODO
-
-    PGD :
-
-        
-    STRUCTURE
-
-    - checks les fautes 
-
-
-    POUR L'ARTICLE (rien que ça !)
-
-    - check l'état de l'art si tes résultats existes,
-        si ca a ses limites, est-ce qu'elles sont explorer
-
-    - est-ce que y'a besoin de plus sofistiqué qu'un MLP ?
-
-    - essaye de Fashion-MNIST pour la robustesse
-'''
