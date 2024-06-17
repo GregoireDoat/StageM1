@@ -2,7 +2,7 @@
 \usepackage[a4paper, total={6.25in, 9.5in}]{geometry}
 % get fontsized kido
 \usepackage{fontsize}
-  \changefontsize[15]{12}
+\changefontsize[15]{12}
 \usepackage{amsmath}\usepackage{amssymb}\usepackage{mathcomp}
 
 \usepackage{xcolor}\usepackage{mathrsfs}\usepackage{euscript}\usepackage{wasysym}[mathcal]\usepackage{stmaryrd}\usepackage{rsfso}
@@ -24,9 +24,9 @@
 \usepackage{easybmat}
 % pour rendre lien cliquable
 \usepackage[colorlinks=false, %true,
-            linkcolor=blue,
-            citecolor=black,
-            urlcolor=red]{hyperref}
+linkcolor=blue,
+citecolor=black,
+urlcolor=red]{hyperref}
 % pour dessins et les diagrams
 \usepackage{tikz}\usepackage{tikz-cd}
 % pour les maxis plots
@@ -45,8 +45,8 @@
 
 
 
-%%%%    RACCOURCIS    %%%%
- 
+%%%%	RACCOURCIS	%%%%
+
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}   
 \newcommand{\Q}{\mathbb{Q}}
@@ -70,10 +70,10 @@
 \newcommand{\llr}{\longleftrightarrow}
 \newcommand{\Llr}{\Longleftrightarrow}
 \newcommand{\para}{\sslash}
-\newcommand{\Arccos}{\text{Arccos}} 
-\newcommand{\Arcsin}{\text{Arcsin}} 
-\newcommand{\Arctan}{\text{Arctan}} 
-\newcommand{\Argch}{\text{Argch}}       
+\newcommand{\Arccos}{\text{Arccos}}
+\newcommand{\Arcsin}{\text{Arcsin}}
+\newcommand{\Arctan}{\text{Arctan}}
+\newcommand{\Argch}{\text{Argch}}  	 
 \newcommand{\Argsh}{\text{Argsh}}
 \newcommand{\pgcd}{\text{pgcd}}
 \newcommand{\PGCD}{\text{PGCD}}
@@ -91,7 +91,7 @@
 \newcommand{\tr}{\text{tr}}
 \newcommand{\rg}{\text{rg}}
 \newcommand{\Co}{\text{com}}
-\newcommand{\Sp}{\text{Sp}} 
+\newcommand{\Sp}{\text{Sp}}
 \newcommand{\GL}{\text{GL}}
 \newcommand{\GA}{\text{GA}}
 \newcommand{\SL}{\text{SL}}
@@ -137,7 +137,7 @@
 
 
 
-%%%%    SET UP    %%%%
+%%%%	SET UP	%%%%
 
 
 
@@ -145,7 +145,7 @@
 % set up bas/haut de page
 
 \usepackage{fancyhdr}
-\pagestyle{fancy}                       
+\pagestyle{fancy}                  	 
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \cfoot{\thepage}
@@ -155,14 +155,14 @@
 % set up des sections (FROM SCRATCH !!!)
 
 \usepackage[loadonly, toctitles, clearempty]{titlesec}
-            
-    % génère les sections
+
+% génère les sections
 \titleclass{\part}[-2]{top}
 \titleclass{\section}{straight}[\part]
 \titleclass{\subsection}{straight}[\section]
 \titleclass{\subsubsection}{straight}[\subsection]
 
-    % génère les numérotations avec format
+% génère les numérotations avec format
 %\newcounter{part}
 \renewcommand{\thepart}{\Roman{part}}
 %\newcounter{section}
@@ -172,7 +172,7 @@
 %\newcounter{subsubsection}
 \renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
 
-    % formatage
+% formatage
 
 \titleformat{\part}[display]{\bfseries\scshape\Large}{\centering \rule{3.5cm}{0.4pt}\qquad Chapitre\quad \thechapter \qquad \rule{3.5cm}{0.4pt}}{15pt}{\centering}
 \titlespacing{\chapter}{0pt}{50pt}{80pt}
@@ -204,29 +204,29 @@
 
 % set up annexes
 \newenvironment{annexe}{%
-    \newpage
-    % changement title sec
-    \titleformat{\section}[display]{\bfseries\scshape\Large}{\centering}{15pt}{\centering}
-    \titlespacing{\section}{0pt}{30pt}{40pt}
-    
-    \titleformat{\subsection}{\bfseries\large}{Annexe \thesubsection\quad ---\quad}{0pt}{}
-    
-    \titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{15pt}{}
-    
-    % changement title toc
-    \titlecontents{section}[0.25em]{\addvspace{0.5em}\bfseries}{}{\hspace*{-1.5em}}{\titlerule*[0.75pc]{.}\contentspage}
-    
-    \titlecontents{subsection}[1.5em]{\normalfont Annexe\hspace*{2.5em}}{\contentslabel{2em}}{\hspace*{-2em}}{\titlerule*[0.75pc]{.}\contentspage}
-    
-    \titlecontents{subsubsection}[5.75em]{\normalfont}{\contentslabel{2.25em}}{\hspace*{-2em}}{\titlerule*[0.75pc]{.}\contentspage}
-    
-    % changment de la numéritations
-    \renewcommand{\thesubsection}{\Alph{subsection}}
-    \renewcommand{\thesubsubsection}{\Alph{subsection}.\arabic{subsubsection}.}
-    
-    % mise à zéro des compters
-    %\setcounter{section}{0}
-    }{}
+	\newpage
+	% changement title sec
+	\titleformat{\section}[display]{\bfseries\scshape\Large}{\centering}{15pt}{\centering}
+	\titlespacing{\section}{0pt}{30pt}{40pt}
+	
+	\titleformat{\subsection}{\bfseries\large}{Annexe \thesubsection\quad ---\quad}{0pt}{}
+	
+	\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{15pt}{}
+	
+	% changement title toc
+	\titlecontents{section}[0.25em]{\addvspace{0.5em}\bfseries}{}{\hspace*{-1.5em}}{\titlerule*[0.75pc]{.}\contentspage}
+	
+	\titlecontents{subsection}[1.5em]{\normalfont Annexe\hspace*{2.5em}}{\contentslabel{2em}}{\hspace*{-2em}}{\titlerule*[0.75pc]{.}\contentspage}
+	
+	\titlecontents{subsubsection}[5.75em]{\normalfont}{\contentslabel{2.25em}}{\hspace*{-2em}}{\titlerule*[0.75pc]{.}\contentspage}
+	
+	% changment de la numéritations
+	\renewcommand{\thesubsection}{\Alph{subsection}}
+	\renewcommand{\thesubsubsection}{\Alph{subsection}.\arabic{subsubsection}.}
+	
+	% mise à zéro des compters
+	%\setcounter{section}{0}
+}{}
 
 
 
@@ -248,7 +248,7 @@
 \DeclareCaptionFont{custom}{\itshape }
 \renewcommand{\thefigure}{\arabic{figure}}
 \newcommand{\figref}[1]{\textit{fig.\,\ref{#1}}}
-    % espacement pour les wrapfig (casse tout pour les multirow format)
+% espacement pour les wrapfig (casse tout pour les multirow format)
 %\renewcommand{\columnsep}{1cm}
 
 % set up ENONCES (PROP, DEF, RQ) :
@@ -290,60 +290,47 @@
 
 % set up plot
 \pgfplotsset{standard/.style={width=0.4\textwidth,
-    height=0.22\textwidth,
-    trig format=rad,
-    enlargelimits,
-    enlarge x limits=0.05,
-    enlarge y limits=0.05,
-    every axis x label/.style={footnotesize, at={(current axis.right of origin)},anchor=north west},
-    every axis y label/.style={footnotesize, at={(current axis.above origin)},anchor=south east},
-    every tick label/.append style={font=\scriptsize},
-    scale only axis=true}}
+		height=0.22\textwidth,
+		trig format=rad,
+		enlargelimits,
+		enlarge x limits=0.05,
+		enlarge y limits=0.05,
+		every axis x label/.style={footnotesize, at={(current axis.right of origin)},anchor=north west},
+		every axis y label/.style={footnotesize, at={(current axis.above origin)},anchor=south east},
+		every tick label/.append style={font=\scriptsize},
+		scale only axis=true}}
 \pgfplotsset{compar/.style={width=0.4\textwidth,
-    height=0.2\textwidth,
-    trig format=rad,
-    enlargelimits,
-    enlarge x limits=0.05,
-    enlarge y limits=0.05,
-    every axis x label/.style={footnotesize, at={(current axis.right of origin)},anchor=north west},
-    every axis y label/.style={footnotesize, at={(current axis.above origin)},anchor=south east},
-    every tick label/.append style={font=\scriptsize},
-    scale only axis=true}}
+		height=0.2\textwidth,
+		trig format=rad,
+		enlargelimits,
+		enlarge x limits=0.05,
+		enlarge y limits=0.05,
+		every axis x label/.style={footnotesize, at={(current axis.right of origin)},anchor=north west},
+		every axis y label/.style={footnotesize, at={(current axis.above origin)},anchor=south east},
+		every tick label/.append style={font=\scriptsize},
+		scale only axis=true}}
 \pgfplotsset{small/.style={width=0.2\textwidth,
-    height=0.08\textwidth,
-    trig format=rad,
-    enlargelimits,
-    enlarge x limits=0.05,
-    enlarge y limits=0.05,
-    every axis x label/.style={footnotesize, at={(current axis.right of origin)},anchor=north west},
-    every axis y label/.style={footnotesize, at={(current axis.above origin)},anchor=south east},
-    every tick label/.append style={font=\scriptsize},
-    scale only axis=true}}
+		height=0.08\textwidth,
+		trig format=rad,
+		enlargelimits,
+		enlarge x limits=0.05,
+		enlarge y limits=0.05,
+		every axis x label/.style={footnotesize, at={(current axis.right of origin)},anchor=north west},
+		every axis y label/.style={footnotesize, at={(current axis.above origin)},anchor=south east},
+		every tick label/.append style={font=\scriptsize},
+		scale only axis=true}}
 \pgfplotsset{speAE/.style={width=0.27\textwidth,
-    height=0.16\textwidth,
-    trig format=rad,
-    enlargelimits,
-    enlarge x limits=0.05,
-    enlarge y limits=0.05,
-    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
-    every axis y label/.style={at={(current axis.above origin)},anchor=south east},
-    every tick label/.append style={font=\scriptsize},
-    scale only axis=true}}
-\pgfplotsset{nobox/.style={width=4.5cm,
-    height=3.5cm,
-    %compat=1.18,
-    trig format=rad,
-    enlargelimits,
-    axis x line=middle,
-    axis y line=middle,
-    enlarge x limits=0.15,
-    enlarge y limits=0.15,
-    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
-    every axis y label/.style={at={(current axis.above origin)},anchor=south east},
-    every tick label/.append style={font=\scriptsize},
-    scale only axis=true}}
+		height=0.16\textwidth,
+		trig format=rad,
+		enlargelimits,
+		enlarge x limits=0.05,
+		enlarge y limits=0.05,
+		every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+		every axis y label/.style={at={(current axis.above origin)},anchor=south east},
+		every tick label/.append style={font=\scriptsize},
+		scale only axis=true}}
 
-    %preset prog    
+%preset prog    
 \definecolor{codeblack}{rgb}{0.01,0.01,0.01}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -351,39 +338,39 @@
 \definecolor{backcolour}{rgb}{0.98,0.98,0.95}
 \definecolor{textgray}{rgb}{0.97,0.97,0.95}
 \lstdefinestyle{pur}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegray},
-    keywordstyle=\color{orange},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codegreen},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2,
-    frame=single,
-    rulecolor=\color{lightgray}}
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegray},
+	keywordstyle=\color{orange},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codegreen},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,    	 
+	breaklines=true,            	 
+	captionpos=b,               	 
+	keepspaces=true,            	 
+	numbers=left,               	 
+	numbersep=5pt,             	 
+	showspaces=false,           	 
+	showstringspaces=false,
+	showtabs=false,             	 
+	tabsize=2,
+	frame=single,
+	rulecolor=\color{lightgray}}
 \lstdefinestyle{informal}{%useless
-    basicstyle=\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,               
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2,
-    frame=single,
-    rulecolor=\color{black}}
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,    	 
+	breaklines=true,            	 
+	captionpos=b,               	 
+	keepspaces=true,          	 
+	showspaces=false,           	 
+	showstringspaces=false,
+	showtabs=false,             	 
+	tabsize=2,
+	frame=single,
+	rulecolor=\color{black}}
 \lstset{style=pur}
 \newcommand{\pyt}[1]{{\footnotesize{\colorbox{textgray}{\color{mygray}\texttt{#1}}}}}
-    
+
 
 
 
@@ -391,60 +378,50 @@
 \author{}
 \date{Grégoire \textsc{Doat}}
 \begin{document}
-
-\captionsetup{labelformat=custom, labelsep=custom}
-\alglanguage{pseudocode}
-
-\begin{titlepage}\centering
-	{\color{white}l}
-
-	\vspace{1cm}
 	
-	{\Large\textbf{\textsc{Rapport de Stage}}}
- 
-    \vspace{1.5cm}
-    
-	{\huge\scshape\textbf{Super-Résolution d'Images via}}
- 
-    \vspace{0.2cm}
-    
-    {\huge\scshape\textbf{Réseau Autoencodeur}}
-    
-	\vspace{1.5cm}
- 
-	{\large Grégoire \textsc{Doat}}\par
- 
+	\captionsetup{labelformat=custom, labelsep=custom}
+	\alglanguage{pseudocode}
+	
+	\begin{titlepage}\centering
+		{\color{white}l}
+		
+		\vspace{1cm}
+		
+		{\Large\textbf{\textsc{Rapport de Stage}}}
+		
+		\vspace{1.5cm}
+		
+		{\huge\scshape\textbf{Super-Résolution d'Images via}}
+		
+		\vspace{0.2cm}
+		
+		{\huge\scshape\textbf{Réseau Auto-encodeur}}
+		
+		\vspace{1.5cm}
+		
+		{\large Grégoire \textsc{Doat}}\par
+		
+		\vspace{0.5cm}
+		
+		\quad{\large Sous la tutelle de M. Yann \textsc{Traonmilin}}
+		
+		%\vfill
+		\vspace{0.5cm}
+		
+		\rule{10cm}{0.3pt}\par
+		
+		\vspace{0.7cm}
+		{\large Mai -- Juin 2024}
+		
+		
+		\vfill
+		%{\Large\textbf{Résumé}}\par}
+	\tableofcontents
+	
+	
 	\vspace{0.5cm}
- 
-	\quad{\large Sous la tutelle de M. Yann \textsc{Traonmilin}}
-
-     %\vfill
-     \vspace{0.5cm}
- 
-	\rule{10cm}{0.3pt}\par
- 
-	\vspace{0.7cm}
-    {\large Mai -- Juin 2024}
-
-    
-    \vfill
-    %{\Large\textbf{Résumé}}\par}
-    \tableofcontents
-
-    
-    %\vspace{1cm}
-	%On augmente la résolution de l'image sans apprentissage (faut voir comment) puis on utiliste un algorithme d'amélioration de la résolution. C'est pas mal parce que ça permet de réutiliser ce qui existe déjà sur l'amélioration d'image (rébruitage par exmple).
-
-    %Clairement, ce a ses limites, l'augmentation de résolution est pas forcément la plus maligne et l'appentissage est pas possible dessus. Aussi, rien n'indique que se faisant, on ne tue pas l'information qu'un algo de néttoyage d'image utilise.
-
-
-	\vspace{0.5cm}
-
+	
 \end{titlepage}
-
-%\tableofcontents   \newpage
-
-%{\color{white}l}\vfill\section*{\itshape\begin{center}Remerciements\end{center}}\emph{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu tincidunt lacus. Cras scelerisque odio elementum facilisis cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sollicitudin vulputate luctus. Mauris tincidunt mattis purus eu eleifend. Curabitur sodales est eu sapien fringilla volutpat. Curabitur vestibulum porta diam, ac sagittis libero commodo eu. Pellentesque elementum magna vitae eros ultrices, vel tempus orci suscipit. Praesent velit diam, bibendum eu euismod sit amet, volutpat eu erat. Suspendisse vel faucibus urna, a maximus quam. }\vfill\vfill\vfill{\color{white}l}\newpage
 
 
 
@@ -455,30 +432,30 @@
 \section*{Introduction}
 {\color{white}bllblblb}
 
-Dans ce rapport de stage on s'intéresse au problème de super-résolution. C'est-à-dire la reconstruction d'image $\bf{x}$, disons de taille $(n,m)$, à partir d'une version sous-échantillonné $\bf{y}$ de taille $(p,q)$ et se pose ainsi\footnote{ce n'est pas nécessairement la seule façon de poser le problème cela dit} : 
+Dans ce rapport de stage, on s'intéresse au problème de super-résolution. C'est-à-dire la reconstruction d'image $\bf{x}$, disons de taille $(n,m)$, à partir d'une version sous-échantillonnée $\bf{y}$ de taille $(p,q)$ et se pose ainsi\footnote{ce n'est pas nécessairement la seule façon de poser le problème cela dit} :
 
 Étant donnée une image $\bf{x_0}\in\R^{n\times m}$ et sa version sous-échantillonnée $\bf{y_0}\in\R^{p\times q}$ on cherche à minimiser la fonctionnelle :\begin{equation}\label{eq:F}
-F :\quad \begin{aligned}\R^{n\times m}\ &\lr\qquad\quad \R \\ \bf{x}\quad\ &\longmapsto\ \frac{1}{2}{\big\|A\bf{x}-\bf{y_0}\big\|_2}^2\end{aligned}\end{equation}
+	F :\quad \begin{aligned}\R^{n\times m}\ &\lr\qquad\quad \R \\ \bf{x}\quad\ &\longmapsto\ \frac{1}{2}{\big\|A\bf{x}-\bf{y_0}\big\|_2}^2\end{aligned}\end{equation}
 \\
-que l'on suppose convexe et où $A$ représente le sous-échantillonage, aussi appelée opérateur de mesure puisque l'on peut l'interpréter comme une mesure incomplètement d'une ``véritable'' image. 
-\\
-
-Par nature, l'application $A$ n'est pas injective, elle ne conserve pas toute l'information originale. Cela fait rentrer le problème de super-résolution dans la classe des problèmes inverses mal posés.
+que l'on suppose convexe et où $A$ représente le sous-échantillonnage, aussi appelé opérateur de mesure puisque l'on peut l'interpréter comme une mesure incomplètement d'une ``véritable'' image.
 \\
 
-Une façon de retrouver (au moins partiellement) l'injectivité de $A$ consiste à introduire une paramétrisation $\phi$ de l'espace des images $\bf{x}$ telle que $\ \phi(\theta)=\bf{x}\ $ et à chercher les bons paramètres $\theta$ plutôt que $\bf{x}$. L'intérêt étant que si le nombre de paramètre est suffisamment petit par rapport à la taille de l'espace des mesures, on peut espérer que le problème soit mieux poser en cherchant à inverser $A\phi$.
-\\
-Le contre coût de cette méthode est qu'elle à toute les chances  d'impacter la convexité du problème. Ce pose donc la question du comportement la fonctionnelle $\ F\circ\phi\ $ au voisinage de ses minimums. 
-\\
-C'est précisément ce qu'on étudier Y. Traonmilin, J.-F. Aujol et A. Leclaire  dans leur article \emph{The basins of attraction of the global minimizers of non-convex inverse problems with low-dimensional models in infinite dimension} de 2022 \cite{traonmilin_basins_2022}. Ils donnent une caractérisation d'abord générale des bassins d'attractions, c'est-à-dire l'ensemble des paramètres $\theta$ partant desquelles la descente de gradient convergerait vers un minimum globale de $\ F\circ\phi$. Puis applique leur résultat à des problèmes inverses classiques : reconstruction de matrice de bas rang, Off-the-grid sparse spike recovery, estimation de mélange de gaussiennes.
+Par nature, l'application $A$ n'est pas injective ce qui fait rentrer le problème de super-résolution dans la classe des problèmes inverses mal posés.
 \\
 
-Le point commun de ses trois problèmes est que l'espace des objets à reconstruire possède une paramétrisation connue et exploitable, ce qui n'est pas le cas de l'ensemble des images. En toute généralité, l'ensemble $\Sigma$ des images de taille $(n,m)$ est $\R^{n\times m}$, mais en le restreignant à un type d'images (ne serait-ce qu'en excluant les images de bruit blanc), sa structure est beaucoup moins claire et ses paramétrisations encore moins. C'est là qu'intervient le machin learning.
+Une façon de retrouver (au moins partiellement) l'injectivité de $A$ consiste à introduire une paramétrisation $\phi$ de l'espace des images $\bf{x}$ telle que $\ \phi(\theta)=\bf{x}\ $ et à chercher les bons paramètres $\theta$ plutôt que $\bf{x}$. L'intérêt étant que si le nombre de paramètres est suffisamment petit par rapport à la taille de l'espace des mesures, on peut espérer que le problème soit mieux posé en cherchant à inverser $A\phi$.
+\\
+Le contre coût de cette méthode est qu'elle à toutes les chances d'impacter la convexité du problème. Se pose donc la question du comportement de la fonctionnelle $\ F\circ\phi\ $ au voisinage de ses minimums.
+\\
+C'est précisément ce qu'ont étudié Y. Traonmilin, J.-F. Aujol et A. Leclaire  dans leur article \emph{The basins of attraction of the global minimizers of non-convex inverse problems with low-dimensional models in infinite dimension} de 2022 \cite{traonmilin_basins_2022}. Ils donnent une caractérisation d'abord générale des bassins d'attractions, c'est-à-dire l'ensemble des paramètres $\theta$ partant desquelles la descente de gradient convergerait vers un minimum globale de $\ F\circ\phi$. Puis appliquent leur résultat à des problèmes inverses classiques : reconstruction de matrice de bas rang, Off-the-grid sparse spike recovery, estimation de mélange de gaussiennes.
 \\
 
-Le but du stage est d'étudier dans quelle mesure les travaux de Traonmilin \etal s'applique au problème de super-résolution en prenant comme paramétrisation le décodeur d'un auto-encodeur entraîné sur un jeu de données (dans notre cas MNIST). 
+Le point commun de ces trois problèmes est que l'espace des objets à reconstruire possède une paramétrisation connue et exploitable, ce qui n'est pas le cas de l'ensemble des images. En toute généralité, l'ensemble $\Sigma$ des images de taille $(n,m)$ est $\R^{n\times m}$, mais en le restreignant à un type d'images (ne serait-ce qu'en excluant les images de bruit blanc), sa structure est beaucoup moins claire et ses paramétrisations encore moins. C'est là qu'intervient le machine learning.
 \\
-\`A côté de cela, P. Peng, S. Jalali et X. Yuan ont étudié la descente de gradient projeté pour résoudre le même problème de super-résolution en prenant comme projection un auto-encoder appris. On tentera, dans un second temps, de reproduire leur résultats pour les comparer à ceux de la descente de gradient depuis l'espace latent.
+
+Le but du stage est d'étudier dans quelle mesure les travaux de Traonmilin \etal s'appliquent au problème de super-résolution en prenant comme paramétrisation le décodeur d'un auto-encodeur entraîné sur un jeu de données (dans notre cas MNIST).
+\\
+\`A côté de cela, P. Peng, S. Jalali et X. Yuan ont étudié la descente de gradient projeté pour résoudre le même problème de super-résolution en prenant comme projection un auto-encodeur appris. On tentera, dans un second temps, de reproduire leurs résultats pour les comparer à ceux de la descente de gradient depuis l'espace latent.
 \\
 
 
@@ -490,54 +467,51 @@ Le but du stage est d'étudier dans quelle mesure les travaux de Traonmilin \eta
 
 \subsection{Formalisation du problème}\label{sec:forma2pb}
 
-Soit $A$ un opérateur de mesure linéaire à valeur de $\R^{n\times m}$ dans $\R^{p\times q}$. Il se compose d'un sous-échantillonnage (projection) $S$ et d'un éventuel filtre passe-bas $C_{\bf{h}}$ pour éviter les problèmes d'aliasing. $C_{\bf{h}}$ est donc une convolution par un filtre que l'on va noter $\bf{h}$ (d'où la notation) de sorte que $A$ s'écrive :
+Soit $A$ un opérateur de mesure linéaire à valeur de $\R^{n\times m}$ dans $\R^{p\times q}$. Il se compose d'un sous-échantillonnage (projection) $S$ et pour éviter les problèmes d'aliasing, d'un éventuel filtre passe-bas $C_{\bf{h}}$. $C_{\bf{h}}$ est donc une convolution par un filtre que l'on va noter $\bf{h}$ (d'où la notation) de sorte que $A$ s'écrive :
 \[\forall \bf{x}\in\R^{n\times m},\qquad A\bf{x}=S(\bf{h}*\bf{x})=SC_{\bf{h}}\bf{x}\]
-Ci-dessous deux représentations de $S$ pour $(n,m)=(3, 4)$ et $(p,q)=(2, 2)$ : sur la figure \textit{\ref{fig:Simg}}, $S$ ne garde d'un pixel sur $4$ de l'image $\bf{x}$, ce qui correspond à appliquer la matrice de la figure \textit{\ref{fig:Smat}} au vecteur $\bf{x}$ aplati.
+Ci-dessous deux représentations de $S$ pour $(n,m)=(3, 4)$ et $(p,q)=(2, 2)$ : sur la figure \textit{\ref{fig:Simg}}, $S$ ne garde d'un pixel sur 4 de l'image $\bf{x}$, ce qui correspond à appliquer la matrice de la figure \textit{\ref{fig:Smat}} au vecteur $\bf{x}$ aplati.
 
-Pour affectuer la convolution avec $\bf{h}$, l'algorithme passe l'espace de fréquences, le changeant en simple produit et c'est dans cet espace que son ajuster pas les paramètres des deux filtres proposés :
+Pour effectuer la convolution avec $\bf{h}$, l'algorithme passe l'espace de fréquences, le changeant en simple produit et c'est dans cet espace que sont ajusté les paramètres des filtres :
 \\
-Le filtre gaussien à pour paramètre l'écart-type $\sigma$ de $\hat{\bf{h}}$. Pour le filtre porte, le paramètre $a$ ajuste la taille de la fenêtre $[-a,a]\times[-a,a]$ dans l'espace des fréquences. La figure \ref{fig:filtres} en donne quelque exemple, plus de détail en annexes \ref{anx:gradF}.
+Le filtre gaussien à pour paramètre l'écart-type $\sigma$ de $\hat{\bf{h}}$. Pour le filtre porte, le paramètre $a$ ajuste la taille de la fenêtre $[-a,a]\times[-a,a]$ dans l'espace des fréquences. La figure \ref{fig:filtres} en donne quelques exemples, plus de détails en annexes \ref{anx:gradF}.
 \\
 
 \begin{figure}[b]
-\begin{floatrow}
-\ffigbox{\caption{Opérateur $S$, point de vue matriciel} \label{fig:Smat}}
-{%\input{tikz/Smat}
-}
-
-\ffigbox{\caption{Opérateur $S$, point de vue image} \label{fig:Simg}}
-{%\input{tikz/Simg}
-}
-\end{floatrow}
+	\begin{floatrow}
+		\ffigbox{\caption{Opérateur $S$, point de vue matriciel} \label{fig:Smat}}
+		{\input{tikz/Smat}
+		}
+		
+		\ffigbox{\caption{Opérateur $S$, point de vue image} \label{fig:Simg}}
+		{\input{tikz/Simg}
+		}
+	\end{floatrow}
 \end{figure}
 
 \begin{figure}[h]\centering
-    %\input{figures/Compar_filters/both}
-    \caption{Quelques exemples d'application de $A$ à un même image en fonction des filtres. }
+	\input{figures/Compar_filters/both}
+	\caption{Quelques exemples d'applications de $A$ à une même image en fonction des filtres. }
 \end{figure}
 
 \begin{enonce}[Problématique]
-On considère $\bf{x_0}\in\R^{n\times m}$ une image que l'on cherche à reconstruire et $\ \bf{y_0}:=A(\bf{x_0})\ $ sa version sous-échantillonnée. Une bonne reconstruction de $\bf{x_0}$ étant un minimiseur :
-\begin{equation}\label{eq:probleme}
-\bf{x^*}\in \argmin{\bf{x}\in\R^{n\times m}}\ F(\bf{x})\end{equation}\end{enonce}
+	On considère $\bf{x_0}\in\R^{n\times m}$ une image que l'on cherche à reconstruire et $\ \bf{y_0}:=A(\bf{x_0})\ $ sa version sous-échantillonnée. Une bonne reconstruction de $\bf{x_0}$ étant un minimiseur :
+	\begin{equation}\label{eq:probleme}
+		\bf{x^*}\in \argmin{\bf{x}\in\R^{n\times m}}\ F(\bf{x})\end{equation}\end{enonce}
 
-Si pour le bien de l'étude $\bf{x_0}$ sera connu, il va de soit que le problème nécessite pas de le connaître \apriori.
+Si pour le bien de l'étude $\bf{x_0}$ sera connu, il va de soit que le problème ne nécessite pas de le connaître \apriori.
 \\
 Aussi, la linéarité de $A$ assure la convexité de $F$ mais, bien évidemment, son caractère hautement non injectif (surtout pour $pq\lll nm$) fait qu'il existe tout un sous-espace affine de minimum globaux. D'où l'intérêt des deux méthodes étudiées pour ``choisir'' ce minimum.
 \\
 
 \begin{wrapfigure}{r}{0.4\textwidth}% vire le [16]
-    %\input{tikz/dessinAE}
-    \caption{Schéma des auto-encodeurs  $f$ avec $d=100,\ 200,\ 400,\ 800$}
-    \label{fig:AEschem}
+	\input{tikz/dessinAE}
+	\caption{Schéma des auto-encodeurs  $f$ avec $d=100,\ 200,\ 400,\ 800$}
+	\label{fig:AEschem}
 \end{wrapfigure}
 
 Les auto-encodeurs utilisés pour paramétrer l'espace des images sont des réseaux MLP que l'on notera indifféremment $f$ et dont $f_E$ et $f_D$ sont les parties encodage et décodage :
 \[f = f_E\circ f_D\]
-Conformément à la figure \textit{\ref{fig:AEschem}}, ils se composent tous d'une couche cachées de taille $1\,500$ pour les parties encodeurs et décodeurs et la seule choses qui les différencies est la taille de leur espace latent qui variant entre $100$ et $800$. Leur entraînement s'est fait sur le jeu donnés MNIST et c'est donc uniquement sur ces images que seront présenté les résultats. Plus de détail sur les performances des auto-encodeurs en annexe \ref{anx:AE}. 
-\\ 
-
-TRANSITION ?
+Conformément à la figure \textit{\ref{fig:AEschem}}, ils se composent tous d'une couche cachée de taille $1\,500$ pour les parties encodeurs et décodeurs et la seule chose qui les différencie est la taille de leur espace latent qui varient entre $100$ et $800$. Leur entraînement s'est fait sur le jeu de données MNIST et c'est donc uniquement sur ces images que seront présentés les résultats. Plus de détails sur les performances des auto-encodeurs en annexe \ref{anx:AE}.
 \\
 
 
@@ -545,70 +519,70 @@ TRANSITION ?
 
 \subsection{Cadre théorique de l'article}\label{sec:article1/2}
 
-Comme expliqué plus tôt, tout l'objet de l'article \cite{traonmilin_basins_2022} est d'étudier dans quelle mesure il est possible de faire une descente de gradient sur une paramétrisation (non-convexe) d'un modèle plutôt que sur le modèle lui-même. 
+Comme expliqué plus tôt, tout l'objet de l'article \cite{traonmilin_basins_2022} est d'étudier dans quelle mesure il est possible de faire une descente de gradient sur une paramétrisation (non-convexe) d'un modèle plutôt que sur le modèle lui-même.
 \\
 Pour cela, on note $\Sigma\subset\R^{n\times m}$ le modèle de basse-dimension et $\phi: \R^d\lr\R^{n\times m}$ une paramétrisation de ce dernier avec :
 \begin{align*}\Sigma&\subset\phi\big(\R^d\big)  &  \Theta&:=\phi^{-1}(\Sigma)\end{align*}
 \\
-La paramétrisation $\phi$, doit vérifier certaines hypothèses de régularité pour pouvoir appliquer les résultats de l'article. Dans notre cas, $\ \phi=f_D\ $ dont les fonctions d'activations sont toutes des sigmoïdes. Elle est donc $C^{\infty}$ et pour cette raison on ne s'attardera pas outre mesure sur les questions de régularités de $\phi$.
+La paramétrisation $\phi$, doit vérifier certaines hypothèses de régularité pour pouvoir appliquer les résultats de l'article. Dans notre cas, $\ \phi=f_D\ $ dont les fonctions d'activations sont toutes des sigmoïdes. Elle est donc $C^{\infty}$ et pour cette raison on ne s'attardera pas outre mesure sur les questions de régularité de $\phi$.
 \\
 
-\textit{\`A noter qu'on ne suppose ni que $\ \phi(\R^d)=\Sigma\ $ ni que  $\ \Theta=\R^d$ et ce ne sera pas le cas pour nous. Aussi, le formalisme proposé par Traonmilin \etal est légèrement différent de celui donné en section précédente. Il y est considéré un espace de mesure $\mathcal{D}$ et les signaux (dans notre cas les images) sont pris dans $\mathcal{D}^*$, de sorte que la mesure par $\alpha\in\mathcal{D}$ de $x\in\mathcal{D}^*$ soit représenté par le crochet de dualité $\langle \alpha,x\rangle$. Cela à son intérêt surtout en dimension infinie, mais autrement, cette écriture est tout à fait équivalente à celle donnée en section \ref{sec:forma2pb}}
+\textit{\`A noter qu'on ne suppose ni que $\ \phi(\R^d)=\Sigma\ $ ni que  $\ \Theta=\R^d$ et ce ne sera pas le cas pour nous. Aussi, le formalisme proposé par Traonmilin \etal est légèrement différent de celui donné en section précédente. Il y est considéré un espace de mesure $\mathcal{D}$ et les signaux (dans notre cas les images) sont pris dans $\mathcal{D}^*$, de sorte que la mesure par $\alpha\in\mathcal{D}$ de $x\in\mathcal{D}^*$ soit représentéé par le crochet de dualité $\langle \alpha,x\rangle$. Cela à son intérêt surtout en dimension infinie, mais autrement, cette écriture est tout à fait équivalente à celle donnée en section \ref{sec:forma2pb}}
 \\
 
 \begin{wrapfigure}{r}{0.43\textwidth}
-    %\input{figures/pcode LGD}
-    \caption{Algorithme de descente depuis l'espace des paramètres}
-    \label{fig:pcode LGD}
+	\input{figures/pcode LGD}
+	\caption{Algorithme de descente depuis l'espace des paramètres}
+	\label{fig:pcode LGD}
 \end{wrapfigure}
 
 Le problème est donc de trouver les paramètres $\theta^*$ minimisant $\ g:=A\phi\ $ sur $\Theta$, ou dans notre cas :
 \[\theta^*\in\argmin{\theta\in\Theta}\ \frac{1}{2}{\big\|Af_D(\theta)-\bf{y_0}\big\|_2}^2\]
 \\
-Minimum que l'on cherche à les obtenir par descente de gradient. On considérera donc dans toute la suite, $(\theta_n)$ la descente de gradient à pas fixe, $\forall\theta_0\in\R^d$ :
+Minimum que l'on cherche à obtenir par descente de gradient. On considérera donc dans toute la suite, $(\theta_n)$ la descente de gradient à pas fixe, $\forall\theta_0\in\R^d$ :
 \[\forall n\in\N^*,\qquad \theta_{n+1} = \theta_n - \tau\nabla g(\theta_n)\]
 Sachant que $\phi$ est n'est pas convexe, on introduit la définition suivante :
 \\ \\
-\begin{definition} 
-Une partie $\Lambda\subset\Theta$ de $\R^d$ sera un \emph{bassin d'attraction} de minimum globale $\theta^*\in\Lambda$ si en tout point $\theta_0\in\Lambda$, alors existe un pas de descente $\tau_0$ tel que :
-\[\forall \tau\in]0,\tau_0],\qquad \lim_{n\lr+\infty}g\big(\theta_n\big)=g(\theta^*)\]
+\begin{definition}
+	Une partie $\Lambda\subset\Theta$ de $\R^d$ sera un \emph{bassin d'attraction} de minimum global $\theta^*\in\Lambda$ si en tout point $\theta_0\in\Lambda$, alors existe un pas de descente $\tau_0$ tel que :
+	\[\forall \tau\in]0,\tau_0],\qquad \lim_{n\lr+\infty}g\big(\theta_n\big)=g(\theta^*)\]
 \end{definition}
 
 Avec cette définition, $(\theta_n)$ peut tout à fait converger vers un autre minimum que $\theta^*$. Pour en tenir compte en même temps que la potentielle non-injectivité de $\phi$, ils introduisent les définitions suivantes :
 \\
 \begin{definition}\label{def:boule}
-On note $d(\theta,\theta^*)$ la distance de $\theta$ au plus proche paramètre de même image de $\theta^*$ et $p(\theta,\theta^*)$ la projection (potentiellement multivaluée) de $\theta$ sur ce même paramètre, e.i. sur $\phi^{-1}\circ\phi(\{\theta^*\})$ :
- $\forall\theta\in\R^d$ :
-\begin{align*}d(\theta,\theta^*) &:=\min_{\substack{\Tilde{\theta}\in\Theta\\ \phi(\Tilde{\theta})=\phi(\theta^*)}}\ \big\|\Tilde{\theta}-\theta\big\|_2  &  p(\theta,\theta^*)&:=\argmin{\substack{\Tilde{\theta}\in\Theta\\ \phi(\Tilde{\theta})=\phi(\theta^*)}}\ \big\|\Tilde{\theta}-\theta\big\|_2\subset\R^d\end{align*}
-Avec, sont définis les bassins $\Lambda_\beta(\theta^*)$ de la forme :
-\[\forall \beta\in\R^{+_*},\qquad \Lambda_\beta(\theta^*):=\big\{\theta\in\R^d\ |\ d(\theta, \theta^*)<\beta\big\}\]
+	On note $d(\theta,\theta^*)$ la distance de $\theta$ au plus proche paramètre de même image de $\theta^*$ et $p(\theta,\theta^*)$ la projection (potentiellement multivaluée) de $\theta$ sur ce même paramètre, e.i. sur $\phi^{-1}\circ\phi(\{\theta^*\})$ :
+	$\forall\theta\in\R^d$ :
+	\begin{align*}d(\theta,\theta^*) &:=\min_{\substack{\Tilde{\theta}\in\Theta\\ \phi(\Tilde{\theta})=\phi(\theta^*)}}\ \big\|\Tilde{\theta}-\theta\big\|_2  &  p(\theta,\theta^*)&:=\argmin{\substack{\Tilde{\theta}\in\Theta\\ \phi(\Tilde{\theta})=\phi(\theta^*)}}\ \big\|\Tilde{\theta}-\theta\big\|_2\subset\R^d\end{align*}
+	Avec, sont définis les bassins $\Lambda_\beta(\theta^*)$ de la forme :
+	\[\forall \beta\in\R^{+_*},\qquad \Lambda_\beta(\theta^*):=\big\{\theta\in\R^d\ |\ d(\theta, \theta^*)<\beta\big\}\]
 \end{definition}
 
 Contrairement aux exemples traités dans l'article, la paramétrisation par l'espace latent ne donne pas de formule vraiment exploitable pour $\phi=f_D$. En revanche, $f_D$ faisant parti d'un auto-encodeur, on peut supposer que $f_E$ est la réciproque de $f_D$ au moins sur $\Theta$ :
 \begin{align*} {{f_{D}}_{\displaystyle |_{\Theta}}}^{-1}&={f_{E}}_{\displaystyle |_{\Sigma}}  & &\text{avec} & \Theta&=f_E(\Sigma)
 \end{align*}
 \\
-En particulier, cela permet d'avoir l'injectivité de $f_D$ sur $\Theta$. Ce dont il découle que $d(\theta,\theta^*)=\|\theta-\theta^*\|_2$ est une distance (ce qui n'est pas le cas en générale), que $\Lambda_\beta(\theta^*)$ une boule ouverte et que $\ p(\theta,\theta^*)=\theta^*$.
+En particulier, cela permet d'avoir l'injectivité de $f_D$ sur $\Theta$. Ce dont il découle que $d(\theta,\theta^*)=\|\theta-\theta^*\|_2$ est une distance (ce qui n'est pas le cas en général), que $\Lambda_\beta(\theta^*)$ une boule ouverte et que $\ p(\theta,\theta^*)=\theta^*$.
 
 \emph{Cette hypothèse est quand-même très forte, elle sera détaillé dans la section \ref{sec:PGD}}
 \\
 
-Enfin, dans toute la suite $\Sigma$ sera supposé être un cône, c'est-à-dire que pour tout $\lambda>0$, $\lambda\Sigma=\Sigma\ $ et sont introduites les deux ensembles suivants :
+Enfin, dans toute la suite $\Sigma$ sera supposé être un cône, c'est-à-dire que pour tout $\lambda>0$, $\lambda\Sigma=\Sigma\ $ et sont introduits les deux ensembles suivants :
 \\
 
 \begin{definition} On appelle \emph{ensemble des sécantes de $\Sigma$} l'ensemble :
-\[\mathcal{S}(\Sigma) := \Sigma-\Sigma = \big\{x-y\in\R^{n\times m}\ |\ x,y\in\Sigma\big\}\]
-\\
-En notant $\partial_u\phi(\theta)$ la dérivée directionnelle de $\phi$ en $\theta$ et dans la direction $u$, on définie l'\emph{ensemble généralisé des sécantes de $\Sigma$}, l'ensemble noté :
-\[\overline{\mathcal{S}(\Sigma)}:=\mathcal{S}(\Sigma)\cup\Big\{\partial_u\phi(\theta)\ |\ \forall (\theta,u)\in\Theta\times\R^d\Big\}\]{\color{white}l}
-
-\emph{Pour nous, $\phi=f_D\ $ est $C^\infty$, donc la dérivée directionnelle $\partial_u\phi(u)$ est équivalente à la différentiel de $\phi$ au point $\theta$ valué en $u$, $D_\theta\phi(u)$.}
+	\[\mathcal{S}(\Sigma) := \Sigma-\Sigma = \big\{x-y\in\R^{n\times m}\ |\ x,y\in\Sigma\big\}\]
+	\\
+	En notant $\partial_u\phi(\theta)$ la dérivée directionnelle de $\phi$ en $\theta$ et dans la direction $u$, on définit l'\emph{ensemble généralisé des sécantes de $\Sigma$}, l'ensemble noté :
+	\[\overline{\mathcal{S}(\Sigma)}:=\mathcal{S}(\Sigma)\cup\Big\{\partial_u\phi(\theta)\ |\ \forall (\theta,u)\in\Theta\times\R^d\Big\}\]{\color{white}l}
+	
+	\emph{Pour nous, $\phi=f_D\ $ est $C^\infty$, donc la dérivée directionnelle $\partial_u\phi(u)$ est équivalente à la différentielle de $\phi$ au point $\theta$ valué en $u$, $D_\theta\phi(u)$.}
 \end{definition}
 
-L'auto-encodeur $f$ n'a été entraîné que sur des images dont les pixels prennent valeur dans $[0,1]$ et il n'est capable de reconstruire que ce type d'image. Et ceux, pour la simple et bonne raison que ses fonctions d'activations sont des sigmoïdes y compris les celles sorties. Il est donc strictement impossible qu'une image $f_D(\theta)$ prenne des valeurs au delà de 1, ce qui va à l'encontre de l'hypothèse que $\Sigma$ soit un cône.
+L'auto-encodeur $f$ n'a été entraîné que sur des images dont les pixels prennent valeur dans $[0,1]$ et il n'est capable de reconstruire que ce type d'image. Et ce, pour la simple et bonne raison que ses fonctions d'activation sont des sigmoïdes y compris celles de sortie. Il est donc strictement impossible qu'une image $f_D(\theta)$ prenne des valeurs au-delà de 1, ce qui va à l'encontre de l'hypothèse que $\Sigma$ soit un cône.
 \\
-Si ce choix de fonction d'activation à été fait c'était à l'origine pour reprendre les codes de l'article \cite{peng_solving_2019} sur la descente projeté (voir section \ref{sec:comparPGD}), mais en toute vraisemblance utiliser des fonctions ReLu ou autre ne devrait pas trop changer les résultats obtenus. 
-La perte de régularité entraîné ne devrait pas non plus être un problème en pratique et pourrait rendre l'hypothèse un peu plus raisonnable. 
+Si ce choix de fonction d'activation a été fait c'était à l'origine pour reprendre les codes de l'article \cite{peng_solving_2019} sur la descente projetée (voir section \ref{sec:comparPGD}), mais en toute vraisemblance utiliser des fonctions ReLu ou autre ne devrait pas trop changer les résultats obtenus.
+La perte de régularité entraînée ne devrait pas non plus être un problème en pratique et pourrait rendre l'hypothèse un peu plus raisonnable.
 \\
 
 
@@ -618,86 +592,86 @@ La perte de régularité entraîné ne devrait pas non plus être un problème e
 
 Le théorème de Traonmilin \etal, dans le cas sans bruit, s'énonce ainsi :
 \\
-\begin{theoreme}[sans bruit]\label{theo:maintheo} Soit $\theta^*\in\Theta$ un minimiseur globale de $g$. Si on a les hypothèses suivantes :
-\begin{itemize}
-    \item l'opérateur de mesure $A$ est continue et vérifie la \emph{propriété d'isométrie restreinte} (RIP) de constante $\gamma\in]0,1]$ :
-\begin{equation}\label{eq:RIP}
-\forall v\in\overline{\mathcal{S}(\Sigma)},\qquad (1-\gamma)\|v\|^2\leq \|Av\|^2\leq (1+\gamma)\|v\|^2
-\end{equation}
-
-    \item Si $\Lambda_{2\beta}(\theta^*)$, tel que définie en \ref{def:boule}, est inclus dans $\Theta$, ou autrement dit :
-\begin{equation}\label{eq:LambinTheta}
-\phi\big(\Lambda_{2\beta}\big)\subset\Sigma
-\end{equation}
-
-    \item Si la \emph{technical assumption} \ref{hyp:technical} (donné plus bas) est vérifier sur $\Lambda_{2\beta}$ avec la constante $C>0$ et qu'il existe $\Tilde{\theta}\in p(\theta,\theta^*)$ tel qu'on ait l'inégalité :
-\begin{equation}\label{eq:majo3}
-\forall z\in[\theta,\Tilde{\theta}],\qquad \frac{(1-\gamma){\big\|\partial_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}^2}{\sqrt{1+\gamma}\big\|A\partial^2_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}\geq C\beta
-\end{equation}
-\end{itemize}
-
-Si $A$ et $\phi$ vérifie de plus la \emph{framework assumption} \ref{hyp:framework}, alors l'ensemble $\Lambda_\beta(\theta^*)$ est un bassin d'attraction.  
+\begin{theoreme}[sans bruit]\label{theo:maintheo} Soit $\theta^*\in\Theta$ un minimiseur global de $g$. Si on a les hypothèses suivantes :
+	\begin{itemize}
+		\item l'opérateur de mesure $A$ est continue et vérifie la \emph{propriété d'isométrie restreinte} (RIP) de constante $\gamma\in]0,1]$ :
+		\begin{equation}\label{eq:RIP}
+			\forall v\in\overline{\mathcal{S}(\Sigma)},\qquad (1-\gamma)\|v\|^2\leq \|Av\|^2\leq (1+\gamma)\|v\|^2
+		\end{equation}
+		
+		\item Si $\Lambda_{2\beta}(\theta^*)$, tel que défini en \ref{def:boule}, est inclus dans $\Theta$, ou autrement dit :
+		\begin{equation}\label{eq:LambinTheta}
+			\phi\big(\Lambda_{2\beta}\big)\subset\Sigma
+		\end{equation}
+		
+		\item Si la \emph{technical assumption} \ref{hyp:technical} (donnée plus bas) est vérifiée sur $\Lambda_{2\beta}$ avec la constante $C>0$ et qu'il existe $\Tilde{\theta}\in p(\theta,\theta^*)$ tel qu'on ait l'inégalité :
+		\begin{equation}\label{eq:majo3}
+			\forall z\in[\theta,\Tilde{\theta}],\qquad \frac{(1-\gamma){\big\|\partial_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}^2}{\sqrt{1+\gamma}\big\|A\partial^2_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}\geq C\beta
+		\end{equation}
+	\end{itemize}
+	
+	Si $A$ et $\phi$ vérifient de plus la \emph{framework assumption} \ref{hyp:framework}, alors l'ensemble $\Lambda_\beta(\theta^*)$ est un bassin d'attraction.  
 \end{theoreme}
 
 \begin{corollaire}
-En particulier, s'il existe une constante $\beta_1>0$ vérifiant la \emph{technical assumption} \ref{hyp:technical} et telle que $p(\,\cdot\,, \theta^*)$ soit mono-valuée sur $\Lambda_{\beta_1}(\theta^*)$ :
-\[\forall \theta\in\Lambda_{\beta_1}(\theta^*),\qquad p(\theta,\theta^*)=\big\{\Tilde{\theta}\big\}\]
-\\
-Alors $\Lambda_{\min(\beta_1,\beta_2)}(\theta^*)$ est un bassin d'attraction, où $\beta_2$ est donné par la formule :
-\[\beta_2:=\frac{1-\gamma}{C\sqrt{1+\gamma}}\inf_{\theta\in\Lambda_{\beta_1}(\theta^*)}\inf_{z\in[\theta,\Tilde{\theta}]}\frac{{\big\|\partial_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}^2}{\big\|A\partial^2_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}\]
+	En particulier, s'il existe une constante $\beta_1>0$ vérifiant la \emph{technical assumption} \ref{hyp:technical} et telle que $p(\,\cdot\,, \theta^*)$ soit mono-valuée sur $\Lambda_{\beta_1}(\theta^*)$ :
+	\[\forall \theta\in\Lambda_{\beta_1}(\theta^*),\qquad p(\theta,\theta^*)=\big\{\Tilde{\theta}\big\}\]
+	\\
+	Alors $\Lambda_{\min(\beta_1,\beta_2)}(\theta^*)$ est un bassin d'attraction, où $\beta_2$ est donné par la formule :
+	\[\beta_2:=\frac{1-\gamma}{C\sqrt{1+\gamma}}\inf_{\theta\in\Lambda_{\beta_1}(\theta^*)}\inf_{z\in[\theta,\Tilde{\theta}]}\frac{{\big\|\partial_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}^2}{\big\|A\partial^2_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}\]
 \end{corollaire}
 
 Ce théorème (et son corollaire) donne une estimation de la marge que l'on a autour de $\theta^*$ pour initialiser la descente de gradient depuis l'espace des paramètres de sorte à s'assurer sa convergence. En particulier, l'inégalité \ref{eq:majo3} donne, sachant $\gamma$ et $C$, à quel point le ``rayon'' du bassin $\beta$ peut être grand.
 Estimation qui est donc valable sachant les deux hypothèses supplémentaires :
 \\
 \begin{assump}[Technical assumption]\label{hyp:technical}
-La \emph{technical assumption} est vérifier sur $\Lambda_{2\beta}(\theta^*)$ avec la constante $C>0$ si elle donne un contrôle de $d$ sur $\|\cdot\|_2$ :
-\[\forall\theta\in\Lambda_{2\beta}(\theta^*),\qquad \big\|\theta-\theta^*\big\|_2\leq C d\big(\theta, \theta^*\big)\]
-et si les deux premières dérivées (directionnelles) de $A\phi$ sont uniformément bornées respectivement sur $\phi^{-1}\circ\phi(\{\theta^*\})$ et $\Lambda_{2\beta}$ :
-\begin{align*}\sup_{\theta\in\phi^{-1}\circ\phi(\{\theta^*\})}\sup_{\|u\|_2=1}\big\|A\partial_u\phi(\theta)\big\|_2&<+\infty  &  \sup_{\theta\in\Lambda_{2\beta}(\theta^*)}\sup_{\|u\|_2,\|v\|_2=1}\big\|A\partial_u\partial_v\phi(\theta)\big\|_2&<+\infty 
-\end{align*}
+	La \emph{technical assumption} est vérifiée sur $\Lambda_{2\beta}(\theta^*)$ avec la constante $C>0$ si elle donne un contrôle de $d$ sur $\|\cdot\|_2$ :
+	\[\forall\theta\in\Lambda_{2\beta}(\theta^*),\qquad \big\|\theta-\theta^*\big\|_2\leq C d\big(\theta, \theta^*\big)\]
+	et si les deux premières dérivées (directionnelles) de $A\phi$ sont uniformément bornées respectivement sur $\phi^{-1}\circ\phi(\{\theta^*\})$ et $\Lambda_{2\beta}$ :
+	\begin{align*}\sup_{\theta\in\phi^{-1}\circ\phi(\{\theta^*\})}\sup_{\|u\|_2=1}\big\|A\partial_u\phi(\theta)\big\|_2&<+\infty  &  \sup_{\theta\in\Lambda_{2\beta}(\theta^*)}\sup_{\|u\|_2,\|v\|_2=1}\big\|A\partial_u\partial_v\phi(\theta)\big\|_2&<+\infty
+	\end{align*}
 \end{assump}
 
-Comme dit plus haut, supposer $\phi=f_D$ inversible sur $\Theta$ impose $\ d\big(\theta, \theta^*\big)=\big\|\theta-\theta^*\big\|_2$. Ainsi la première inégalité est vérifié pour tout $C\geq1$ et les majorations uniformes ne sont pas un problème non plus puisque que $f_D$ est $C^\infty$. Sachant que c'est l'inégalité \ref{eq:majo3} qui nous intéresse, on va plutôt avoir tendance à prendre $C=1$.
+Comme dit plus haut, supposer $\phi=f_D$ inversible sur $\Theta$ impose $\ d\big(\theta, \theta^*\big)=\big\|\theta-\theta^*\big\|_2$. Ainsi la première inégalité est vérifiée pour tout $C\geq1$ et les majorations uniformes ne sont pas un problème non plus puisque $f_D$ est $C^\infty$. Sachant que c'est l'inégalité \ref{eq:majo3} qui nous intéresse, on va plutôt avoir tendance à prendre $C=1$.
 \\
 
 \begin{assump}[Framework assumption]\label{hyp:framework}
-La paramétrisation $\phi$ doit être deux fois (Gateaux) différentiable et il faut que pour toute suite $|h_n|\xrightarrow[n\lr+\infty]{} 0$, $\left\|\frac{\phi(\theta +|h_n|v)-\phi(\theta)}{|h_n|}\right\|_2$ converge indépendant de $(|h_n|)$ et ceux, pour tout $(\theta,v)$ tel que $\partial_v\phi(\theta)\in\overline{\mathcal{S}(\Sigma)}$.
+	La paramétrisation $\phi$ doit être deux fois (Gateaux) différentiable et il faut que pour toute suite $|h_n|\xrightarrow[n\lr+\infty]{} 0$, $\left\|\frac{\phi(\theta +|h_n|v)-\phi(\theta)}{|h_n|}\right\|_2$ converge indépendant de $(|h_n|)$ et ceux, pour tout $(\theta,v)$ tel que $\partial_v\phi(\theta)\in\overline{\mathcal{S}(\Sigma)}$.
 \end{assump}
 
-Dans l'article \cite{traonmilin_basins_2022}, la mesure de proximité des images est fait à travers une norme $\|\cdot\|_\mathcal{H}$ associé un espace hilbertien $\mathcal{H}$ contenant $\Sigma$. Cette hypothèse permet alors de s'assurer que cette norme s'étende à $\overline{\mathcal{S}(\Sigma})$. Mais encore, une fois, pour nous $\mathcal{H}=\R^{n\times m}$ et il n'y a pas de risque à ce sujet. Aussi, le fait que $\phi=f_E$ soit différentiable rend immédiat la convergence de la suite $\left\|\frac{\phi(\theta +|h_n|v)-\phi(\theta)}{|h_n|}\right\|_2$ indépendamment de $\big(|h_n|\big)_n$.
+Dans l'article \cite{traonmilin_basins_2022}, la mesure de proximité des images est faite à travers une norme $\|\cdot\|_\mathcal{H}$ associé un espace hilbertien $\mathcal{H}$ contenant $\Sigma$. Cette hypothèse permet alors de s'assurer que cette norme s'étende à $\overline{\mathcal{S}(\Sigma})$. Mais encore, une fois, pour nous $\mathcal{H}=\R^{n\times m}$ et il n'y a pas de risque à ce sujet. Aussi, le fait que $\phi=f_E$ soit différentiable rend immédiat la convergence de la suite $\left\|\frac{\phi(\theta +|h_n|v)-\phi(\theta)}{|h_n|}\right\|_2$ indépendamment de $\big(|h_n|\big)_n$.
 \\ \\
 
-Revenons maintenant sur les autres hypothèses du théorèmes. 
+Revenons maintenant aux autres hypothèses du théorème.
 \\
-D'abord, dans la RIP (\ref{eq:RIP}), c'est surtout l'inégalité de gauche qui est important puisqu'elle garantie que $A$ soit inversible sur $\overline{\mathcal{S}(\Sigma)}$.
+D'abord, dans la RIP (\ref{eq:RIP}), c'est surtout l'inégalité de gauche qui est importante puisqu'elle garantit que $A$ soit inversible sur $\overline{\mathcal{S}(\Sigma)}$.
 \\
-Comme $\Sigma$ n'est pas proprement définie, le mieux qu'on puisse faire c'est de vérifier si c'est au moins le cas pour tout les $\bf{x}-\bf{y}$ avec $\bf{x}$, $\bf{y}$ du jeu de données (MNIST donc). Pour se faire, on les équivalences :
+Comme $\Sigma$ n'est pas proprement définie, le mieux qu'on puisse faire c'est de vérifier si c'est au moins le cas pour tous les $\bf{x}-\bf{y}$ avec $\bf{x}$, $\bf{y}$ du jeu de données (MNIST donc). Pour se faire, on les équivalences :
 \begin{align*}(1-\gamma)\|v\|^2\leq \|Av\|^2\leq (1+\gamma)\|v\|^2\ &\Llr\ \frac{\|Av\|^2}{\|v\|^2}-1\leq \gamma\\
-    &\Llr\ \left|\frac{\|Av\|^2}{\|v\|^2}-1\right|\leq \gamma\end{align*}
+	&\Llr\ \left|\frac{\|Av\|^2}{\|v\|^2}-1\right|\leq \gamma\end{align*}
 En calculant le rapport $\left|\frac{\|Av\|^2}{\|v\|^2}-1\right|$, on peut donc estimer une borne pour $\gamma$. Seulement, avec les moyens disponibles et notre code, passer en revue les $60\,000\times(60\,000+1)$ couples d'images du set de test demanderait quelque $11$h de calcul. On se contentera donc, faute de mieux, de faire les calculs sur $\Sigma$, ce qui nous donnes les histogrammes \textit{\ref{fig:RIP-s}} et \textit{\ref{fig:RIP-g}} :
 \\
 
 \begin{figure}[h]
-\begin{floatrow}
-\ffigbox{\caption{Histogramme des valeurs de $\big|{\|Av\|_2}^2/{\|v\|_2}^2-1\big|$ sans filtre passe-bas sur le set de test}\label{fig:RIP-s}}
-{%\input{resultats/RIPestimation/gamma-s}
-}
-
-\ffigbox{\caption{Histogramme des valeurs de $\big|{\|Av\|_2}^2/{\|v\|_2}^2-1\big|$ avec filtre gaussien ($\sigma=0,6$) sur le set de test}\label{fig:RIP-g}}
-{%\input{resultats/RIPestimation/gamma-g}
-}
+	\begin{floatrow}
+		\ffigbox{\caption{Histogramme des valeurs de $\big|{\|Av\|_2}^2/{\|v\|_2}^2-1\big|$ sans filtre passe-bas sur le set de test}\label{fig:RIP-s}}
+		{\input{resultats/RIPestimation/gamma-s}
+		}
+		
+		\ffigbox{\caption{Histogramme des valeurs de $\big|{\|Av\|_2}^2/{\|v\|_2}^2-1\big|$ avec filtre gaussien ($\sigma=0,6$) sur le set de test}\label{fig:RIP-g}}
+		{\input{resultats/RIPestimation/gamma-g}
+		}
 \end{floatrow}\end{figure}
 
-\noindent On y voit que dans les deux cas, on peut espérer que $\gamma$ soit au mieux au alentour des $0.9$. Ce serait suffisant pour vérifier la RIP mais sachant qu'on veut le restreindre le moins possible $\beta$ dans l'inégalité (\ref{eq:majo3}), cela reste contraignant. D'autant plus qu'avoir $C=1$ n'aide pas beaucoup.
+\noindent On y voit que dans les deux cas, on peut espérer que $\gamma$ soit au mieux aux alentours des $0.9$. Ce serait suffisant pour vérifier la RIP mais sachant qu'on veut le restreindre le moins possible $\beta$ dans l'inégalité (\ref{eq:majo3}), cela reste contraignant. D'autant plus qu'avoir $C=1$ n'aide pas beaucoup.
 \\
 
-Enfin, l'hypothèse d'inclusion $\ \phi\big(\Lambda_{2\beta}(\theta^*)\big)\subset\Sigma$, et plus généralement à chaque occurrence de $\Lambda_{2\beta}$, le facteur $2$ est là pour s'assurer une marge de manoeuvre dans les démonstrations. Ils peuvent sans trop de difficulté être remplacé par des bassins de la forme $\Lambda_{\beta+\epsilon}(\theta^*)$ et pour cette raison, l’hypothèse (\ref{eq:LambinTheta}) sera supposer vraie pour $\epsilon$ suffisamment petit.
+Enfin, l'hypothèse d'inclusion $\ \phi\big(\Lambda_{2\beta}(\theta^*)\big)\subset\Sigma$, et plus généralement à chaque occurrence de $\Lambda_{2\beta}$, le facteur $2$ est là pour s'assurer une marge de manoeuvre dans les démonstrations. Ils peuvent sans trop de difficulté être remplacés par des bassins de la forme $\Lambda_{\beta+\epsilon}(\theta^*)$ et pour cette raison, l’hypothèse (\ref{eq:LambinTheta}) sera supposée vraie pour $\epsilon$ suffisamment petit.
 \\
 
 Il reste une dernière grosse inconnue, à savoir l'infimum :\quad ${\displaystyle\inf_{\theta\in\Lambda_{\beta_1}(\theta^*)}\inf_{z\in[\theta,\Tilde{\theta}]}\frac{{\big\|\partial_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}^2}{\big\|A\partial^2_{\Tilde{\theta}-\theta}\phi(z)\big\|_2}}$
 \\
-Le seul chose vraiment important à en dire est que si le numérateur s'annule, alors la descente de gradient ne pourra pas converger à coût sûr. Si cela arrive, c'est l'injectivité de $\phi$ qui est perdue et on peut lier cela avec la taille $d$ de l'espace latent : Plus la différence $np-d$ est grande, plus on risque de perdre l'injectivité de $f_D$ sur $\Theta$. C'est quelque chose qui sera étudié dans la section \ref{sec:LGDlat}
+La seule chose vraiment importante à en dire est que si le numérateur s'annule, alors la descente de gradient ne pourra pas converger à coût sûr. Si cela arrive, c'est l'injectivité de $\phi$ qui est perdue et on peut lier cela avec la taille $d$ de l'espace latent : Plus la différence $np-d$ est grande, plus on risque de perdre l'injectivité de $f_D$ sur $\Theta$. C'est quelque chose qui sera étudié dans la section \ref{sec:LGDlat}
 
 
 
@@ -707,74 +681,74 @@ Le seul chose vraiment important à en dire est que si le numérateur s'annule, 
 
 \section{Descente de gradient depuis l'espace latent}\label{sec:LBD}
 
-\`A partir de maintenant, les vecteurs de l'espace latent seront noté $\bf{u}$ et en particulier $(\bf{u_n})$ sera la suite obtenue par descente gradient d'initialisation $\bf{u_0}$. On pose aussi $(n,m)=(28,28)$, $(p,q)=(14,14)$ et $d=100$. Tout les résultats présentés sont disponibles sur le  \href{https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D}{GitHub} et reproductibles via les codes \texttt{main\_code.py} et \texttt{LGD.py}. 
+\`A partir de maintenant, les vecteurs de l'espace latent seront noté $\bf{u}$ et en particulier $(\bf{u_n})$ sera la suite obtenue par descente de gradient d'initialisation $\bf{u_0}$. On pose aussi $(n,m)=(28,28)$, $(p,q)=(14,14)$ et $d=100$. Tout les résultats présentés sont disponibles sur le  \href{https://github.com/GregoireDoat/StageM1.git}{GitHub} et reproductibles via les codes \texttt{main\_code.py} et \texttt{LGD.py}.
 
 
 
 \subsection{Premier résultats, différentes initialisations}\label{sec:LDGinit}
 
-Si la partie théorique n'est pas très prometteuse, en pratique la descente depuis l'espace latent (LGD) est pourtant très efficace et surtout robuste. Pour estimer les tailles des bassins d'attractions, la LGD est faites sur la même image cible avec différentes initialisations. 
+Si la partie théorique n'est pas très prometteuse, en pratique la descente depuis l'espace latent (LGD) est pourtant très efficace et surtout robuste. Pour estimer les tailles des bassins d'attractions, la LGD est faite sur la même image cible avec différentes initialisations.
 
-La descente ce fait à pas fixe\footnote{\emph{Il y a aussi un pas adaptatif par backtracking dans le code mais il ne marche pas bien, plus détail dans le \texttt{main\_code.py}}} et après avoir ajusté les pas en fonction de $A$, on obtient les résultats des figures \textit{\ref{fig:LGDinits}} et \textit{\ref{fig:LGDinitg}} ci-dessous.
+La descente se fait à pas fixe\footnote{\emph{Il y a aussi un pas adaptatif par backtracking dans le code mais il ne marche pas bien, plus de détails dans le \texttt{main\_code.py}}} et après avoir ajusté les pas en fonction de $A$, on obtient les résultats des figures \textit{\ref{fig:LGDinits}} et \textit{\ref{fig:LGDinitg}} ci-dessous.
 \\
-Sur chaque figure, à gauche se trouve l'image que l'on veut reconstruire (Target) et à côté différentes initialisations décodé $f_D(\bf{u_0})$, avec en dessous le résultat de la LGD.
+Sur chaque figure, à gauche se trouve l'image que l'on veut reconstruire (Target) et à côté différentes initialisations décodées $f_D(\bf{u_0})$, avec en dessous le résultat de la LGD.
 Le graphique de droite donne l'évolution du ``Loss'', \ei la fonctionnelle $g$ et à droite l'évolution du PSNR entre l'image $f_E(\bf{u_n})$ à l'itération et l'image cible.
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/inits/figure-s}
-    \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 300 itérations -- sans filtre passe-bas}
-    \label{fig:LGDinits}
+	\input{resultats/LGD/inits/figure-s}
+	\caption{En première lignes différentes initialisations avec en dessous le résultat de la LGD après 300 itérations -- sans filtre passe-bas}
+	\label{fig:LGDinits}
 \end{figure}
 
 \begin{figure}[H]\centering
-    %\input{resultats/LGD/inits/figure-g}
-    \caption{En première lignes différentes initialisation avec en dessous le résultats de la LGD après 300 itérations --  avec passe-bas gaussien ($\sigma=0.5$)}
-    \label{fig:LGDinitg}
+	\input{resultats/LGD/inits/figure-g}
+	\caption{En premières lignes différentes initialisations avec en dessous le résultat de la LGD après 300 itérations --  avec passe-bas gaussien ($\sigma=0.5$)}
+	\label{fig:LGDinitg}
 \end{figure}
 
-Il va de soit que le calcul de PSNR est à but purement indicatif et n'intervient pas dans la LGD elle-même. Les ligne en pointillé représentent PSNR$\big(\bf{x_0},f(\bf{x_0})\big)$, le PSNR entre la cible $\bf{x_0}$ est sa version auto-encodée.
+Il va de soi que le calcul de PSNR est à but purement indicatif et n'intervient pas dans la LGD elle-même. Les ligne en pointillées représentent PSNR$\big(\bf{x_0},f(\bf{x_0})\big)$, le PSNR entre la cible $\bf{x_0}$ est sa version auto-encodée.
 Dans la première figure \textit{\ref{fig:LGDinits}} il n'y pas de filtre passe-bas (\ei $A=S$) et dans la seconde \textit{\ref{fig:LGDinitg}}, $C_{\bf{h}}$ est un filtre gaussien de paramètre $\sigma=0.6$ (voir section \ref{sec:forma2pb} pour un rappel sur $\sigma$).
 \\
 Les différentes initialisations sont les suivantes :
 \begin{enumerate}[label=(\arabic*)]
-    \item $\bf{u_0}=f_E(^tA\bf{y_0})$, la backprojection encodée de $\bf{y_0}$
-    \item $\bf{u_0}=f_E(\bf{x_0})+e$, l'image cible encodée puis bruité (bruit uniforme sur $]-0.5,0.5[$)
-    \item idem, avec un bruit gaussien d'écart-type $0.5$
-    \item $\bf{u_0}=\bf{u}_{\text{rand}}$,  vecteur aléatoire de l'espace latent
+	\item $\bf{u_0}=f_E(^tA\bf{y_0})$, la backprojection encodée de $\bf{y_0}$
+	\item $\bf{u_0}=f_E(\bf{x_0})+e$, l'image cible encodée puis bruité (bruit uniforme sur $]-0.5,0.5[$)
+	\item idem, avec un bruit gaussien d'écart-type $0.5$
+	\item $\bf{u_0}=\bf{u}_{\text{rand}}$,  vecteur aléatoire de l'espace latent
 \end{enumerate}
 
-\noindent La première initialisation est la plus naturelle puisqu'elle utilise $^tA$, ce qui se rapproche le plus d'un inverse pour $A$ (voir \textit{fig. \ref{fig:Sapplication}, \ref{fig:passebas-g} \& \ref{fig:passebas-p}} en annexe \ref{anx:gradF} pour les visuels) et de même pour $f_E$ par rapport à $f_D$. 
+\noindent La première initialisation est la plus naturelle puisqu'elle utilise $^tA$, ce qui se rapproche le plus d'un inverse pour $A$ (voire \textit{fig. \ref{fig:Sapplication}, \ref{fig:passebas-g} \& \ref{fig:passebas-p}} en annexe \ref{anx:gradF} pour les visuels) et de même pour $f_E$ par rapport à $f_D$.
 \\
-Les initialisations $(2)$ et $(3)$ sont au voisinage de de la cible  pour voir à quel point il possible de s'éloigner de $\bf{x_0}$ tout en conservant la convergence de l'algorithme.
+Les initialisations $(2)$ et $(3)$ sont au voisinage de la cible pour voir à quel point il est possible de s'éloigner de $\bf{x_0}$ tout en conservant la convergence de l'algorithme.
 \\
 
-Le premier constat est que la méthode fonctionne et ceux même en partant d'une vecteur aléatoire.  Aussi, même s'il sont meilleurs avec un passe-bas, les résultats restent satisfaisant sans filtre. La structure très simple du jeu de données aide probablement sur ce point et il serait intéressant de voir si les différences avec/sans filtre sont plus marqués sur un jeu de données plus complexe comme Fashion-MNIST.
+Le premier constat est que la méthode fonctionne et ceux même en partant d'un vecteur aléatoire.  Aussi, même s'ils sont meilleurs avec un passe-bas, les résultats restent satisfaisants sans filtre. La structure très simple du jeu de données aide probablement sur ce point et il serait intéressant de voir si les différences avec/sans filtre sont plus marquées sur un jeu de données plus complexe comme Fashion-MNIST.
 \\
-De plus, les courbes de loss de la figure \textit{\ref{fig:LGDinitg}} n'ont pas toutes finies de descendre (\ei ne sont pas plates à $x=300$) et c'est une remarque que l'on pourra faire sur beaucoup des graphes à suivre dès qu'il y a un filtre passe-bas. Il aurait fallu pousser le nombre d'itérations mais l'algorithme étant lent, on s'est arrêté en bout de 300 par manque de moyen. Cela dit, dans plus part des cas ce n'est pas un problème au vu de la qualité des reconstructions.
+De plus, les courbes de loss de la figure \textit{\ref{fig:LGDinitg}} n'ont pas toutes finies de descendre (\ei ne sont pas plates à $x=300$) et c'est une remarque que l'on pourra faire sur beaucoup des graphes à suivre dès qu'il y a un filtre passe-bas. Il aurait fallu pousser le nombre d'itérations mais l'algorithme étant lent, on s'est arrêté en bout de 300 par manque de moyen. Cela dit, dans la plupart des cas ce n'est pas un problème au vu de la qualité des reconstructions.
 \\
-Pour les cas sans passe-bas, les courbes ont tendances à passer par des plateaux, suggérant que la loss puisse encore diminuer en ajoutant de l’inertie à la descente.
+Pour les cas sans passe-bas, les courbes ont tendance à passer par des plateaux, suggérant que la loss puisse encore diminuer en ajoutant de l’inertie à la descente.
 \\
- 
-Autre chose remarquable, le résultats $(4)$ est meilleur que le $(3)$ alors que l'initialisation du premier est plus éloigné de la cible que le second. Cela est dû à la façon dont est tiré $\bf{u}_{\text{rand}}$. Pour rester cohérent avec la structure des images, et le réseau $f$ (composé de sigmoïde), les coefficients de $\bf{u}_{\text{rand}}$ sont tirés suivant une loi uniforme sur $[0,1]$ et l'auto encodeur gère très mal les vecteurs à valeurs trop loin de l'intervalle $[0,1]$. 
+
+Autre chose remarquable, le résultat $(4)$ est meilleur que le $(3)$ alors que l'initialisation du premier est plus éloigné de la cible que le second. Cela est dû à la façon dont est tiré $\bf{u}_{\text{rand}}$. Pour rester cohérent avec la structure des images, et le réseau $f$ (composé de sigmoïde), les coefficients de $\bf{u}_{\text{rand}}$ sont tirés suivant une loi uniforme sur $[0,1]$ et l'auto encodeur gère très mal les vecteurs à valeurs trop loin de l'intervalle $[0,1]$.
 \\
-Les figures \textit{\ref{fig:LGDgauss-s}} et \textit{\ref{fig:LGDgauss-g}} page suivante, mettent cela en évidence. Chaque lignes correspond à une descente avec en première ligne l'initialisation (décodée), en deuxième la reconstructions dont la cible est en troisième ligne. Les coefficients des initialisations sont tirés suivant une loi normal d'écart-type 2. En comparaison, les initialisations de la figure \textit{\ref{fig:LGDunif-g}} ci-dessous ont été tiré suivant une loi uniforme sur $[0,1]$. 
+Les figures \textit{\ref{fig:LGDgauss-s}} et \textit{\ref{fig:LGDgauss-g}} page suivante, mettent cela en évidence. Chaque ligne correspond à une descente avec en première ligne l'initialisation (décodée), en deuxième la reconstruction dont la cible est en troisième ligne. Les coefficients des initialisations sont tirés suivant une loi normale d'écart-type 2. En comparaison, les initialisations de la figure \textit{\ref{fig:LGDunif-g}} ci-dessous ont été tirées suivant une loi uniforme sur $[0,1]$.
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/multitarget/figure_unif-g}
+	\input{resultats/LGD/multitarget/figure_unif-g}
 	\caption{Résultats de LGD toutes initialiser par un vecteur tiré suivant une lui uniforme sur $[0,1]$ ---  avec passe-bas gaussien ($\sigma=0.6$)}
 	\label{fig:LGDunif-g}
 \end{figure}
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/multitarget/figure_gauss-s}
-    \caption{Plein de descentes --- sans passe-bas}
-    \label{fig:LGDgauss-s}
+	\input{resultats/LGD/multitarget/figure_gauss-s}
+	\caption{Plusieurs résultats de LGD --- sans passe-bas}
+	\label{fig:LGDgauss-s}
 \end{figure}
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/multitarget/figure_gauss-g}
-    \caption{Plein de descentes ---  avec passe-bas gaussien ($\sigma=0.6$)}
-    \label{fig:LGDgauss-g}
+	\input{resultats/LGD/multitarget/figure_gauss-g}
+	\caption{Plusieurs résultats de LGD ---  avec passe-bas gaussien ($\sigma=0.6$)}
+	\label{fig:LGDgauss-g}
 \end{figure}
 
-\noindent Clairement, les courbes sont beaucoup plus chaotique et on pourrait supposer que cela vient de l'apprentissage de $f$ qui aurait ``écarté'' les parties de l'espace latent où $f_D$ n'est pas injective en dehors de $[0,1]^d$. 
+\noindent Clairement, les courbes sont beaucoup plus chaotiques et on pourrait supposer que cela vient de l'apprentissage de $f$ qui aurait ``écarté'' les parties de l'espace latent où $f_D$ n'est pas injective en dehors de $[0,1]^d$.
 
 
 \subsection{Variation de la qualité de mesure (e.i. $\bf{p}\times\bf{q}$)}\label{sec:LGDsize}
@@ -791,78 +765,77 @@ Pour tester les limites de la méthode par rapport au rapports $n/p$ et $m/q$, l
 Les résultats, \textit{fig. \ref{fig:LGDsizes-s} \& \ref{fig:LGDsizes-g}}, restent concluant malgré le haut niveau de compression. La première ligne correspond aux initialisations (par backprojection), la seconde au sous-échantillonnage $A\bf{x_0}$ de la cible $\bf{x_0}$ et la troisième à la reconstruction par LGD. Avec la diminution de $p$ et $q$, l'impact du filtre se fait sentir, sans passe-bas l'algorithme à beaucoup plus de mal à reconstruire l'information perdue. Du point de vue des courbes, on voit aussi que la filtre passe-bas à tendance à bien plus les lisser, ce qui sous-entend une potentielle meilleure convexité de $g$.
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/sizes/figure-s}
-	\caption{Resultats de la LGD avec différents niveau de compression --- sans passe-bas}
+	\input{resultats/LGD/sizes/figure-s}
+	\caption{Résultats de la LGD avec différents niveau de compression --- sans passe-bas}
 	\label{fig:LGDsizes-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/sizes/figure-g}
+	\input{resultats/LGD/sizes/figure-g}
 	\caption{Idem, cette fois avec un passe-bas gaussien ($\sigma=0.5$)}
 	\label{fig:LGDsizes-g}
 \end{figure}
-{\color{white}l}
-\\ \\
+
+
+\vfill
 
 
 
 \subsection{Variation de la taille de l'espace latent}\label{sec:LGDlat}
 
-Toujours dans l'optique de voir les limites de la méthodes, trois autres auto-encodeurs ont été entraînés avec différentes taille d'espace latent. Pour chacun --- \textit{fig. \ref{fig:LGDlat100-s}} à \textit{ \ref{fig:LGDlat800-g}} --- la LGD est effectuée avec différentes initialisations (toujours en première ligne avec le prédiction en dessous). En fonction des cas, la loss fait parfois des zig-zags, ce qui indique que le pas est trop grand. Mais même sachant cela, les résultats sont étonnamment bons. En particulier pour le deux dernières figures, où $d=800$ ce qui est plus que la taille des images, à savoir $28\times28=784$. \`A noter tout de même qu'à mesure que $d$ augmente les PSNR reste de plus en plus loin du PSNR de référence (PSNR$(\bf{x_0}, f(\bf{x_0}))$), qui lui reste globalement stable d'un auto-encoder à l'autre.
+Toujours dans l'optique de voir les limites de la méthode, trois autres auto-encodeurs ont été entraînés avec différentes tailles d'espace latent. Pour chacun --- \textit{fig. \ref{fig:LGDlat100-s}} à \textit{ \ref{fig:LGDlat800-g}} --- la LGD est effectuée avec différentes initialisations (toujours en première ligne avec la prédiction en dessous). En fonction des cas, la loss fait parfois des zig-zags, ce qui indique que le pas est trop grand. Mais même sachant cela, les résultats sont étonnamment bons. En particulier pour les deux dernières figures, où $d=800$ ce qui est plus que la taille des images, à savoir $28\times28=784$. \`A noter tout de même qu'à mesure que $d$ augmente les PSNR reste de plus en plus loin du PSNR de référence (PSNR$(\bf{x_0}, f(\bf{x_0}))$), qui lui reste globalement stable d'un auto-encodeur à l'autre.
 \\
-On y voit aussi qu'à mesure que $d$ augmente, les cas sans passe-bas présentent de moins en moins de plateaux, là où avec, on commence à voir apparaître des sauts, peut-être également du au pas trop grand.
-\\ \\
+On y voit aussi qu'à mesure que $d$ augmente, les cas sans passe-bas présentent de moins en moins de plateaux, là où avec, on commence à voir apparaître des sauts, peut-être également dû au pas trop grand.
 
-En résumé, la méthode est étonnamment robuste, alors que la théorie n'était pas encourageante. \`A voir si elle le reste sur des données plus complexes et si c'est le cas c'est vraisemblablement qu'il doit être possible d'améliorer ces résultats théorique, au moins en prenant comme paramétrisations des décodeurs appris.
-\\
+\vfill
 
 \newpage
 
 \begin{figure}[H]\centering
-    %\input{resultats/LGD/lats/figure 100-s}
-    \caption{$d=100$, sans passe-base}
-    \label{fig:LGDlat100-s}
+	\input{resultats/LGD/lats/figure 100-s}
+	\caption{$d=100$, sans passe-base}
+	\label{fig:LGDlat100-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/lats/figure 100-g}
+	\input{resultats/LGD/lats/figure 100-g}
 	\caption{$d=100$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat100-g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/lats/figure 200-s}
+	\input{resultats/LGD/lats/figure 200-s}
 	\caption{$d=200$, sans passe-base}
 	\label{fig:LGDlat200-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/lats/figure 200-g}
+	\input{resultats/LGD/lats/figure 200-g}
 	\caption{$d=200$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat200-g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/lats/figure 400-s}
+	\input{resultats/LGD/lats/figure 400-s}
 	\caption{$d=400$, sans passe-base}
 	\label{fig:LGDlat400-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/lats/figure 400-g}
+	\input{resultats/LGD/lats/figure 400-g}
 	\caption{$d=400$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat400-g}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/lats/figure 800-s}
-	\caption{$d=800$, avec passe-base gaussien ($\sigma=0.6$)}
+	\input{resultats/LGD/lats/figure 800-s}
+	\caption{$d=800$, sans passe-base}
 	\label{fig:LGDlat800-s}
 \end{figure}
 
 \begin{figure}[H]\centering
-	%\input{resultats/LGD/lats/figure 800-g}
-	\caption{$d=800$, sans passe-base}
+	\input{resultats/LGD/lats/figure 800-g}
+	\caption{$d=800$, avec passe-base gaussien ($\sigma=0.6$)}
 	\label{fig:LGDlat800-g}
 \end{figure}
 
@@ -875,63 +848,64 @@ En résumé, la méthode est étonnamment robuste, alors que la théorie n'étai
 
 
 \subsection{Comparaison avec la descente de gradient projetée}\label{sec:PGD}
-\quad 
+\quad
 
-La descente de gradient projeté (PGD) par auto-encodeur, comme son nom l'indique, consiste en une descente de gradient classique à cela près qu'à chaque itération, le vecteur obtenu est projeté par une fonction$p$ (voir \figref{fig:pcode PGD} ci-contre). 
+La descente de gradient projeté (PGD) par auto-encodeur, comme son nom l'indique, consiste en une descente de gradient classique à cela près qu'à chaque itération, le vecteur obtenu est projeté par une fonction$p$ (voir \figref{fig:pcode PGD} ci-contre).
 
-\begin{wrapfigure}[17]{r}{0.44\textwidth}
-    \input{figures/pcode PGD}
-    \caption{Algorithme de PGD}
-    \label{fig:pcode PGD}
+\begin{wrapfigure}{r}{0.44\textwidth}
+	\input{figures/pcode PGD}
+	\caption{Algorithme de PGD}
+	\label{fig:pcode PGD}
 \end{wrapfigure}
-\noindent Ce rapport étant surtout porté sur la descente de gradient depuis l'espace lattent de $p$, on ne détaillera pas les arguments mathématiques qui supportent cette méthode mais on peut tout de même essayer de se convaincre de l'intérêt de la PGD.\\
-Comme expliqué plus haut, le problème est convexe ce qui assure la convergence de la descente de gradient. La difficulté étant de tomber sur un bon argmin. C'est là que composer par $p$ peut aider à diriger la descente vers le ``bon'' minimum. Si on parle de descente \emph{projeté} c'est aussi parce que, en appliquant $p$, on s'assure qu'à chaque itérations l'image en reconstruction $\bf{x}_n$ au modèle de basse dimension $\Sigma$.
+\noindent Ce rapport étant surtout porté sur la descente de gradient depuis l'espace latent de $p$, on ne détaillera pas les arguments mathématiques qui supportent cette méthode mais on peut tout de même essayer de se convaincre de l'intérêt de la PGD.\\
+Comme expliqué plus haut, le problème est convexe ce qui assure la convergence de la descente de gradient. La difficulté étant de tomber sur un ``bon'' argmin. C'est là que composer par $p$ peut aider à diriger la descente vers le bon minimum. Si on parle de descente \emph{projetée} c'est aussi parce que, en appliquant $p$, on s'assure qu'à chaque itération l'image en reconstruction $\bf{x}_n$ appartient au modèle de basse dimension $\Sigma$.
 
-Dans notre cas, $p$ sera l'auto-encoder $f$ et cette méthode est tirée de l'article \cite{peng_solving_2019} de P. Peng, S. Jalali and X. Yuan, et leurs résultats étaient satisfaisant. Comme pour la LGD, c'est parce qu'il est difficile de construire une projection sur un ensemble aussi mal définie que $\Sigma$ qu'on utilise le machin learning pour tenté d'apprendre la structure de $\Sigma$.
+Là encore, il n’y a pas de définition claire pour $\Sigma$ pour les images et donc pas de moyen de construire simplement une projection. C’est là qu’un intervient le réseau $f$.
+L'auto-encodeur étant entraîné sur les données, $f$ doit pouvoir faire office de projection pour des images qui ne sont pas trop éloignées de $\Sigma$. Cette méthode est tirée de l'article \cite{peng_solving_2019} de P. Peng, S. Jalali and X. Yuan et on a pu reproduire leurs résultats. 
+\\
+
+Comme précédemment, dans les figures \textit{\ref{fig:PGDbackproj-s}} à \textit{\ref{fig:PGDgauss-g}}, plusieurs PGD sont effectuées, un coup sans filtre passe-bas, un coup avec. Les deux premières sont initialisées par backprojeciton (\ei par $^tA\bf{y_0}$), les deux suivantes par des vecteurs aléatoires tirés suivant une loi uniforme sur $[0,1]$ et les deux dernières suivant une loi normale d'écart-type 2.
+\\
+Dans tous les cas, il est clair que la descente projetée est moins efficace que la LGD. Par contre, elle converge beaucoup plus vite : en seulement une quinzaine d’itérations la loss ne descend plus mais commence à remonter. Cette remontée est très probablement dû au fait que le gradient est devenu quasiment nul et que l’algorithme revient à appliquer $f$ en boucle. Comme l'auto-encodeur c’est pas équivalent à l’application identité, on constate une dérive.
+\\
+De plus, si la PGD est moins efficace que la LGD, les figures \textit{\ref{fig:PGDgauss-s}} et \textit{\ref{fig:PGDgauss-g}} montre qu’elle est en revanche plus robuste à l’initialisation par des vecteurs en dehors de $[0,1]^{n\times m}$.
 \\
 
 \begin{figure}[H]\centering
 	\input{resultats/PGD/figure_backproj-s}
-	\caption{blblbl, sans passe-bas}
-	\label{fig:PGD}
+	\caption{PGD initialisée par backprojection --- sans passe-bas}
+	\label{fig:PGDbackproj-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/PGD/figure_backproj-g}
-	\caption{blblbl, sans passe-bas}
-	\label{fig:PGD}
+	\caption{PGD initialisée par backprojection --- avec passe-bas gaussien ($\sigma=0.6$)}
+	\label{fig:PGDbackproj-g}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/PGD/figure_unif-s}
-	\caption{blblbl, sans passe-bas}
-	\label{fig:PGD}
+	\caption{PGD initialisée suivant une loi uniforme --- sans passe-bas}
+	\label{fig:PGDunif-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/PGD/figure_unif-g}
-	\caption{blblbl, sans passe-bas}
-	\label{fig:PGD}
+	\caption{PGD initialisée suivant une loi uniforme --- avec passe-bas gaussien ($\sigma=0.6$)}
+	\label{fig:PGDunif-g}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/PGD/figure_gauss-s}
-	\caption{blblbl, sans passe-bas}
-	\label{fig:PGD}
+	\caption{PGD initialisée suivant une loi normale --- sans passe-bas}
+	\label{fig:PGDgauss-s}
 \end{figure}
 
 \begin{figure}[H]\centering
 	\input{resultats/PGD/figure_gauss-g}
-	\caption{blblbl, sans passe-bas}
-	\label{fig:PGD}
+	\caption{PGD initialisée suivant une loi normale --- avec passe-bas gaussien ($\sigma=0.6$)}
+	\label{fig:PGDgauss-g}
 \end{figure}
-
-\begin{itemize}
-	\item Converge beaucoup plus vite
-	\item Sensible à l'excès d'itérations (sûrement parce que $f$ n'est pas une vrai identité, c'est un problème classique)
-	\item Très sensible au pas image-wise
-	\item Robuste à l'initialisation
-\end{itemize}
 %\\ \\
 
 
@@ -943,16 +917,14 @@ Dans notre cas, $p$ sera l'auto-encoder $f$ et cette méthode est tirée de l'ar
 
 
 \section{Conclusion}
+\quad
 
-Par manque de temps, il n'a pas été trop possible de trop rentrer dans la théorie mais au vue des résultats il est clair que qu'il y a quelque chose à voir.  
-\\
-Il a été fait le choix de de supposer $f_D$ inversible pour exprimer le fait que $f_D$ vienne qu'un auto-encodeur. Mais peut-être qu'une formalisation moins dur, pas exemple en terme de voisinage, de cette idée pourrait être moins restrictive. En particulier, avoir $\ d\big(\theta, \theta^*\big)=\big\|\theta-\theta^*\big\|_2\ $ plutôt qu'une égalité permettrait d'élargir le bassin $\Lambda_\beta$, ce qui serait plus cohérent avec les résultats
-\\
-
-A voir sur des images plus complexes mais \apriori, les modèles très résistant à l'aliasing
+La LGD est étonnamment robuste, alors que la théorie n'était pas encourageante.  Reste à savoir si elle le reste sur un jeu de données plus complexe et si c'est le cas, c'est vraisemblablement qu'il doit être possible d'améliorer ces résultats théorique, au moins pour les décodeurs appris en paramétrisation. 
 \\
 
-Il faudrait faire marcher le pas adaptatif voir ajouter de l'inertie pour éviter les cas les plateaux qui arrive de temps à autre.
+Aussi, le choix a été fait de supposer $f_D$ inversible sur $\Theta$ pour exprimer le fait que $f_D$ vienne qu'un auto-encodeur. L'apport sur la théorie de cette hypothèse n'est pas énorme et sachant la dérive observée dans les derniers résultats (section \ref{sec:PGD}), ce n'est pas nécessairement un choix très pertinent. Peut-être qu'une formalisation moins dure, pas exemple en terme de voisinage, serait plus intéressante.
+\\
+Enfin, le filtre porte n'a pas du tout été utilisé dans ce rapport, il serait intéressant de voir dans quelle mesure la descente depuis l'espace latent est robuste au phénomène de Gibbs, quitte à améliorer le code en ajoutant de l’inertie et éventuellement un pas adaptatif fonctionnel.
 
 
 
@@ -964,82 +936,82 @@ Il faudrait faire marcher le pas adaptatif voir ajouter de l'inertie pour évite
 
 
 \begin{annexe}
-\section{Annexes}
-
-\subsection{Auto-encodeur}\label{anx:AE}
-\quad
-
-Comme expliqué en début de rapport, section \ref{sec:forma2pb}, les auto-encodeurs utilisés, sont des réseaux MLP comptant une couche cachée de taille 1500 pour les parties encodage et décodage, et d'espace latent de taille respective 100, 200, 400 et 800. Pour reprendre ce qui a été fait par Peng \etal, tout les fonctions d'activations sont des sigmoïdes, ce qui, retrospectivement, n'était pas le plus judicieux (\cf section \ref{sec:article1/2}).
-\\
-Leur entraînement s'est fait sur le jeu de données MNIST sur 60 epochs avec des batchs de tailles 100.  Il est effectué par le code \texttt{training autoencoder.py} disponible sur le  \href{https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUIcmlja3JvbGw%3D}{GitHub} et dont voici un résumé des performances :
-\\
-\begin{figure}[H]\centering
-    %\input{figures/AE/img}
-    \caption{Reconstruction par auto-encodeur des images Input en fonction de la taille de l'espace latent du dit auto-encodeur et avec les PSNR associés}
-    \label{fig:AEapp}
-\end{figure}
-\begin{figure}[H]\centering
-    %\input{figures/AE/plot}
-    \caption{Évolution de la MSE et du PSNR par batch des auto-encodeurs au cours des epochs. En bleu sur le set d'entraînement et en orange sur celui de test}
-    \label{fig:AEperf}
-\end{figure}
-{\color{white}l}
-
-
-
-\subsection{Calcul pratique de \textit{F} et de son gradient}\label{anx:gradF}
-\quad
-
-\begin{enonce}[Notation]
-Comme $A$ est linéaire, dans toute la suite elle sera assimilé à matrice la représentant. Là où l'opérateur $A$ prend pour entrée un image $\bf{x}\in\R^{n\times m}$, sa représentation matricielle elle prendre un vecteur $x\in\R^{nm}$. Par souci de lisibilité on notera dans toute la suite les images sous forme de matrice en gras, leur version vectorielle en fin.
-\end{enonce}
-
-Le fait de supposer $A$ linéaire permet de calcul explicitement le gradient de $F$ à moindre coût :
-\begin{equation}\label{eq:gradient}
-\forall x\in\R^{nm},\qquad \nabla F(x)=\,^tA\big(Ax-y\big)
-\end{equation}{\color{white}l}
-Si la formule (\ref{eq:gradient}) est mathématiquement très simple, dès que $n$ et $m$ seront un peu trop grand, la taille de $A$ va très vite ralentir tout algorithme de descente et prendre énormément de place en mémoire.
-
-Pour éviter d'avoir à construire à explicitement on passe par la transformée de Fourier. On note $\F$ (resp. $\F^{-1}$) la matrice associée à la transformée (resp. inverse) de Fourier discrète. En notant de plus $\hat{\bf{x}}=\F \bf{x}$ et $\odot$ le produit terme à terme de vecteur/matrice, $A$ s'écrit alors :
-\begin{align*}\forall \bf{x}\in\R^{n\times m},\qquad A(\bf{x})=S\circ C_h(\bf{x})=S(\bf{h}*\bf{x})&=S\circ\F^{-1}\F(\bf{h}*\bf{x})\\
-    &=S\circ\F^{-1}\big(\hat{\bf{h}}\odot\hat{\bf{x}}\big)\end{align*}
-\\
-Notons $D_h$ l'application/matrice associée au produit $\hat{h}\odot\cdot$. Comme la transformée de Fourier discrète et $D_h$ sont symétriques\footnote{comme $x$ a été aplatie, $\F$ n'est pas diagonale à proprement parler, nous y revenons plus loin}, le gradient de $F$ se réécrire comme :
-\begin{align*}\forall x\in\R^{nm},\qquad \nabla F(x)=\,^tA\big(Ax-y\big)&=\,^t\Big(S\F^{-1}D_h\F\Big)\big(S\F^{-1}D_h\F x-y\big)\\
-    &=\,^t\F\,^tD_h\,^t\F^{-1}\,^tS\big(S\F^{-1}D_h\F x-y\big)\\
-    &=\F D_h\F^{-1}\,^tS\big(S\F^{-1}D_h\F x-y\big)\end{align*}
-\\
-Sous cette forme et même s'il n'en n'a pas l'air, le gradient est bien plus simple à calculer et rapide à calculer.
-
-D'abord, la projection $S$ est très peu coûteuse en temps de calcul puisqu'elle consiste à ne garder qu'un certain nombre de pixel de l'image. Du point de vu python, il n'y a pas besoin de construire $S$, simplement de faire l'opération :
-\[\forall x\in\R^{n\times m},\qquad S(x):=\texttt{Sx = x[::n//p, ::m//q]}\]
-
-\noindent Inversement, la transposé $^tS$ à une image $y\in\R^{p\times q}$ revient à construire une image $^tSy=$\pyt{tSy} de taille $(n,m)$ remplie de 0 puis de faire la modification :
-\[\forall (i,j)\in\llbracket1,p\rrbracket\times\llbracket1,q\rrbracket,\qquad \texttt{tSy[i*n//p, j*p//q] = y[i,j]}\]{\color{white}l}
-
-Il n'y a pas besoin non plus de construire $D_h$, le produit $\hat{\bf{h}}\odot\hat{\bf{x}}$ suffit et le passage dans/hors de l'espace des fréquences est fait par \texttt{fft}. Ainsi, il n'y a jamais besoin d'aplatir les images et dans ce cas, on a bien la symétrie de $\F$ dans le sens où, avec les conventions ne notations d'Einstein, elle vérifie :
-\[\forall(i,j)\in\llbracket1,n\rrbracket\times\llbracket1,m\rrbracket,\qquad \hat{\bf{x}}^{kl}=\F_{ ij}^{kl}\bf{x}^{ij}=\F_{ ij}^{lk}\bf{x}^{ij}=\hat{\bf{x}}^{lk}\]{\color{white}l}
-
-Enfin, comme son nom l'indique, il est plus naturel de construire le filtre \emph{passe-bas} directement dans l'espace de Fourier, et ce qui est fait dans le code. Les figures \textit{\ref{fig:passebas-g}} et \textit{\ref{fig:passebas-p}} montre les applications successive de $A$ et $^tA$ à une image. La figure \textit{\ref{fig:passebas-p}} en particulier mais bien en évidence l'effet de Gibbs qui apparaît parce que les fréquences sont trop brutalement coupées.
-\\
-\begin{figure}[H]\centering
-    %\input{figures/x, S, tS}
-    \caption{Application successive de $S$ et $^tS$ à une image}
-    \label{fig:Sapplication}
-\end{figure}
-\vfill
-\begin{figure}[H]\centering
-    %\input{figures/Compar_filters/gaussien}
-    \caption{En première ligne la transformée du filtres  $\hat{\bf{h}}$ gaussien d'écart type $\sigma$, en deuxième l'image $\bf{x}$ avec en dessous le produits $A(\bf{x})$ puis $tA(A\bf{x})$.}
-    \label{fig:passebas-g}
-\end{figure}
-\vfill
-\begin{figure}[H]\centering
-    %\input{figures/Compar_filters/porte}
-    \caption{Idem qu'à la figure \ref{fig:passebas-g} avec cette fois $\hat{\bf{h}}$ qui est l'indicatrice de $[-a,a]\times[-a,a]$}
-    \label{fig:passebas-p}
-\end{figure}
-
+	\section{Annexes}
+	
+	\subsection{Auto-encodeur}\label{anx:AE}
+	\quad
+	
+	Comme expliqué en début de rapport, section \ref{sec:forma2pb}, les auto-encodeurs utilisés, sont des réseaux MLP comptant une couche cachée de taille 1500 pour les parties encodage et décodage, et d'espace latent de taille respective 100, 200, 400 et 800. Pour reprendre ce qui a été fait par Peng \etal, toutes les fonctions d'activations sont des sigmoïdes, ce qui, rétrospectivement, n'était pas le plus judicieux (\cf section \ref{sec:article1/2}).
+	\\
+	Leur entraînement s'est fait sur le jeu de données MNIST sur 60 epochs avec des batchs de tailles 100.  Il est effectué par le code \texttt{training autoencoder.py} disponible sur le  \href{https://github.com/GregoireDoat/StageM1.git}{GitHub} et dont voici un résumé des performances :
+	\\
+	\begin{figure}[H]\centering
+		\input{figures/AE/img}
+		\caption{Reconstruction par auto-encodeur des images Input en fonction de la taille de l'espace latent dudit auto-encodeur et avec les PSNR associés}
+		\label{fig:AEapp}
+	\end{figure}
+	\begin{figure}[H]\centering
+		\input{figures/AE/plot}
+		\caption{Évolution de la MSE et du PSNR par batch des auto-encodeurs au cours des epochs. En bleu sur le set d'entraînement et en orange sur celui de test}
+		\label{fig:AEperf}
+	\end{figure}
+	{\color{white}l}
+	
+	
+	
+	\subsection{Calcul pratique de \textit{F} et de son gradient}\label{anx:gradF}
+	\quad
+	
+	\begin{enonce}[Notation]
+		Comme $A$ est linéaire, dans toute la suite elle sera assimilé à matrice la représentant. Là où l'opérateur $A$ prend pour entrée un image $\bf{x}\in\R^{n\times m}$, sa représentation matricielle elle prend un vecteur $x\in\R^{nm}$. Par soucis de lisibilité on notera dans toute la suite les images sous forme de matrice en gras, leur version vectorielle en fin.
+	\end{enonce}
+	
+	Le fait de supposer $A$ linéaire permet de calculer explicitement le gradient de $F$ à moindre coût :
+	\begin{equation}\label{eq:gradient}
+		\forall x\in\R^{nm},\qquad \nabla F(x)=\,^tA\big(Ax-y\big)
+	\end{equation}{\color{white}l}
+	Si la formule (\ref{eq:gradient}) est mathématiquement très simple, dès que $n$ et $m$ seront un peu trop grands, la taille de $A$ va très vite ralentir tout algorithme de descente et prendre énormément de place en mémoire.
+	
+	Pour éviter d'avoir à construire à explicitement on passe par la transformée de Fourier. On note $\F$ (resp. $\F^{-1}$) la matrice associée à la transformée (resp. inverse) de Fourier discrète. En notant de plus $\hat{\bf{x}}=\F \bf{x}$ et $\odot$ le produit terme à terme de vecteur/matrice, $A$ s'écrit alors :
+	\begin{align*}\forall \bf{x}\in\R^{n\times m},\qquad A(\bf{x})=S\circ C_h(\bf{x})=S(\bf{h}*\bf{x})&=S\circ\F^{-1}\F(\bf{h}*\bf{x})\\
+		&=S\circ\F^{-1}\big(\hat{\bf{h}}\odot\hat{\bf{x}}\big)\end{align*}
+	\\
+	Notons $D_h$ l'application/matrice associée au produit $\hat{h}\odot\cdot$. Comme la transformée de Fourier discrète et $D_h$ sont symétriques\footnote{comme $x$ a été aplatie, $\F$ n'est pas diagonale à proprement parler, nous y revenons plus loin}, le gradient de $F$ se réécrire comme :
+	\begin{align*}\forall x\in\R^{nm},\qquad \nabla F(x)=\,^tA\big(Ax-y\big)&=\,^t\Big(S\F^{-1}D_h\F\Big)\big(S\F^{-1}D_h\F x-y\big)\\
+		&=\,^t\F\,^tD_h\,^t\F^{-1}\,^tS\big(S\F^{-1}D_h\F x-y\big)\\
+		&=\F D_h\F^{-1}\,^tS\big(S\F^{-1}D_h\F x-y\big)\end{align*}
+	\\
+	Sous cette forme et même s'il n'en n'a pas l'air, le gradient est bien plus simple à calculer et rapide à calculer.
+	
+	D'abord, la projection $S$ est très peu coûteuse en temps de calcul puisqu'elle consiste à ne garder qu'un certain nombre de pixel de l'image. Du point de vu python, il n'y a pas besoin de construire $S$, simplement de faire l'opération :
+	\[\forall x\in\R^{n\times m},\qquad S(x):=\texttt{Sx = x[::n//p, ::m//q]}\]
+	
+	\noindent Inversement, la transposé $^tS$ à une image $y\in\R^{p\times q}$ revient à construire une image $^tSy=$\pyt{tSy} de taille $(n,m)$ remplie de 0 puis de faire la modification :
+	\[\forall (i,j)\in\llbracket1,p\rrbracket\times\llbracket1,q\rrbracket,\qquad \texttt{tSy[i*n//p, j*p//q] = y[i,j]}\]{\color{white}l}
+	
+	Il n'y a pas besoin non plus de construire $D_h$, le produit $\hat{\bf{h}}\odot\hat{\bf{x}}$ suffit et le passage dans/hors de l'espace des fréquences est fait par \texttt{fft}. Ainsi, il n'y a jamais besoin d'aplatir les images et dans ce cas, on a bien la symétrie de $\F$ dans le sens où si, avec les conventions de notations d'Einstein,  $\hat{\bf{x}}^{kl}=\F_{ ij}^{kl}\bf{x}^{ij}$, alors $\F$ vérifie :
+	\[\forall i,j,k,l,\qquad \F_{ij}^{kl}=\F_{kj}^{il}=\F_{il}^{kj}\]{\color{white}l}
+	
+	Enfin, comme son nom l'indique, il est plus naturel de construire le filtre \emph{passe-bas} directement dans l'espace de Fourier, et ce qui est fait dans le code. Les figures \textit{\ref{fig:passebas-g}} et \textit{\ref{fig:passebas-p}} montrent les applications successives de $A$ et $^tA$ à une image. La figure \textit{\ref{fig:passebas-p}} en particulier, met bien en évidence l'effet de Gibbs qui apparaît lorsque les fréquences sont brutalement coupées.
+	\\
+	\begin{figure}[H]\centering
+		\input{figures/x, S, tS}
+		\caption{Application successive de $S$ et $^tS$ à une image}
+		\label{fig:Sapplication}
+	\end{figure}
+	\vfill
+	\begin{figure}[H]\centering
+		\input{figures/Compar_filters/gaussien}
+		\caption{En première ligne la transformée de filtres  $\hat{\bf{h}}$ gaussien d'écart type $\sigma$, en deuxième l'image $\bf{x}$ avec en dessous le produits $A(\bf{x})$ puis $tA(A\bf{x})$.}
+		\label{fig:passebas-g}
+	\end{figure}
+	\vfill
+	\begin{figure}[H]\centering
+		\input{figures/Compar_filters/porte}
+		\caption{Idem avec cette fois $\hat{\bf{h}}$ qui est l'indicatrice de $[-a,a]\times[-a,a]$}
+		\label{fig:passebas-p}
+	\end{figure}
+	
 \end{annexe}
 
 
@@ -1052,9 +1024,7 @@ Enfin, comme son nom l'indique, il est plus naturel de construire le filtre \emp
 \listoffigures
 
 
-
-\newpage
-
+\vspace{0.5cm}
 
 \phantomsection
 \addcontentsline{toc}{subsection}{Références}
